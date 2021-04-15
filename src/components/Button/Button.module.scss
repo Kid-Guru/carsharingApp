@@ -14,7 +14,9 @@
   background-blend-mode: darken;
   border: none;
   border-radius: 8px;
-
+  filter: none;
+  -webkit-transition : -webkit-filter .2s ease;
+  transition: filter .2s linear;
   @media (max-width: $mobile) {
     width: 100%;
     border-radius: 0px;

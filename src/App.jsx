@@ -1,10 +1,11 @@
+import SideMenu from './components/SideMenu/SideMenu';
 import MainPage from './components/MainPage/MainPage';
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      {/* <SideMenu /> */}
+      <SideMenu />
       <MainPage />
     </div>
   );
