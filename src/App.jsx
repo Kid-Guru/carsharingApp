@@ -1,5 +1,6 @@
-import SideMenu from './components/SideMenu/SideMenu';
+import SideMenu from './components/SideBar/SideBar';
 import MainPage from './components/MainPage/MainPage';
+import Menu from './components/Menu/Menu';
 import './App.scss';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
       <SideMenu />
       <MainPage />
+      <Menu />
     </div>
   );
 }

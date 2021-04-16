@@ -1,0 +1,21 @@
+@import '../../../styles/variables.scss';
+
+.languageBtn {
+  color: $main-grey-ligth;
+  width: 48px;
+  height: 48px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 15px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  transition: color 0.2s ease;
+
+  &:hover {
+    border: 1px solid $main-grey-ligth;
+    color: $main-accent;
+  }
+}
