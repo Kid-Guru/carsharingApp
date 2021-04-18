@@ -1,8 +1,8 @@
-import Button from '../Button/Button';
+import Button from '../common/Button/Button';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import s from './MainPage.module.scss';
 import Carousel from './Carousel/Carousel';
+import s from './MainPage.module.scss';
 
 const MainPage = () => (
   <div className={s.main}>
