@@ -2,6 +2,7 @@ import Button from '../Button/Button';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import s from './MainPage.module.scss';
+import Carousel from './Carousel/Carousel';
 
 const MainPage = () => (
   <div className={s.main}>
@@ -21,7 +22,9 @@ const MainPage = () => (
       </div>
       <Footer />
     </section>
-    <section className={`${s.main__section} ${s.main__section_slider}`} />
+    <section className={`${s.main__section} ${s.main__section_slider}`}>
+      <Carousel />
+    </section>
   </div>
 );
 

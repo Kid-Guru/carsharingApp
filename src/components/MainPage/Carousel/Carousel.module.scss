@@ -1,0 +1,59 @@
+@import '../../../styles/variables.scss';
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  background-color: $bg-dark;
+}
+
+.carousel {
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  &__track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.4s ease 0s;
+  }
+  &__item {
+    display: flex;
+    flex: 1 0 100%;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+
+  }
+  &__item:nth-child(4n + 1) {
+    background-color: aqua;
+  }
+  &__item:nth-child(4n + 2) {
+    background-color: coral;
+  }
+  &__item:nth-child(4n + 3) {
+    background-color: greenyellow;
+  }
+  &__item:nth-child(4n + 4) {
+    background-color: slategray;
+  }
+}
+
+
+.arrow {
+  position: relative;
+  width: 64px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+
+  &:hover {
+    background: rgba($main-accent, .2);
+  }
+}
