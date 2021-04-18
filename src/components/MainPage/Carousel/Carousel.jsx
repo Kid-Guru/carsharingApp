@@ -4,17 +4,25 @@ import img2 from './Img/img_2.png';
 import img3 from './Img/img_3.png';
 import img4 from './Img/img_4.png';
 
-const offset = -300;
+const offset = -0;
 
-const carouselItems = [img1, img2, img3, img4].map((img) => (
-  <div className={s.carousel__item} style={{ backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(${img})` }} />
+const carouselSlides = [img1, img2, img3, img4].map((img) => (
+  <div className={`${s.carousel__slide} ${s.slide}`} style={{ backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(${img})` }}>
+    <div className={s.slide__wrapper}>
+      <h2 className={s.slide__title}>Бесплатная парковка</h2>
+      <p className={s.slide__offer}>
+        Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.
+      </p>
+      <button className={s.slide__btnDetails} type="button">Подробнее</button>
+    </div>
+  </div>
 ));
 
 const Carousel = () => (
   <div className={s.container}>
     <div className={s.carousel}>
       <div className={s.carousel__track} style={{ transform: `translateX(${offset}%)` }}>
-        {carouselItems}
+        {carouselSlides}
       </div>
     </div>
     <button type="button" className={`${s.arrow} ${s.arrow__left}`}>

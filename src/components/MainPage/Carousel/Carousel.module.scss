@@ -20,27 +20,82 @@
     height: 100%;
     transition: transform 0.4s ease 0s;
   }
-  &__item {
-    display: flex;
+  &__slide {
     flex: 1 0 100%;
-    align-items: center;
-    justify-content: center;
-    background-position: center;
-    background-size:cover;
-    background-repeat: no-repeat;
+  }
+}
 
+.slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-position: center;
+  background-size:cover;
+  background-repeat: no-repeat;
+
+  &__wrapper {
+    padding: 0px 96px 0 96px;
+    font-family: Roboto;
+    font-style: normal;
+    color: $main-grey-ligth;
   }
-  &__item:nth-child(4n + 1) {
-    background-color: aqua;
+  &__title {
+    margin: 0px 0px 12px 0px;
+    padding: 0px;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 47px;
   }
-  &__item:nth-child(4n + 2) {
-    background-color: coral;
+  &__offer {
+    margin: 0px 0px 32px 0px;
+    padding: 0px;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
   }
-  &__item:nth-child(4n + 3) {
-    background-color: greenyellow;
+  &__btnDetails {
+    color: $main-grey-ligth;
+    padding: 14px 38px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
+    background-blend-mode: darken;
+    border: none;
+    border-radius: 4px;
+    filter: none;
+    -webkit-transition : -webkit-filter .2s ease;
+    transition: filter .2s linear;
+
+    &:visited {
+      filter: brightness(90%);
+    }
+    &:hover {
+      filter: brightness(90%);
+    }
+    &:active {
+      border: none;
+      filter: brightness(80%);
+    }
+    &:disabled {
+      background: $main-grey;
+    }
   }
-  &__item:nth-child(4n + 4) {
-    background-color: slategray;
+  &:nth-child(4n + 1) &__btnDetails {
+    background: linear-gradient(90deg, #13493F 0%, #0C7B1B 100%);
+  }
+  &:nth-child(4n + 2) &__btnDetails {
+    background-image: linear-gradient(90deg, #132949 0%, #0C7B67 100%);
+  }
+  &:nth-child(4n + 3) &__btnDetails {
+    background: linear-gradient(90deg, #493013 0%, #7B0C3B 100%);
+  }
+  &:nth-child(4n + 4) &__btnDetails {
+    background: linear-gradient(90deg, #281349 0%, #720C7B 100%);
   }
 }
 
@@ -51,9 +106,9 @@
   padding: 0;
   margin: 0;
   border: none;
-  background: transparent;
-
+  background-color: transparent;
+  transition: background-color 0.2s ease 0s ;
   &:hover {
-    background: rgba($main-accent, .2);
+    background-color: rgba($main-accent, .2);
   }
 }
