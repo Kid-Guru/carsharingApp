@@ -15,11 +15,12 @@ const nextSlideMap = {
 };
 
 const carouselSlides = slides.map((img) => (
-  <div className={`${s.carousel__slide} ${s.slide}`} style={{ backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(${img})` }}>
+  <div key={img} className={`${s.carousel__slide} ${s.slide}`} style={{ backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(${img})` }}>
     <div className={s.slide__wrapper}>
       <h2 className={s.slide__title}>Бесплатная парковка</h2>
       <p className={s.slide__offer}>
-        Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.
+        Оставляйте машину на платных городских парковках и
+        разрешенных местах, не нарушая ПДД, а также в аэропортах.
       </p>
       <button className={s.slide__btnDetails} type="button">Подробнее</button>
     </div>
@@ -31,7 +32,6 @@ const Carousel = () => {
 
   const handleArrowClick = (direction) => () => {
     const nextSlide = nextSlideMap[direction](currentSlide);
-    console.log(nextSlide);
     const newOffset = (nextSlide - 1) * -100;
     currentSlide = nextSlide;
     setOffset(newOffset);
@@ -56,6 +56,6 @@ const Carousel = () => {
       </button>
     </div>
   );
-}
+};
 
 export default Carousel;

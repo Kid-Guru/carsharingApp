@@ -11,6 +11,7 @@
   position: relative;
   width: 28px;
   height: 22px;
+  outline: none;
   &__element {
     position: absolute;
     left: 0px;
@@ -48,6 +49,9 @@
 
   @media (max-width: $tablet) {
     width: 32px;
+  }
+  @media (max-width: $mobile) {
+    width: 21px;
   }
 }
 
