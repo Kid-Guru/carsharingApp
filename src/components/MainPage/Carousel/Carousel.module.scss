@@ -1,4 +1,5 @@
 @import '../../../styles/variables.scss';
+@import '../../../styles/_mixins.scss';
 
 .container {
   position: relative;
@@ -55,40 +56,14 @@
     line-height: 28px;
   }
   &__btnDetails {
-    color: $main-grey-ligth;
+    @include button;
     padding: 14px 38px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 20px;
-    text-align: center;
-    background-blend-mode: darken;
-    border: none;
-    border-radius: 4px;
-    filter: none;
-    -webkit-transition : -webkit-filter .2s ease;
-    transition: filter .2s linear;
-
-    &:visited {
-      filter: brightness(90%);
-    }
-    &:hover {
-      filter: brightness(90%);
-    }
-    &:active {
-      border: none;
-      filter: brightness(80%);
-    }
-    &:disabled {
-      background: $main-grey;
-    }
   }
   &:nth-child(4n + 1) &__btnDetails {
     background: linear-gradient(90deg, #13493F 0%, #0C7B1B 100%);
   }
   &:nth-child(4n + 2) &__btnDetails {
-    background-image: linear-gradient(90deg, #132949 0%, #0C7B67 100%);
+    background: linear-gradient(90deg, #132949 0%, #0C7B67 100%);
   }
   &:nth-child(4n + 3) &__btnDetails {
     background: linear-gradient(90deg, #493013 0%, #7B0C3B 100%);
@@ -97,7 +72,6 @@
     background: linear-gradient(90deg, #281349 0%, #720C7B 100%);
   }
 }
-
 
 .arrow {
   position: relative;
