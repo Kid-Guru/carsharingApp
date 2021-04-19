@@ -32,6 +32,7 @@ const Carousel = () => {
     setOffset(newOffset);
   };
 
+  // eslint-disable-next-line arrow-body-style
   const getDotsClass = (i, activeSlide) => {
     return cn(s.dots__item, { [s.dots__item_active]: i + 1 === activeSlide });
   };
