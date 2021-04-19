@@ -50,9 +50,9 @@
     }
   }
   @media (max-width: $tablet) {
-    &__side-col {
-      // width: 86px;
-    }
+    // &__side-col {
+    //   width: 86px;
+    // }
     &__content {
       flex: 0 1 100%;
     }
@@ -66,10 +66,10 @@
     }
     &__content {
       display: block;
-      position:relative;
+      position: relative;
       padding: 0px;
       &--wrapper {
-        position:absolute;
+        position: absolute;
         top: 80px;
         bottom: 80px;
         left: -68px;
@@ -96,6 +96,17 @@
   }
   &__item:hover {
     color: $main-accent;
+  }
+  @media (max-width: $tablet) {
+    font-size: 28px;
+    line-height: 33px;
+    &__item {
+      margin-bottom: 22px;
+    }
+  }
+  @media (max-width: $mobile) {
+    font-size: 22px;
+    line-height: 26px;
   }
 }
 
