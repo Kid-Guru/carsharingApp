@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { uniqueId } from 'lodash';
+import cn from 'classnames';
 import s from './Carousel.module.scss';
 
 const renderSlides = (dataArray) => dataArray.map((dataItem) => (
@@ -30,6 +32,10 @@ const Carousel = () => {
     setOffset(newOffset);
   };
 
+  const getDotsClass = (i, activeSlide) => {
+    return cn(s.dots__item, { [s.dots__item_active]: i + 1 === activeSlide });
+  };
+
   return (
     <div className={s.container}>
       <div className={s.carousel}>
@@ -47,6 +53,11 @@ const Carousel = () => {
           <path d="M1 1L9 10L1 19" stroke="#EEEEEE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
+      <div className={s.dots}>
+        {dataSlides.map((d, i) => (
+          <div key={uniqueId()} className={getDotsClass(i, currentSlide)} />
+        ))}
+      </div>
     </div>
   );
 };

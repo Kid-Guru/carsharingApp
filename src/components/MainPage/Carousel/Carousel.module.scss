@@ -86,3 +86,24 @@
     background-color: rgba($main-accent, .2);
   }
 }
+
+.dots {
+  position: absolute;
+  // height: 8px;
+  bottom: 38px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  &__item {
+    width: 8px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: $main-grey-ligth;
+  }
+  &__item_active {
+    background-color: $main-accent;
+  }
+  &__item:not(:last-child) {
+    margin-right: 8px;
+  }
+}
