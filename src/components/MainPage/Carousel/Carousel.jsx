@@ -1,34 +1,27 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import s from './Carousel.module.scss';
-import img1 from './Img/img_1.png';
-import img2 from './Img/img_2.png';
-import img3 from './Img/img_3.png';
-import img4 from './Img/img_4.png';
 
-const slides = [img1, img2, img3, img4];
-
-let currentSlide = 1;
-
-const nextSlideMap = {
-  left: (curentSlide) => (curentSlide === 1 ? slides.length : curentSlide - 1),
-  rigth: (curentSlide) => (curentSlide === slides.length ? 1 : curentSlide + 1),
-};
-
-const carouselSlides = slides.map((img) => (
-  <div key={img} className={`${s.carousel__slide} ${s.slide}`} style={{ backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(${img})` }}>
+const renderSlides = (dataArray) => dataArray.map((dataItem) => (
+  <div key={dataItem.id} className={`${s.carousel__slide} ${s.slide}`} style={{ backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(${dataItem.imgSRC})` }}>
     <div className={s.slide__wrapper}>
-      <h2 className={s.slide__title}>Бесплатная парковка</h2>
-      <p className={s.slide__offer}>
-        Оставляйте машину на платных городских парковках и
-        разрешенных местах, не нарушая ПДД, а также в аэропортах.
-      </p>
+      <h2 className={s.slide__title}>{dataItem.title}</h2>
+      <p className={s.slide__offer}>{dataItem.offer}</p>
       <button className={s.slide__btnDetails} type="button">Подробнее</button>
     </div>
   </div>
 ));
 
+let currentSlide = 1;
+
 const Carousel = () => {
+  const dataSlides = useSelector((state) => state.main.carouselData);
   const [offset, setOffset] = useState(0);
+
+  const nextSlideMap = {
+    left: (curentSlide) => (curentSlide === 1 ? dataSlides.length : curentSlide - 1),
+    rigth: (curentSlide) => (curentSlide === dataSlides.length ? 1 : curentSlide + 1),
+  };
 
   const handleArrowClick = (direction) => () => {
     const nextSlide = nextSlideMap[direction](currentSlide);
@@ -41,7 +34,7 @@ const Carousel = () => {
     <div className={s.container}>
       <div className={s.carousel}>
         <div className={s.carousel__track} style={{ transform: `translateX(${offset}%)` }}>
-          {carouselSlides}
+          {renderSlides(dataSlides)}
         </div>
       </div>
       <button type="button" className={`${s.arrow} ${s.arrow__left}`} onClick={handleArrowClick('left')}>
