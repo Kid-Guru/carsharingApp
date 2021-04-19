@@ -1,18 +1,17 @@
 import BurgerButton from '../common/BurgerButton/BurgerButton';
-import s from './Header.module.scss';
+import './Header.scss';
 
 const Header = () => (
-  <div className={s.header}>
-    <div className={s.header__btnCol}>
+  <div className="header">
+    <div className="header__btnCol">
       <BurgerButton theme="dark" />
     </div>
-    <div className={s.header__textCol}>
-      <div className={s.header__logo}>Need for drive</div>
-      <div className={`${s.header__city} ${s.city}`}>
-        <span className={s.city__name}>Ульяновск</span>
+    <div className="header__textCol">
+      <div className="header__logo">Need for drive</div>
+      <div className="s.header__city city">
+        <span className="city__name">Ульяновск</span>
       </div>
     </div>
-
   </div>
 );
 
