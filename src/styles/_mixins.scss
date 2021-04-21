@@ -1,5 +1,5 @@
 @import './variables.scss';
-@import './breakepoints.scss';
+// @import './breakepoints.scss';
 
 @mixin button {
   color: $main-grey-ligth;
@@ -16,8 +16,8 @@
   border-radius: 8px;
   outline: none;
   filter: none;
-  -webkit-transition : -webkit-filter .2s ease;
-  transition: filter .2s linear;
+  -webkit-transition: -webkit-filter 0.2s ease;
+  transition: filter 0.2s linear;
   @media (max-width: $mobile) {
     width: 100%;
     border-radius: 0px;
@@ -35,5 +35,41 @@
   }
   &:disabled {
     background: $main-grey;
+  }
+}
+
+@mixin vertical-padding {
+  padding-top: 32px;
+  padding-bottom: 32px;
+
+  @media (max-width: $mobile) {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+}
+
+@mixin fluid-container {
+  max-width: 1248px + (64 * 2);
+  // margin: 0 auto;
+  margin: 0 calc((100% - 1376px) / 2);
+
+  @media (max-width: $desktop-min) {
+    margin: 0;
+    width: auto;
+  }
+}
+
+@mixin horizontal-padding {
+  padding-left: 64px;
+  padding-right: 64px;
+
+  @media (max-width: $desktop-min) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media (max-width: $mobile) {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
