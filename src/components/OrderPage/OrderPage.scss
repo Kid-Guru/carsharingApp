@@ -1,0 +1,35 @@
+// @import '../../styles/breakepoints.scss';
+@import '../../styles/variables.scss';
+@import '../../styles/_mixins.scss';
+
+.page {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.container {
+  @include fluid-container;
+  &-order {
+    flex: 1 1 100%;
+  }
+}
+
+.order {
+  display: flex;
+  // flex: 1 1 100%;
+  @include horizontal-padding;
+  min-height: 100%;
+  &__total {
+    flex-basis: 320px;
+    border-left: 1px solid $main-grey-ligth;;
+  }
+  &__step {
+    flex-grow: 1;
+  }
+  &__col {
+    padding-top: 32px;
+    min-height: 100%;
+  }
+}
