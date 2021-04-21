@@ -1,5 +1,6 @@
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -16,9 +17,11 @@ const store = createStore(
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <HashRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root'),
 );
