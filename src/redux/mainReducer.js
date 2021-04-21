@@ -33,6 +33,6 @@ const defaultState = {
   ],
 };
 
-const mainReduser = handleActions({}, defaultState);
+const mainReducer = handleActions({}, defaultState);
 
-export default mainReduser;
+export default mainReducer;

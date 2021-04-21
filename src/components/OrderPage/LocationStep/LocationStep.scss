@@ -1,0 +1,14 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/_mixins.scss';
+
+.locationStep {
+  &__form {
+    margin-bottom: 32px;
+    max-width: 320px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+  }
+}

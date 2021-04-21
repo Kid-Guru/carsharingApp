@@ -28,18 +28,21 @@
   &__item {
     flex-shrink: 0;
   }
-  &__item-available {
+  &__item_available {
     color: $main-black;
   }
-  &__item-active {
+  &__item_active {
     color: $main-accent;
   }
-  &__item-disable {
+  &__item_disable {
     color: $main-grey;
   }
-  &__item:not(:last-child) {
-
+  &__item_disable &__link {
+    cursor: default;
   }
+  // &__item:not(:last-child) {
+
+  // }
   &__item:not(:last-child):after {
     content: '';
     background: url(./arrow.svg) center no-repeat;
