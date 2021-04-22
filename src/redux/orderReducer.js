@@ -17,11 +17,15 @@ const defaultState = {
     cityOrder: null,
     pointOrder: null,
   },
-  cities: null,
+  cities: [],
+  points: [],
+  cityOrder: null,
+  pointOrder: null,
 };
 
 const handlers = {
-  [actions.setCities]: (state) => ({ ...state, cities: null }),
+  [actions.setCities]: (state, { payload: { cities } }) => ({ ...state, cities }),
+  [actions.setPoints]: (state, { payload: { points } }) => ({ ...state, points }),
   // [actions.orderLocationStep]: (state) => ({ ...state, step: { name: 'LOCATION', number: 1 } }),
   // [actions.orderModelStep]: (state) => ({ ...state, step: { name: 'MODEL', number: 2 } }),
   // [actions.orderExtraStep]: (state) => ({ ...state, step: { name: 'EXTRA', number: 3 } }),

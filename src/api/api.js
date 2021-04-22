@@ -1,9 +1,10 @@
 import axios from 'axios';
 
+const PROXYURL = 'https://cors-anywhere.herokuapp.com/';
+const APIURL = 'http://api-factory.simbirsoft1.com/api/';
+
 const client = axios.create({
-  // baseURL: 'http://api-factory.simbirsoft1.com/api/',
-  baseURL: 'https://hexlet-allorigins.herokuapp.com/gethttp://api-factory.simbirsoft1.com/api/',
-  // baseURL: 'https://cors-anywhere.herokuapp.com/http://api-factory.simbirsoft1.com/api/',
+  baseURL: `${PROXYURL}${APIURL}`,
   headers: {
     'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b',
     // Authorization: '4cbcea96de',
@@ -11,8 +12,11 @@ const client = axios.create({
 });
 
 const orderApi = {
-  getCities() {
-    client.get('db/city/');
+  getCity() {
+    return client.get('db/city/');
+  },
+  getPoint() {
+    return client.get('db/point/');
   },
 };
 
