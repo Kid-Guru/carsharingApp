@@ -1,4 +1,3 @@
-import InputField from '../../common/InputField/InputField';
 import './ModelStep.scss';
 
 const ModelStep = () => (

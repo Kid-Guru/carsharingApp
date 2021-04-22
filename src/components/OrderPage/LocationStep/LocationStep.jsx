@@ -31,37 +31,36 @@ const LocationStep = (props) => {
 
         <div className="field">
           <label className="label" htmlFor="city">Город</label>
-
-            <input
-              className="input"
-              type="text"
-              id="city"
-              placeholder="Начните вводить город"
-              list="cityList"
-              autoComplete="off"
-              name="city"
-              value={cityOrder.value}
-              onChange={onChangeCityHandle}
-            />
-
+          <input
+            className="input"
+            type="text"
+            id="city"
+            placeholder="Начните вводить город"
+            list="cityList"
+            autoComplete="off"
+            name="city"
+            value={cityOrder.value}
+            onChange={onChangeCityHandle}
+          />
           <datalist className="datalist" id="cityList">
             {cities.map((i) => <option key={i.id} value={i.item} aria-label={i.item} />)}
           </datalist>
           <button className="clearBtn" type="button" onClick={clearCityField}>✖</button>
         </div>
+
         <div className="field">
           <label className="label" htmlFor="point">Пункт выдачи</label>
-            <input
-              className="input"
-              type="text"
-              id="point"
-              placeholder="Начните вводить пункт"
-              list="pointList"
-              autoComplete="off"
-              name="point"
-              value={pointOrder.value}
-              onChange={onChangePointHandle}
-            />
+          <input
+            className="input"
+            type="text"
+            id="point"
+            placeholder="Начните вводить пункт"
+            list="pointList"
+            autoComplete="off"
+            name="point"
+            value={pointOrder.value}
+            onChange={onChangePointHandle}
+          />
           <datalist className="datalist" id="pointList">
             {points.map((i) => <option key={i.id} value={i.item} aria-label={i.item} />)}
           </datalist>
