@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import BreadCrumds from './BreadCrumbs/BreadCrumbs';
 import LocationStep from './LocationStep/LocationStep';
 import ModelStep from './ModelStep/ModelStep';
+import Total from './Total/Total';
 import './OrderPage.scss';
 
 const OrderPage = () => (
@@ -21,7 +22,9 @@ const OrderPage = () => (
 
           </Switch>
         </div>
-        <div className="order__total order__col">Total</div>
+        <div className="order__total order__col">
+          <Total />
+        </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,47 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/_mixins.scss';
+
+.total {
+  &__title {
+    margin-top: 0px;
+    margin-bottom: 32px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: right;
+    color: $main-black;
+  }
+  &__order {
+    // padding-top: 26px;
+    // padding-bottom: 26px;
+  }
+  &__item {
+    margin-top: 0px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    border-bottom: 2px dotted $main-grey;
+    &-title {
+      color: $main-black;
+      max-width: 55%;
+      margin-bottom: -5px;
+      background-color: #fff;
+      padding-right: 6px;
+    }
+    &-value {
+      text-align: right;
+      color: $main-grey;
+      max-width: 40%;
+      margin-bottom: -5px;
+      background-color: #fff;
+    }
+  }
+}
