@@ -15,7 +15,6 @@ export const resetPointOrder = createAction('RESET_ORDER_POINT');
 
 export const setModelStepStatus = createAction('SET_MODEL_STEP_STATUS');
 
-
 // Запрос всех городов
 export const getCitiesRequest = () => async (dispatch) => {
   const responseCity = await orderApi.getCity();

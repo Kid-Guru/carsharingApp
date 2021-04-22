@@ -45,7 +45,9 @@ const LocationStep = (props) => {
           <datalist className="datalist" id="cityList">
             {cities.map((i) => <option key={i.id} value={i.item} aria-label={i.item} />)}
           </datalist>
-          <button className="clearBtn" type="button" onClick={clearCityField}>✖</button>
+          {cityOrder.value ? (
+            <button className="clearBtn" type="button" onClick={clearCityField}>✖</button>
+          ) : null }
         </div>
 
         <div className="field">
@@ -64,7 +66,9 @@ const LocationStep = (props) => {
           <datalist className="datalist" id="pointList">
             {points.map((i) => <option key={i.id} value={i.item} aria-label={i.item} />)}
           </datalist>
-          <button className="clearBtn" type="button" onClick={clearPointField}>✖</button>
+          {pointOrder.value ? (
+            <button className="clearBtn" type="button" onClick={clearPointField}>✖</button>
+          ) : null }
         </div>
       </div>
       <div className="locationStep__map">карта</div>
