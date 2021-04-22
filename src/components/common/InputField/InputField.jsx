@@ -8,12 +8,17 @@ const InputField = (props) => {
     placeholder,
     autocompleteData,
     name,
-    value,
-    onChange,
-    errors,
-    touched,
+    // value,
+    // onChange,
+    // errors,
+    // touched,
+    // setCallBack,
   } = props;
-  // console.log(name, errors, touched)
+  const onBlurHandle = () => {
+    if (errors && errors.length === 0) {
+      setCallBack(value);
+    }
+  };
   return (
     <div className={s.field}>
       <label className={s.label} htmlFor={id}>{labelText}</label>
@@ -27,16 +32,17 @@ const InputField = (props) => {
           list={`${id}list`}
           autoComplete="off"
           name={name}
-          value={value}
-          onChange={onChange}
+          // value={value}
+          // onBlur={onBlurHandle}
+          // onChange={onChange}
         />
-        {errors && touched ? <div className={s.tooltip}>{errors}</div> : null}
+        {/* {errors && touched ? <div className={s.tooltip}>{errors}</div> : null} */}
       </div>
 
       {/* <div className={s.tooltip}>{ errors }</div> */}
 
       <datalist className={s.datalist} id={`${id}list`}>
-        {autocompleteData.map(i => <option key={i} value={i} />)}
+        {autocompleteData.map(i => <option key={i.id} value={i.item} />)}
       </datalist>
       <button className={s.clearBtn} type="button">✖</button>
     </div>

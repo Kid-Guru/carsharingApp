@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useFormik } from 'formik';
-import InputField from '../../common/InputField/InputField';
+import { getCities, getPoints } from '../../../redux/selectors';
 import * as actions from '../../../redux/actions';
 import './LocationStep.scss';
 
@@ -11,77 +10,81 @@ const LocationStep = (props) => {
     getPointsRequest,
     cities,
     points,
+    cityOrder,
+    pointOrder,
+    updateCityField,
+    updatePointField,
   } = props;
-
-  const citiesNames = cities.map((c) => c.name);
-  const pointsNames = points.map(p => p.address);
 
   useEffect(() => {
     getCitiesRequest();
     getPointsRequest();
   }, [getCitiesRequest, getPointsRequest]);
 
-  const formik = useFormik({
-    initialValues: {
-      cityOrder: '',
-      pointOrder: '',
-    },
-    validate: (values) => {
-      const errors = {};
-      if (!values.cityOrder) {
-        errors.cityOrder = 'Введите город';
-      } else if (!citiesNames.includes(values.cityOrder)) {
-        errors.cityOrder = 'В данном городе нет точек выдачи';
-      }
-      if (!values.pointOrder) {
-        errors.pointOrder = 'Введите пункт выдачи';
-      } else if (!pointsNames.includes(values.pointOrder)) {
-        errors.pointOrder = 'В данном городе нет точек выдачи';
-      }
-      return errors;
-    },
-  });
-  console.log(formik.touched)
-
+  const onChangeCityHandle = (e) => updateCityField(e.target.value);
+  const onChangePointHandle = (e) => updatePointField(e.target.value);
+  const clearCityField = () => updateCityField('');
+  const clearPointField = () => updatePointField('');
   return (
     <div className="locationStep">
-      <form action=" " className="locationStep__form form">
-        <InputField
-          id="citi"
-          labelText="Город"
-          placeholder="Начните вводить город"
-          autocompleteData={citiesNames}
-          name="cityOrder"
-          value={formik.values.cityOrder}
-          onChange={formik.handleChange}
-          errors={formik.errors.cityOrder}
-          touched={formik.touched.cityOrder}
-        />
-        <InputField
-          id="place"
-          labelText="Пункт выдачи"
-          placeholder="Начните вводить пункт ..."
-          autocompleteData={pointsNames}
-          name="pointOrder"
-          value={formik.values.pointOrder}
-          onChange={formik.handleChange}
-          errors={formik.errors.pointOrder}
-          touched={formik.touched.pointOrder}
-        />
-      </form>
+      <div className="locationStep__form form">
+
+        <div className="field">
+          <label className="label" htmlFor="city">Город</label>
+
+            <input
+              className="input"
+              type="text"
+              id="city"
+              placeholder="Начните вводить город"
+              list="cityList"
+              autoComplete="off"
+              name="city"
+              value={cityOrder.value}
+              onChange={onChangeCityHandle}
+            />
+
+          <datalist className="datalist" id="cityList">
+            {cities.map((i) => <option key={i.id} value={i.item} aria-label={i.item} />)}
+          </datalist>
+          <button className="clearBtn" type="button" onClick={clearCityField}>✖</button>
+        </div>
+        <div className="field">
+          <label className="label" htmlFor="point">Пункт выдачи</label>
+            <input
+              className="input"
+              type="text"
+              id="point"
+              placeholder="Начните вводить пункт"
+              list="pointList"
+              autoComplete="off"
+              name="point"
+              value={pointOrder.value}
+              onChange={onChangePointHandle}
+            />
+          <datalist className="datalist" id="pointList">
+            {points.map((i) => <option key={i.id} value={i.item} aria-label={i.item} />)}
+          </datalist>
+          <button className="clearBtn" type="button" onClick={clearPointField}>✖</button>
+        </div>
+      </div>
       <div className="locationStep__map">карта</div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  cities: state.order.cities,
-  points: state.order.points,
+  cities: getCities(state),
+  points: getPoints(state),
+  cityOrder: state.order.cityOrder,
+  pointOrder: state.order.pointOrder,
 });
 
 const actionCreators = {
   getCitiesRequest: actions.getCitiesRequest,
   getPointsRequest: actions.getPointsRequest,
+  updateCityField: actions.handleCityOrderField,
+  updatePointField: actions.handlePointOrderField,
 };
 
 export default connect(mapStateToProps, actionCreators)(LocationStep);

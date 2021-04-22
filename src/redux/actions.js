@@ -9,15 +9,12 @@ export const setStepOrder = createAction('SET_STEP_ORDER');
 export const setCities = createAction('SET_CITIES');
 export const setPoints = createAction('SET_POINTS');
 
-export const selectStepOrder = (stepNumber) => (dispatch, getState) => {
-  // const steps = getState().order.steps;
+export const setCityOrder = createAction('SET_ORDER_CITY');
+export const setPointOrder = createAction('SET_ORDER_POINT');
+export const resetPointOrder = createAction('RESET_ORDER_POINT');
 
-  // const newStepsStatus = {
+export const setModelStepStatus = createAction('SET_MODEL_STEP_STATUS');
 
-  // }
-
-  dispatch({ currentStep: stepNumber });
-};
 
 // Запрос всех городов
 export const getCitiesRequest = () => async (dispatch) => {
@@ -28,11 +25,51 @@ export const getCitiesRequest = () => async (dispatch) => {
   dispatch(setCities({ cities }));
 };
 
-//Запрос всех точек
+// Запрос всех точек
 export const getPointsRequest = () => async (dispatch) => {
   const responsePoint = await orderApi.getPoint();
 
   const points = responsePoint.data.data;
+  const filtredPoints = points.filter((p) => p.cityId !== null);
+  dispatch(setPoints({ points: filtredPoints }));
+};
 
-  dispatch(setPoints({ points }));
+export const handleCityOrderField = (newCityOrderValue) => (dispatch, getState) => {
+  const { cities } = getState().order;
+  const findCity = cities.find((c) => c.name.toLowerCase() === newCityOrderValue.toLowerCase());
+  const isValid = !!findCity;
+  const id = findCity ? findCity.id : null;
+
+  const cityOrder = {
+    value: newCityOrderValue,
+    id,
+    isValid,
+  };
+  dispatch(setCityOrder({ cityOrder }));
+  dispatch(resetPointOrder());
+};
+
+export const handlePointOrderField = (newPointOrderValue) => (dispatch, getState) => {
+  const { points } = getState().order;
+  const findPoint = points
+    .find((c) => c.address.toLowerCase() === newPointOrderValue.toLowerCase());
+  const isValid = !!findPoint;
+  const id = findPoint ? findPoint.id : null;
+
+  const pointOrder = {
+    value: newPointOrderValue,
+    id,
+    isValid,
+  };
+  dispatch(setPointOrder({ pointOrder }));
+  dispatch(handleModelStepStatus({ pointOrder }));
+};
+
+export const handleModelStepStatus = () => (dispatch, getState) => {
+  const { cityOrder, pointOrder } = getState().order;
+  if (cityOrder.isValid && pointOrder.isValid) {
+    dispatch(setModelStepStatus({ modelStepStatus: 'available' }));
+  } else {
+    dispatch(setModelStepStatus({ modelStepStatus: 'blocked' }));
+  }
 };

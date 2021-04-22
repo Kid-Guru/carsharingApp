@@ -4,7 +4,8 @@ import cn from 'classnames';
 import './BreadCrumbs.scss';
 
 const BreadCrumbs = (props) => {
-  const { stepStatus } = props;
+  const { stepStatus, steps } = props;
+  // const { map } = steps
   const getItemClass = (stepOrder) => cn({
     breadcrumbs__item: true,
     breadcrumbs__item_available: stepStatus[stepOrder] === 'fullfiled',
@@ -40,6 +41,7 @@ const BreadCrumbs = (props) => {
 
 const mapStateToProps = (state) => ({
   stepStatus: state.order.steps.status,
+  steps: state.order.steps,
 });
 
 const actionCreators = {

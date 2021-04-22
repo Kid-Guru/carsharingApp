@@ -12,3 +12,43 @@
     line-height: 16px;
   }
 }
+
+.field {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+.label {
+  display: inline-block;
+  // margin-left: auto;
+}
+.input {
+  flex: 0 0 215px;
+  margin-left: 10px;
+  padding-left: 5px;
+  padding-right: 20px;
+  border: none;
+  border-bottom: 1px solid $main-grey;
+  outline: none;
+}
+
+.clearBtn {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  outline: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  filter: none;
+  -webkit-transition: -webkit-filter 0.2s ease;
+  transition: filter 0.2s linear;
+}
