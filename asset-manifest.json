@@ -1,28 +1,31 @@
 {
   "files": {
-    "main.css": "/carsharingApp/static/css/main.929986cf.chunk.css",
-    "main.js": "/carsharingApp/static/js/main.f6ea0987.chunk.js",
-    "main.js.map": "/carsharingApp/static/js/main.f6ea0987.chunk.js.map",
+    "main.css": "/carsharingApp/static/css/main.642ad16e.chunk.css",
+    "main.js": "/carsharingApp/static/js/main.6660114b.chunk.js",
+    "main.js.map": "/carsharingApp/static/js/main.6660114b.chunk.js.map",
     "runtime-main.js": "/carsharingApp/static/js/runtime-main.fd65882a.js",
     "runtime-main.js.map": "/carsharingApp/static/js/runtime-main.fd65882a.js.map",
-    "static/js/2.11767735.chunk.js": "/carsharingApp/static/js/2.11767735.chunk.js",
-    "static/js/2.11767735.chunk.js.map": "/carsharingApp/static/js/2.11767735.chunk.js.map",
+    "static/js/2.d6972f2d.chunk.js": "/carsharingApp/static/js/2.d6972f2d.chunk.js",
+    "static/js/2.d6972f2d.chunk.js.map": "/carsharingApp/static/js/2.d6972f2d.chunk.js.map",
     "static/js/3.9a5598fb.chunk.js": "/carsharingApp/static/js/3.9a5598fb.chunk.js",
     "static/js/3.9a5598fb.chunk.js.map": "/carsharingApp/static/js/3.9a5598fb.chunk.js.map",
     "index.html": "/carsharingApp/index.html",
-    "static/css/main.929986cf.chunk.css.map": "/carsharingApp/static/css/main.929986cf.chunk.css.map",
-    "static/js/2.11767735.chunk.js.LICENSE.txt": "/carsharingApp/static/js/2.11767735.chunk.js.LICENSE.txt",
+    "static/css/main.642ad16e.chunk.css.map": "/carsharingApp/static/css/main.642ad16e.chunk.css.map",
+    "static/js/2.d6972f2d.chunk.js.LICENSE.txt": "/carsharingApp/static/js/2.d6972f2d.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/carsharingApp/static/media/Roboto-Regular.cdc859fd.woff",
+    "static/media/facebook.c09c4df8.svg": "/carsharingApp/static/media/facebook.c09c4df8.svg",
     "static/media/img_1.ed2d522f.png": "/carsharingApp/static/media/img_1.ed2d522f.png",
     "static/media/img_2.2030dc1d.png": "/carsharingApp/static/media/img_2.2030dc1d.png",
     "static/media/img_3.d48fb794.png": "/carsharingApp/static/media/img_3.d48fb794.png",
     "static/media/img_4.d6a2ffb2.png": "/carsharingApp/static/media/img_4.d6a2ffb2.png",
-    "static/media/Header.scss": "/carsharingApp/static/media/pointer_icon.dd9d4bed.svg"
+    "static/media/instagram.d9672241.svg": "/carsharingApp/static/media/instagram.d9672241.svg",
+    "static/media/Header.scss": "/carsharingApp/static/media/pointer_icon.dd9d4bed.svg",
+    "static/media/telegram.8069ad6b.svg": "/carsharingApp/static/media/telegram.8069ad6b.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.fd65882a.js",
-    "static/js/2.11767735.chunk.js",
-    "static/css/main.929986cf.chunk.css",
-    "static/js/main.f6ea0987.chunk.js"
+    "static/js/2.d6972f2d.chunk.js",
+    "static/css/main.642ad16e.chunk.css",
+    "static/js/main.6660114b.chunk.js"
   ]
 }
