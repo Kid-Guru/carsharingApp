@@ -18,6 +18,9 @@ const orderApi = {
   getPoint() {
     return client.get('db/point/');
   },
+  getCars() {
+    return client.get('db/car/');
+  },
 };
 
 export { orderApi };
