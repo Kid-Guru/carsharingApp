@@ -4,4 +4,7 @@
 
 .button {
   @include button;
+  &__fullWidth {
+    width: 100%;
+  }
 }
