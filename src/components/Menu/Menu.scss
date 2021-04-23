@@ -49,7 +49,7 @@
       padding: 0px 0px 0px 32px;
     }
   }
-  @media (max-width: $tablet) {
+  @media (max-width: $desktop-min) {
     // &__side-col {
     //   width: 86px;
     // }
@@ -127,7 +127,11 @@
     fill: $main-accent;
   }
 }
-
+.burgerBtn {
+  @media (max-width: $mobile) {
+    margin-left: -25px;
+  }
+}
 .languageBtn {
   display: none;
   @media (max-width: $mobile) {

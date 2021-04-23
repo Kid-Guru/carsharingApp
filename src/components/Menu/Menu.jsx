@@ -11,7 +11,7 @@ const Menu = () => {
   return (
     <div className={menuClass}>
       <div className="menu__side-col">
-        <div>
+        <div className="burgerBtn">
           <BurgerButton theme="ligth" />
         </div>
         <div className="languageBtn"><LanguageButton /></div>

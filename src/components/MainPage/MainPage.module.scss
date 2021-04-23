@@ -76,7 +76,7 @@
   }
 }
 
-@media (max-width: $tablet) {
+@media (max-width: $desktop-min) {
   .main__section {
     &_content {
       flex-basis: 100%;

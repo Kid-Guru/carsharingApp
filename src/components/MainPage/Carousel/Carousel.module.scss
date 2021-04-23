@@ -27,15 +27,16 @@
 }
 
 .slide {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
   position: relative;
   background-position: center;
   background-size:cover;
   background-repeat: no-repeat;
 
   &__wrapper {
+    margin-top: 320px;
     padding: 0px 96px 0 96px;
     font-family: Roboto;
     font-style: normal;
