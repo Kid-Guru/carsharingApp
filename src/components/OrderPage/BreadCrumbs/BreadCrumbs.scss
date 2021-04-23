@@ -37,7 +37,7 @@
   &__item_disable {
     color: $main-grey;
   }
-  &__item_disable &__link {
+  &__item_disable &__btn {
     cursor: default;
   }
   // &__item:not(:last-child) {
@@ -51,8 +51,11 @@
     height: 6px;
     width: 38px;
   }
-  &__link {
+  &__btn {
     color: inherit;
     text-decoration: none;
+    border: none;
+    background-color: transparent;
+    outline: none;
   }
 }

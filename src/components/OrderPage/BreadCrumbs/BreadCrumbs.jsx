@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import cn from 'classnames';
+import * as actions from '../../../redux/actions';
+import { getCurrentStep } from '../../../redux/selectors';
 import './BreadCrumbs.scss';
 
 const BreadCrumbs = (props) => {
-  const { stepStatus, steps } = props;
-  // const { map } = steps
+  const { steps, currentStep, setNewStepOrder } = props;
   const getItemClass = (stepOrder) => cn({
     breadcrumbs__item: true,
-    breadcrumbs__item_available: stepStatus[stepOrder] === 'fullfiled',
-    breadcrumbs__item_active: stepStatus[stepOrder] === 'filling',
-    breadcrumbs__item_disable: stepStatus[stepOrder] === 'blank',
+    breadcrumbs__item_available: steps[stepOrder] === 'available' && stepOrder !== currentStep,
+    breadcrumbs__item_active: stepOrder === currentStep,
+    breadcrumbs__item_disable: steps[stepOrder] === 'blocked',
   });
 
   return (
@@ -18,20 +18,16 @@ const BreadCrumbs = (props) => {
       <div className="breadcrumbs__container">
         <ul className="breadcrumbs__list">
           <li className={getItemClass('location')}>
-            <Link to="gblabla" className="breadcrumbs__link">Местоположение</Link>
-            {/* <a href="#" className="breadcrumbs__link">Местоположение</a> */}
+            <button onClick={() => setNewStepOrder(0)} className="breadcrumbs__btn" type="button">Местоположение</button>
           </li>
           <li className={getItemClass('model')}>
-            <Link to="gblabla" className="breadcrumbs__link">Модель</Link>
-            {/* <a href="#" className="breadcrumbs__link">Модель</a> */}
+            <button onClick={() => setNewStepOrder(1)} className="breadcrumbs__btn" type="button">Модель</button>
           </li>
           <li className={getItemClass('extra')}>
-            <Link to="gblabla" className="breadcrumbs__link">Дополнительно</Link>
-            {/* <a href="#" className="breadcrumbs__link">Дополнительно</a> */}
+            <button onClick={() => setNewStepOrder(2)} className="breadcrumbs__btn" type="button">Дополнительно</button>
           </li>
           <li className={getItemClass('total')}>
-            <Link to="gblabla" className="breadcrumbs__link">Итого</Link>
-            {/* <a href="#" className="breadcrumbs__link">Итого</a> */}
+            <button onClick={() => setNewStepOrder(3)} className="breadcrumbs__btn" type="button">Итого</button>
           </li>
         </ul>
       </div>
@@ -40,12 +36,12 @@ const BreadCrumbs = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  stepStatus: state.order.steps.status,
   steps: state.order.steps,
+  currentStep: getCurrentStep(state),
 });
 
 const actionCreators = {
-  // getCityRequest: actions.getCityRequest,
+  setNewStepOrder: actions.handleCurrentStepOrder,
 };
 
 export default connect(mapStateToProps, actionCreators)(BreadCrumbs);

@@ -23,14 +23,16 @@
   min-height: 100%;
   &__total {
     flex-basis: 320px;
-    border-left: 1px solid $main-grey-ligth;;
+    padding-left: 32px;
+    border-left: 1px solid $main-grey-ligth;
   }
   &__step {
     flex-grow: 1;
+    max-width: 732px;
+    margin-right: auto;
   }
   &__col {
     padding-top: 32px;
-    padding-left: 32px;
     min-height: 100%;
   }
 }

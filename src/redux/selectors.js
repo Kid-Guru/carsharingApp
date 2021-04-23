@@ -9,3 +9,16 @@ export const getPoints = (state) => {
     .filter((p) => p.cityId.id === cityOrder.id)
     .map((p) => ({ item: p.address, id: p.id }));
 };
+
+export const getCurrentStep = (state) => {
+  const currentStepIndex = state.order.steps.currentStep;
+  return state.order.steps.map[currentStepIndex];
+};
+
+export const isNextStepAvailable = (state) => {
+  const { currentStep: currentStepIndex, map } = state.order.steps;
+  const isLastStep = currentStepIndex === map.length;
+  if (isLastStep) return true;
+  const nextStep = map[currentStepIndex + 1];
+  return state.order.steps[nextStep] === 'available';
+};

@@ -10,15 +10,17 @@ const defaultState = {
       extra: 'blank',
       total: 'blank',
     },
+    // blocked  current  available
     location: 'available',
-    model: 'blocked',
-    extra: 'blocked',
+    model: 'available',
+    extra: 'available',
     total: 'blocked',
     currentStep: 0,
     map: ['location', 'model', 'extra', 'total'],
   },
   cities: [],
   points: [],
+  cars: [],
   cityOrder: {
     value: '',
     id: null,
@@ -34,9 +36,17 @@ const defaultState = {
 const handlers = {
   [actions.setCities]: (state, { payload: { cities } }) => ({ ...state, cities }),
   [actions.setPoints]: (state, { payload: { points } }) => ({ ...state, points }),
+  [actions.setCars]: (state, { payload: { cars } }) => ({ ...state, cars }),
   [actions.setCityOrder]: (state, { payload: { cityOrder } }) => ({ ...state, cityOrder }),
   [actions.setPointOrder]: (state, { payload: { pointOrder } }) => ({ ...state, pointOrder }),
   [actions.resetPointOrder]: (state) => ({ ...state, pointOrder: { value: '', id: null, isValid: false } }),
+  [actions.setCurrentStepOrder]: (state, { payload: { currentStep } }) => ({
+    ...state,
+    steps: {
+      ...state.steps,
+      currentStep,
+    },
+  }),
   [actions.setModelStepStatus]: (state, { payload: { modelStepStatus } }) => ({
     ...state,
     steps: {
