@@ -1,0 +1,106 @@
+@import '../../styles/breakepoints.scss';
+@import '../../styles/variables.scss';
+
+.main {
+  display: flex;
+  height: 100%;
+  flex: 1 1 100%;
+  overflow-y: auto;
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-basis: 50%;
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    &_slider {
+      // background-color: $main-accent;
+    }
+  }
+}
+
+.wrapper {
+  flex: 1 1 100%;
+
+  &_button {
+    padding-left: 64px;
+    padding-right: 64px;
+    @media (max-width: $desktop-min) {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+    @media (max-width: $mobile) {
+      padding: 0;
+    }
+  }
+}
+
+.hero {
+  padding: 163px 64px 0px 64px;
+  &__title {
+    margin-bottom: 30px;
+  }
+  &__offer {
+    color: $main-grey;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 26px;
+    line-height: 30px;
+    margin-bottom: 60px;
+  }
+}
+
+.title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 66px;
+  &__black {
+    display: block;
+    color: $main-black;
+    margin-bottom: 8px;
+  }
+  &__accent {
+    display: block;
+    color: $main-accent;
+  }
+}
+
+@media (max-width: $desktop-min) {
+  .hero {
+    padding: 163px 32px 0px 32px;
+  }
+}
+
+@media (max-width: $desktop-min) {
+  .main__section {
+    &_content {
+      flex-basis: 100%;
+    }
+    &_slider {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .hero {
+    padding: 34px 16px 0px 16px;
+    &__title {
+      margin-bottom: 16px;
+    }
+    &__offer {
+      font-size: 18px;
+      line-height: 21px;
+      margin-bottom: 32px;
+    }
+  }
+  .title {
+    font-size: 32px;
+    line-height: 100%;
+  }
+}

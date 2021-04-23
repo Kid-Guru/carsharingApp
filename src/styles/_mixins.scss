@@ -1,0 +1,39 @@
+@import './variables.scss';
+@import './breakepoints.scss';
+
+@mixin button {
+  color: $main-grey-ligth;
+  padding: 14px 60px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+  background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+  background-blend-mode: darken;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  filter: none;
+  -webkit-transition : -webkit-filter .2s ease;
+  transition: filter .2s linear;
+  @media (max-width: $mobile) {
+    width: 100%;
+    border-radius: 0px;
+  }
+
+  &:visited {
+    filter: brightness(90%);
+  }
+  &:hover {
+    filter: brightness(90%);
+  }
+  &:active {
+    border: none;
+    filter: brightness(80%);
+  }
+  &:disabled {
+    background: $main-grey;
+  }
+}

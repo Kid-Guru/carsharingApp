@@ -1,0 +1,7 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/breakepoints.scss';
+@import '../../../styles/_mixins.scss';
+
+.button {
+  @include button;
+}

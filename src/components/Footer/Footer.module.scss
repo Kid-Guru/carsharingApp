@@ -1,0 +1,52 @@
+@import '../../styles/variables.scss';
+@import '../../styles/breakepoints.scss';
+
+.footer {
+  padding: 32px 64px;
+  display: flex;
+  justify-content: space-between;
+  &__copyright {
+    font-family: Roboto;
+    color: $main-grey;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+  }
+  &__phone {
+    color: $main-black;
+    font-family: Roboto;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    transition: color 0.2s ease 0s;
+  }
+  &__phone:hover {
+    color: $main-accent;
+  }
+}
+
+@media (max-width: $desktop-min) {
+  .footer {
+    padding: 32px 32px;
+  }
+}
+
+@media (max-width: $mobile) {
+  .footer {
+    padding: 16px 16px;
+    background-color: $bg-dark;
+    flex-direction: column;
+    align-items: flex-end;
+    &__phone {
+      order: -1;
+      color: $main-accent;
+      margin-bottom: 8px;
+    }
+    &__phone:hover {
+      color: $main-grey;
+    }
+  }
+}
