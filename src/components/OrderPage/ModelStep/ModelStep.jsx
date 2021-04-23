@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../../redux/actions';
 import './ModelStep.scss';
 
 const ModelStep = (props) => {
@@ -57,4 +60,12 @@ const ModelStep = (props) => {
   );
 };
 
-export default ModelStep;
+const mapStateToProps = (state) => ({
+
+});
+
+const actionsCreators = {
+  getCarsRequest: actions.getCarsRequest,
+};
+
+export default connect(mapStateToProps, actionsCreators)(ModelStep);
