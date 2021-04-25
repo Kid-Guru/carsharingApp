@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getCities, getPoints } from '../../../redux/selectors';
+import LocationStepMap from './LocationStepMap';
 import * as actions from '../../../redux/actions';
 import './LocationStep.scss';
 
@@ -25,6 +26,7 @@ const LocationStep = (props) => {
   const onChangePointHandle = (e) => updatePointField(e.target.value);
   const clearCityField = () => updateCityField('');
   const clearPointField = () => updatePointField('');
+  const cityForMap = cityOrder.isValid ? cityOrder.value : '';
   return (
     <div className="locationStep">
       <div className="locationStep__form form">
@@ -71,7 +73,9 @@ const LocationStep = (props) => {
           ) : null }
         </div>
       </div>
-      <div className="locationStep__map">карта</div>
+      <div className="locationStep__map">
+        <LocationStepMap city={cityForMap} points={points} />
+      </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { createAction } from 'redux-actions';
 import { orderApi } from '../api/api';
+import getCoord from '../api/geocode';
 
 export const toggleMenu = createAction('TOGGLE_MENU');
 export const toggleLanguage = createAction('TOGGLE_LANGUAGE');
@@ -7,6 +8,7 @@ export const toggleLanguage = createAction('TOGGLE_LANGUAGE');
 export const setStepOrder = createAction('SET_STEP_ORDER');
 
 export const setCities = createAction('SET_CITIES');
+export const setCitiesCoods = createAction('SET_CITIES_COORDS');
 export const setPoints = createAction('SET_POINTS');
 export const setCars = createAction('SET_CARS');
 
@@ -17,12 +19,28 @@ export const resetPointOrder = createAction('RESET_ORDER_POINT');
 export const setCurrentStepOrder = createAction('SET_CURRENT_STEP_ORDER');
 export const setModelStepStatus = createAction('SET_MODEL_STEP_STATUS');
 
+// // Запрос координат городов
+// export const getCitiesCoordsRequest = (cities) => async (dispatch) => {
+//   const requests = cities.map((city) => getCoord(city.name));
+//   Promise.all(requests)
+//     .then((responses) => responses.map(response => {
+//       return response.data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ').reverse();
+//     }))
+//     .then((coords) => {
+//       const citiesCoords = {};
+//       coords.forEach((coord, index) => citiesCoords[cities[index].id] = coord);
+//       return citiesCoords;
+//     })
+//     .then((coordsCities) => dispatch(setCitiesCoods({ coordsCities })));
+// };
+
 // Запрос всех городов
 export const getCitiesRequest = () => async (dispatch) => {
   const responseCity = await orderApi.getCity();
 
   const cities = responseCity.data.data;
 
+  // dispatch(getCitiesCoordsRequest(cities));
   dispatch(setCities({ cities }));
 };
 // Запрос всех точек
