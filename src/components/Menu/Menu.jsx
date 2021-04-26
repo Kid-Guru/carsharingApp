@@ -4,9 +4,9 @@ import cn from 'classnames';
 import BurgerButton from '../common/BurgerButton/BurgerButton';
 import LanguageButton from '../common/LanguageButton/LanguageButton';
 import './Menu.scss';
-import { ReactComponent as SVGLogoTelegram } from './telegram.svg';
-import { ReactComponent as SVGLogoFacebook } from './facebook.svg';
-import { ReactComponent as SVGLogoInstagram } from './instagram.svg';
+import { ReactComponent as SVGLogoTelegram } from '../../assets/telegram_icon.svg';
+import { ReactComponent as SVGLogoFacebook } from '../../assets/facebook_icon.svg';
+import { ReactComponent as SVGLogoInstagram } from '../../assets/instagram_icon.svg';
 
 const Menu = () => {
   const isMenuOpen = useSelector((state) => state.stateUI.sidebarActive);

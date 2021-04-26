@@ -1,4 +1,3 @@
-// @import '../../styles/breakepoints.scss';
 @import '../../styles/variables.scss';
 
 .main {
@@ -13,10 +12,6 @@
     flex-basis: 50%;
     flex-grow: 1;
     flex-shrink: 1;
-
-    &_slider {
-      // background-color: $main-accent;
-    }
   }
 }
 
@@ -70,12 +65,17 @@
 }
 
 @media (max-width: $desktop-min) {
+  .main__section {
+    &_content {
+      flex-basis: 66.6%;
+    }
+  }
   .hero {
     padding: 163px 32px 0px 32px;
   }
 }
 
-@media (max-width: $desktop-min) {
+@media (max-width: $tablet) {
   .main__section {
     &_content {
       flex-basis: 100%;

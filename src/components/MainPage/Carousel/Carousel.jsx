@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { uniqueId } from 'lodash';
 import cn from 'classnames';
+import { ReactComponent as ArrowLeft } from '../../../assets/sliderArrow_left.svg';
+import { ReactComponent as ArrowRigth } from '../../../assets/sliderArrow_rigth.svg';
 import s from './Carousel.module.scss';
 
 const renderSlides = (dataArray) => dataArray.map((dataItem) => (
@@ -45,14 +47,10 @@ const Carousel = () => {
         </div>
       </div>
       <button type="button" className={`${s.arrow} ${s.arrow__left}`} onClick={handleArrowClick('left')}>
-        <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 1L1 10L9 19" stroke="#EEEEEE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <ArrowLeft />
       </button>
       <button type="button" className={`${s.arrow} ${s.arrow__rigth}`} onClick={handleArrowClick('rigth')}>
-        <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1L9 10L1 19" stroke="#EEEEEE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <ArrowRigth />
       </button>
       <div className={s.dots}>
         {dataSlides.map((d, i) => (
