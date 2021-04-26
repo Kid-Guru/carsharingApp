@@ -7,7 +7,6 @@ export const toggleLanguage = createAction('TOGGLE_LANGUAGE');
 export const setStepOrder = createAction('SET_STEP_ORDER');
 
 export const setCities = createAction('SET_CITIES');
-export const setCitiesCoods = createAction('SET_CITIES_COORDS');
 export const setPoints = createAction('SET_POINTS');
 export const setCars = createAction('SET_CARS');
 
