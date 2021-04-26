@@ -61,6 +61,10 @@ export const handleModelStepStatus = () => (dispatch, getState) => {
     dispatch(setModelStepStatus({ modelStepStatus: 'blocked' }));
   }
 };
+
+export const updateAllStepsStatus = () => (dispatch) => {
+  dispatch(handleModelStepStatus());
+};
 // Обрабатываем value поля Пункт выдачи
 export const handlePointOrderField = (newPointOrderValue) => (dispatch, getState) => {
   const { points } = getState().order;
@@ -75,7 +79,7 @@ export const handlePointOrderField = (newPointOrderValue) => (dispatch, getState
     isValid,
   };
   dispatch(setPointOrder({ pointOrder }));
-  dispatch(handleModelStepStatus({ pointOrder }));
+  dispatch(updateAllStepsStatus());
 };
 // Обрабатываем изменение текущего шага заказа
 export const handleCurrentStepOrder = (newStepOrder) => (dispatch, getState) => {

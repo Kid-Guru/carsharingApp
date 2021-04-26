@@ -12,8 +12,8 @@ const defaultState = {
     },
     // blocked  current  available
     location: 'available',
-    model: 'available',
-    extra: 'available',
+    model: 'blocked',
+    extra: 'blocked',
     total: 'blocked',
     currentStep: 0,
     map: ['location', 'model', 'extra', 'total'],

@@ -15,7 +15,7 @@ export const getCurrentStep = (state) => {
   return state.order.steps.map[currentStepIndex];
 };
 
-export const isNextStepAvailable = (state) => {
+export const getIsNextStepAvailable = (state) => {
   const { currentStep: currentStepIndex, map } = state.order.steps;
   const isLastStep = currentStepIndex === map.length;
   if (isLastStep) return true;
@@ -40,4 +40,11 @@ export const getPointsMap = (state) => {
     return [{ fullAdress: `${cityOrder.value} ${pointOrder.value}`, adress: pointOrder.value, id: pointOrder.id }];
   }
   return getPoints(state).map((p) => ({ fullAdress: `${cityOrder.value} ${p.item}`, adress: p.item, id: p.id }));
+};
+
+export const getLocationStepData = (state) => {
+  const { cityOrder, pointOrder } = state.order;
+  const isLocationStepFullfilled = (cityOrder.isValid && pointOrder.isValid) === true;
+  const text = `${cityOrder.value}, ${pointOrder.value}`;
+  return ({ text, isFullfilled: isLocationStepFullfilled });
 };

@@ -8,7 +8,7 @@ const BreadCrumbs = (props) => {
   const { steps, currentStep, setNewStepOrder } = props;
   const getItemClass = (stepOrder) => cn({
     breadcrumbs__item: true,
-    breadcrumbs__item_available: steps[stepOrder] === 'available' && stepOrder !== currentStep,
+    breadcrumbs__item_available: steps[stepOrder] === 'available',
     breadcrumbs__item_active: stepOrder === currentStep,
     breadcrumbs__item_disable: steps[stepOrder] === 'blocked',
   });
