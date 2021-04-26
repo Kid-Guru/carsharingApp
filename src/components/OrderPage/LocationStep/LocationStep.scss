@@ -19,12 +19,14 @@
 
 .field {
   position: relative;
-  display: flex;
-  justify-content: flex-end;
+  // display: flex;
+  // justify-content: flex-end;
   margin-bottom: 12px;
 }
 .label {
   display: inline-block;
+  display: flex;
+  justify-content: flex-end;
   // margin-left: auto;
 }
 .input {

@@ -29,7 +29,7 @@ const LocationStepMap = (props) => {
       Promise.all(requests)
         .then((responses) => responses.map((r) => r.geoObjects.get(0).geometry.getCoordinates()))
         .then((newCoordsPoints) => setPointsCoords(newCoordsPoints));
-    };
+    }
   }, [points, API]);
   return (
     <YMaps query={{ apikey: KEY_YANDEX_MAP }}>
@@ -50,8 +50,7 @@ const LocationStepMap = (props) => {
             }}
             onClick={() => selectPoint(points[i].adress)}
           />
-        ),
-        )}
+        ))}
       </Map>
     </YMaps>
   );
