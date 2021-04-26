@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { orderApi } from '../api/api';
-import getCoord from '../api/geocode';
 
 export const toggleMenu = createAction('TOGGLE_MENU');
 export const toggleLanguage = createAction('TOGGLE_LANGUAGE');
@@ -19,35 +18,17 @@ export const resetPointOrder = createAction('RESET_ORDER_POINT');
 export const setCurrentStepOrder = createAction('SET_CURRENT_STEP_ORDER');
 export const setModelStepStatus = createAction('SET_MODEL_STEP_STATUS');
 
-// // Запрос координат городов
-// export const getCitiesCoordsRequest = (cities) => async (dispatch) => {
-//   const requests = cities.map((city) => getCoord(city.name));
-//   Promise.all(requests)
-//     .then((responses) => responses.map(response => {
-//       return response.data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ').reverse();
-//     }))
-//     .then((coords) => {
-//       const citiesCoords = {};
-//       coords.forEach((coord, index) => citiesCoords[cities[index].id] = coord);
-//       return citiesCoords;
-//     })
-//     .then((coordsCities) => dispatch(setCitiesCoods({ coordsCities })));
-// };
-
 // Запрос всех городов
 export const getCitiesRequest = () => async (dispatch) => {
   const responseCity = await orderApi.getCity();
-
   const cities = responseCity.data.data;
-
-  // dispatch(getCitiesCoordsRequest(cities));
   dispatch(setCities({ cities }));
 };
 // Запрос всех точек
 export const getPointsRequest = () => async (dispatch) => {
   const responsePoint = await orderApi.getPoint();
-
   const points = responsePoint.data.data;
+  // Фильтруем невалидные данные
   const filtredPoints = points.filter((p) => p.cityId !== null);
   dispatch(setPoints({ points: filtredPoints }));
 };
@@ -57,7 +38,7 @@ export const getCarsRequest = () => async (dispatch) => {
   const cars = responseCars.data.data;
   dispatch(setCars({ cars }));
 };
-
+// Обрабатываем value поля Город
 export const handleCityOrderField = (newCityOrderValue) => (dispatch, getState) => {
   const { cities } = getState().order;
   const findCity = cities.find((c) => c.name.toLowerCase() === newCityOrderValue.toLowerCase());
@@ -73,6 +54,15 @@ export const handleCityOrderField = (newCityOrderValue) => (dispatch, getState) 
   dispatch(resetPointOrder());
 };
 
+export const handleModelStepStatus = () => (dispatch, getState) => {
+  const { cityOrder, pointOrder } = getState().order;
+  if (cityOrder.isValid && pointOrder.isValid) {
+    dispatch(setModelStepStatus({ modelStepStatus: 'available' }));
+  } else {
+    dispatch(setModelStepStatus({ modelStepStatus: 'blocked' }));
+  }
+};
+// Обрабатываем value поля Пункт выдачи
 export const handlePointOrderField = (newPointOrderValue) => (dispatch, getState) => {
   const { points } = getState().order;
   const findPoint = points
@@ -88,16 +78,7 @@ export const handlePointOrderField = (newPointOrderValue) => (dispatch, getState
   dispatch(setPointOrder({ pointOrder }));
   dispatch(handleModelStepStatus({ pointOrder }));
 };
-
-export const handleModelStepStatus = () => (dispatch, getState) => {
-  const { cityOrder, pointOrder } = getState().order;
-  if (cityOrder.isValid && pointOrder.isValid) {
-    dispatch(setModelStepStatus({ modelStepStatus: 'available' }));
-  } else {
-    dispatch(setModelStepStatus({ modelStepStatus: 'blocked' }));
-  }
-};
-
+// Обрабатываем изменение текущего шага заказа
 export const handleCurrentStepOrder = (newStepOrder) => (dispatch, getState) => {
   const { steps } = getState().order;
   const nameNewStep = steps.map[newStepOrder];
