@@ -22,3 +22,22 @@ export const isNextStepAvailable = (state) => {
   const nextStep = map[currentStepIndex + 1];
   return state.order.steps[nextStep] === 'available';
 };
+
+export const getCenterMap = (state) => {
+  const { cityOrder, pointOrder } = state.order;
+  if (pointOrder.isValid) {
+    return `${cityOrder.value} ${pointOrder.value}`;
+  }
+  if (cityOrder.isValid) {
+    return `${cityOrder.value}`;
+  }
+  return null;
+};
+
+export const getPointsMap = (state) => {
+  const { cityOrder, pointOrder } = state.order;
+  if (pointOrder.isValid) {
+    return [{ fullAdress: `${cityOrder.value} ${pointOrder.value}`, adress: pointOrder.value, id: pointOrder.id }];
+  }
+  return getPoints(state).map((p) => ({ fullAdress: `${cityOrder.value} ${p.item}`, adress: p.item, id: p.id }));
+};

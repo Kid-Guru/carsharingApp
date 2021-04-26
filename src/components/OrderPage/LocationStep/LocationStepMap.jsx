@@ -1,83 +1,60 @@
 import { useEffect, useState } from 'react';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
+import KEY_YANDEX_MAP from '../../../api/geocode';
+
+const DEFAULT_CITY = ['54.314192', '48.403123'];
 
 const LocationStepMap = (props) => {
-  const { city, points } = props;
-  // const ymaps = React.createRef(null);
-  // const [isYmapsAvailable, setTrue] = useState([]);
+  const { center, points, selectPoint } = props;
+
   const [API, saveAPI] = useState(null);
-  const [centerCoords, setCenterCoords] = useState(['54.314192', '48.403123']);
-  const [mapState, setMapState] = useState();
-  const [coodrsPoints, setPointsCoords] = useState([null]);
+  const [centerCoords, setCenterCoords] = useState(DEFAULT_CITY);
+  const [coordsPoints, setPointsCoords] = useState([null]);
+
   useEffect(() => {
     if (API) {
-      API.geocode(city).then((result) => {
-        const newCoordCity = result.geoObjects.get(0).geometry.getCoordinates();
-        setCenterCoords(newCoordCity);
-        // setMapState({center: newCoordCity, zoom: 12});
-      });
-      const requests = points.map((point) => API.geocode(`${city} ${point.item}`));
+      if (center) {
+        API.geocode(center).then((result) => {
+          const newCoordCenter = result.geoObjects.get(0).geometry.getCoordinates();
+          setCenterCoords(newCoordCenter);
+        });
+      } else {
+        setCenterCoords(DEFAULT_CITY);
+      }
+    }
+  }, [center, API]);
+  useEffect(() => {
+    if (API) {
+      const requests = points.map((point) => API.geocode(point.fullAdress));
       Promise.all(requests)
         .then((responses) => responses.map((r) => r.geoObjects.get(0).geometry.getCoordinates()))
-        .then((coordsPoints) => setPointsCoords(coordsPoints));
+        .then((newCoordsPoints) => setPointsCoords(newCoordsPoints));
     };
-  }, [city]);
-  // const defaultCoors = ['54.314192', '48.403123'];
-  // const showCoord = cityOrder.isValid ? coordsCities[cityOrder.id] : defaultCoors;
+  }, [points, API]);
   return (
-    <YMaps query={{ apikey: '2106c918-2fec-450a-b18f-d2a580f03f17' }}>
+    <YMaps query={{ apikey: KEY_YANDEX_MAP }}>
       <Map
         state={{ center: centerCoords, zoom: 12 }}
-        // instanceRef={ymaps}
         onLoad={(instance) => saveAPI(instance)}
         modules={['geocode']}
         width="100%"
         height="100%"
       >
-        {coodrsPoints.map(coodrsPoint => {
-          return (<Placemark
-            // key={`point_${mark.id}`}
+        {coordsPoints.map((coodrsPoint, i) => (
+          <Placemark
+            key={coodrsPoint}
             geometry={coodrsPoint}
             options={{
               preset: 'islands#circleIcon',
               iconColor: '#0EC261',
             }}
-          />)
-        }
+            onClick={() => selectPoint(points[i].adress)}
+          />
+        ),
         )}
-
       </Map>
-
     </YMaps>
-  )
+  );
 };
 
 export default (LocationStepMap);
-
-
-// import { YMaps, Map } from "react-yandex-maps";
-
-// const mapState = {
-//   center: [48.704272, 65.60203],
-//   zoom: 4
-// };
-
-// function App() {
-//   const mapRef = React.createRef(null);
-
-//   return (
-//     <div className="App">
-//       <YMaps>
-//         <Map
-//           // Создаем ссылку на инстанс мапа, чтобы использовать его
-//           instanceRef={mapRef}
-//           state={mapState}
-//           // Используем коллбэк функцию при загрузке карты
-//           onLoad={ymaps => getRegions(ymaps)}
-//           // Подключаем модули регионов и ObjectManager
-//           modules={["borders", "ObjectManager"]}
-//         />
-//       </YMaps>
-//     </div>
-//   );
-// }

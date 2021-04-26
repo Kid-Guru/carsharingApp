@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getCities, getPoints } from '../../../redux/selectors';
+import {
+  getCities, getCenterMap, getPoints, getPointsMap,
+} from '../../../redux/selectors';
 import LocationStepMap from './LocationStepMap';
 import * as actions from '../../../redux/actions';
 import './LocationStep.scss';
@@ -13,6 +15,8 @@ const LocationStep = (props) => {
     points,
     cityOrder,
     pointOrder,
+    centerMap,
+    pointsMap,
     updateCityField,
     updatePointField,
   } = props;
@@ -26,7 +30,6 @@ const LocationStep = (props) => {
   const onChangePointHandle = (e) => updatePointField(e.target.value);
   const clearCityField = () => updateCityField('');
   const clearPointField = () => updatePointField('');
-  const cityForMap = cityOrder.isValid ? cityOrder.value : '';
   return (
     <div className="locationStep">
       <div className="locationStep__form form">
@@ -49,7 +52,7 @@ const LocationStep = (props) => {
           </datalist>
           {cityOrder.value ? (
             <button className="clearBtn" type="button" onClick={clearCityField}>✖</button>
-          ) : null }
+          ) : null}
         </div>
 
         <div className="field">
@@ -66,15 +69,17 @@ const LocationStep = (props) => {
             onChange={onChangePointHandle}
           />
           <datalist className="datalist" id="pointList">
-            {points.map((i) => <option key={i.id} value={i.item} aria-label={i.item} />)}
+            {// 2
+              pointOrder.value.length >= 0
+              && points.map((i) => <option key={i.id} value={i.item} aria-label={i.item} />)}
           </datalist>
           {pointOrder.value ? (
             <button className="clearBtn" type="button" onClick={clearPointField}>✖</button>
-          ) : null }
+          ) : null}
         </div>
       </div>
       <div className="locationStep__map">
-        <LocationStepMap city={cityForMap} points={points} />
+        <LocationStepMap center={centerMap} points={pointsMap} selectPoint={updatePointField} />
       </div>
     </div>
   );
@@ -85,6 +90,8 @@ const mapStateToProps = (state) => ({
   points: getPoints(state),
   cityOrder: state.order.cityOrder,
   pointOrder: state.order.pointOrder,
+  centerMap: getCenterMap(state),
+  pointsMap: getPointsMap(state),
 });
 
 const actionCreators = {
