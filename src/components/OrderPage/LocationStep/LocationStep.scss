@@ -40,7 +40,6 @@
 
 .clearBtn {
   position: absolute;
-  top: 0px;
   bottom: 0px;
   right: 0px;
   outline: none;
@@ -56,4 +55,21 @@
   filter: none;
   -webkit-transition: -webkit-filter 0.2s ease;
   transition: filter 0.2s linear;
+}
+
+@media (max-width: $mobile) {
+  .field {
+    margin-bottom: 15px;
+  }
+  .label {
+    flex-direction: column;
+  }
+  .input {
+    flex: 0 1 0px;
+    margin-left: 0px;
+  }
+  .label-text {
+    margin-left: 5px;
+    margin-bottom: 5px;
+  }
 }

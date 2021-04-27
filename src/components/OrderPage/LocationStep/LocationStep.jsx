@@ -35,7 +35,7 @@ const LocationStep = (props) => {
       <div className="locationStep__form form">
         <div className="field">
           <label className="label" htmlFor="city">
-            <span>Город</span>
+            <span className="label-text">Город</span>
             <input
               className="input"
               type="text"
@@ -58,7 +58,7 @@ const LocationStep = (props) => {
 
         <div className="field">
           <label className="label" htmlFor="point">
-            <span>Пункт выдачи</span>
+            <span className="label-text">Пункт выдачи</span>
             <input
               className="input"
               type="text"
