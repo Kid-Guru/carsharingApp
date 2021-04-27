@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
 import Button from '../../common/Button/Button';
 import * as actions from '../../../redux/actions';
-import { getLocationStepData, getIsNextStepAvailable } from '../../../redux/selectors';
+import { getTotalLocationStepData, getIsNextStepAvailable } from '../../../redux/selectors';
 import './Total.scss';
+
+const BUTTON_TEXT = ['Выбрать модель', 'Дополнительно', 'Итого', 'Заказать'];
 
 const Total = (props) => {
   const {
@@ -18,16 +20,20 @@ const Total = (props) => {
         {locationStep.isFullfilled && (
           <p className="total__item">
             <span className="total__item-title">Пункт выдачи</span>
-            <span className="total__item-value">{locationStep.text}</span>
+            <span className="total__item-value_container">
+              <span className="total__item-value">{locationStep.city}</span>
+              <span className="total__item-value">{locationStep.adress}</span>
+              {/* {`${}`} */}
+            </span>
           </p>
         )}
       </div>
-      <div className="total__price">
+      {/* <div className="total__price">
         <span className="total__price-title">Цена: </span>
         <span className="total__price-number">10 000 ₽</span>
-      </div>
+      </div> */}
       <Button
-        text="Слеудющий шаг"
+        text={BUTTON_TEXT[currentStepOrder]}
         isFullWidth
         isDisabled={!isNextStepAvailable}
         onClickHandle={() => setNewStepOrder(currentStepOrder + 1)}
@@ -39,7 +45,7 @@ const Total = (props) => {
 const mapStateToProps = (state) => ({
   currentStepOrder: state.order.steps.currentStep,
   isNextStepAvailable: getIsNextStepAvailable(state),
-  locationStep: getLocationStepData(state),
+  locationStep: getTotalLocationStepData(state),
 });
 
 const actionCreators = ({

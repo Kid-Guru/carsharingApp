@@ -39,9 +39,12 @@ export const getPointsMap = (state) => {
   return getPoints(state).map((p) => ({ fullAdress: `${cityOrder.value} ${p.item}`, adress: p.item, id: p.id }));
 };
 
-export const getLocationStepData = (state) => {
+export const getTotalLocationStepData = (state) => {
   const { cityOrder, pointOrder } = state.order;
   const isLocationStepFullfilled = (cityOrder.isValid && pointOrder.isValid) === true;
-  const text = `${cityOrder.value}, ${pointOrder.value}`;
-  return ({ text, isFullfilled: isLocationStepFullfilled });
+  return ({
+    city: cityOrder.value,
+    adress: pointOrder.value,
+    isFullfilled: isLocationStepFullfilled,
+  });
 };
