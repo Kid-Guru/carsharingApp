@@ -37,6 +37,9 @@
   border-bottom: 1px solid $main-grey;
   outline: none;
 }
+.input::-webkit-calendar-picker-indicator {
+  display: none;
+}
 
 .clearBtn {
   position: absolute;
