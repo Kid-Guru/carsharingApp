@@ -60,7 +60,7 @@ const ModelStep = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
 
 });
 

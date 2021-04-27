@@ -35,7 +35,7 @@ export const getCenterMap = (state) => {
 };
 
 export const getPointsMap = (state) => {
-  const { cityOrder, pointOrder } = state.order;
+  const { cityOrder } = state.order;
   return getPoints(state).map((p) => ({ fullAdress: `${cityOrder.value} ${p.item}`, adress: p.item, id: p.id }));
 };
 
