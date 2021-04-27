@@ -36,9 +36,6 @@ export const getCenterMap = (state) => {
 
 export const getPointsMap = (state) => {
   const { cityOrder, pointOrder } = state.order;
-  if (pointOrder.isValid) {
-    return [{ fullAdress: `${cityOrder.value} ${pointOrder.value}`, adress: pointOrder.value, id: pointOrder.id }];
-  }
   return getPoints(state).map((p) => ({ fullAdress: `${cityOrder.value} ${p.item}`, adress: p.item, id: p.id }));
 };
 
