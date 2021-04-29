@@ -60,16 +60,16 @@
     padding: 14px 38px;
   }
   &:nth-child(4n + 1) &__btnDetails {
-    @include button(#13493F, #0C7B1B);
+    @include button(#13493F, #0C7B1B, 5%, 10%);
   }
   &:nth-child(4n + 2) &__btnDetails {
-    @include button(#132949, #0C7B67);
+    @include button(#132949, #0C7B67, 5%, 10%);
   }
   &:nth-child(4n + 3) &__btnDetails {
-    @include button(#493013, #7B0C3B);
+    @include button(#493013, #7B0C3B, 5%, 10%);
   }
   &:nth-child(4n + 4) &__btnDetails {
-    @include button(#281349, #720C7B);
+    @include button(#281349, #720C7B, 5%, 10%);
   }
 }
 
