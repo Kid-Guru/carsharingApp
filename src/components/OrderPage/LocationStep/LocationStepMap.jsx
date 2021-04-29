@@ -4,6 +4,14 @@ import KEY_YANDEX_MAP from '../../../api/geocode';
 
 const DEFAULT_CITY = ['54.314192', '48.403123'];
 
+const mapStyle = {
+  position: 'absolute',
+  left: 0,
+  top: 0,
+  width: '100%',
+  height: '100%',
+};
+
 const LocationStepMap = (props) => {
   const { center, points, selectPoint } = props;
 
@@ -35,10 +43,9 @@ const LocationStepMap = (props) => {
     <YMaps query={{ apikey: KEY_YANDEX_MAP }}>
       <Map
         state={{ center: centerCoords, zoom: 12 }}
-        onLoad={(instance) => saveAPI(instance)}
+        onLoad={saveAPI}
         modules={['geocode']}
-        width="100%"
-        height="100%"
+        style={mapStyle}
       >
         {coordsPoints.map((coodrsPoint, i) => (
           <Placemark
