@@ -26,19 +26,49 @@
 .label {
   display: flex;
   justify-content: flex-end;
-  // margin-left: auto;
+  &-text {
+    margin-right: 8px;
+  }
 }
-.input {
-  flex: 0 0 215px;
-  margin-left: 10px;
-  padding-left: 5px;
-  padding-right: 20px;
-  border: none;
-  border-bottom: 1px solid $main-grey;
-  outline: none;
-}
-.input::-webkit-calendar-picker-indicator {
-  display: none;
+// .input {
+//   flex: 0 0 215px;
+//   margin-left: 10px;
+//   padding-left: 5px;
+//   padding-right: 20px;
+//   border: none;
+//   border-bottom: 1px solid $main-grey;
+//   outline: none;
+// }
+// .input::-webkit-calendar-picker-indicator {
+//   display: none;
+// }
+
+.inputField {
+  &__control {
+    height: 19px!important;
+    min-height: 19px!important;
+    width: 215px;
+    border: none!important;
+    border-bottom: 1px solid #999999!important;
+    border-radius: 0!important;
+    box-shadow: none!important;
+  }
+  &__value-container {
+    height: 19px!important;
+    padding: 0 6px!important;
+  }
+  &__input {
+    margin: 0px!important;
+  }
+  &__indicators {
+    height: 19px!important;
+  }
+  &__indicator-separator {
+    display: none!important;
+  }
+  &__dropdown-indicator {
+    display: none!important;
+  }
 }
 
 .clearBtn {
