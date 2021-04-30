@@ -1,3 +1,5 @@
+import { IMAGE_URL } from '../api/api';
+
 export const getCities = (state) => state.order.cities.map((c) => ({ item: c.name, id: c.id }));
 
 export const getPoints = (state) => {
@@ -47,4 +49,23 @@ export const getTotalLocationStepData = (state) => {
     adress: pointOrder.value,
     isFullfilled: isLocationStepFullfilled,
   });
+};
+
+export const getCars = (state) => {
+  const prettyPrice = (minPrice, maxPrice) => `${minPrice.toLocaleString()} - ${maxPrice.toLocaleString()} ₽`;
+  const getImageURL = (path) => {
+    if (path.includes('base64')) {
+      return path;
+    }
+    return `${IMAGE_URL}${path}`;
+  };
+  const { cars, carsCategories: { selectedCategory } } = state.order;
+  return cars
+    .filter((c) => c.categoryId.id === selectedCategory || selectedCategory === null)
+    .map((c) => ({
+      id: c.id,
+      model: c.name,
+      price: prettyPrice(c.priceMin, c.priceMax),
+      picPath: getImageURL(c.thumbnail.path),
+    }));
 };

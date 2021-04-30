@@ -2,9 +2,8 @@
 @import '../../../styles/_mixins.scss';
 
 .modelStep {
-  &__filters {
-    // display: flex;
-    padding-bottom: 48px;
+  &__filter {
+    padding-bottom: 32px;
   }
 }
 
@@ -45,5 +44,73 @@
   }
   &__input:checked + &__text:before {
     border: 3px solid $main-accent;
+  }
+}
+
+.cars {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  &__card {
+    position: relative;
+    flex: 0 1 50%;
+    height: 224px;
+    padding: 16px;
+    text-transform: uppercase;
+    border: 1px solid $main-grey-ligth;
+    transition: border 0.2s ease 0s;
+  }
+  &__card:hover {
+    border: 1px solid $main-grey;
+  }
+  &__card_selected {
+    border: 1px solid $main-accent;
+  }
+  &__cardTitle {
+    margin: 0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: $main-black;
+  }
+  &__cardPrice {
+    margin: 0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: $main-grey;
+  }
+  &__cardPic {
+    z-index: -1;
+    position: absolute;
+    top:40%;
+    bottom: 10px;
+    left: 15%;
+    right: 10px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+@media (max-width: $mobile) {
+  .radioInput {
+    width: 120px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cars {
+    &__card {
+      flex: 0 1 100%;
+    }
   }
 }

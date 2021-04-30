@@ -9,10 +9,13 @@ export const setStepOrder = createAction('SET_STEP_ORDER');
 export const setCities = createAction('SET_CITIES');
 export const setPoints = createAction('SET_POINTS');
 export const setCars = createAction('SET_CARS');
+export const setCarsCategories = createAction('SET_CARS_CATEGORIES');
 
 export const setCityOrder = createAction('SET_ORDER_CITY');
 export const setPointOrder = createAction('SET_ORDER_POINT');
 export const resetPointOrder = createAction('RESET_ORDER_POINT');
+export const setCategoryFilter = createAction('SET_CATEGORY_FILTER');
+export const setOrderCar = createAction('SET_ORDER_CAR');
 
 export const setCurrentStepOrder = createAction('SET_CURRENT_STEP_ORDER');
 export const setModelStepStatus = createAction('SET_MODEL_STEP_STATUS');
@@ -36,6 +39,12 @@ export const getCarsRequest = () => async (dispatch) => {
   const responseCars = await orderApi.getCars();
   const cars = responseCars.data.data;
   dispatch(setCars({ cars }));
+};
+// Запрос всех категорий машин
+export const getCategoriesRequest = () => async (dispatch) => {
+  const responseCategories = await orderApi.getCategories();
+  const categories = responseCategories.data.data;
+  dispatch(setCarsCategories({ categories }));
 };
 // Обрабатываем value поля Город
 export const handleCityOrderField = (newCityOrderValue) => (dispatch, getState) => {

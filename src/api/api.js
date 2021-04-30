@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const IMAGE_URL = 'https://api-factory.simbirsoft1.com/';
 const APIURL = 'https://api-factory.simbirsoft1.com/api/';
 
 const client = axios.create({
@@ -20,7 +21,9 @@ const orderApi = {
   getCars() {
     return client.get('db/car/');
   },
+  getCategories() {
+    return client.get('db/category/');
+  },
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export { orderApi };
+export { orderApi, IMAGE_URL };

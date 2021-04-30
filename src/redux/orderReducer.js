@@ -14,6 +14,10 @@ const defaultState = {
   cities: [],
   points: [],
   cars: [],
+  carsCategories: {
+    categories: [],
+    selectedCategory: null,
+  },
   cityOrder: {
     value: '',
     id: null,
@@ -24,15 +28,31 @@ const defaultState = {
     id: null,
     isValid: false,
   },
+  carOrder: {
+    id: null,
+    valid: false,
+  },
 };
 
 const handlers = {
   [actions.setCities]: (state, { payload: { cities } }) => ({ ...state, cities }),
   [actions.setPoints]: (state, { payload: { points } }) => ({ ...state, points }),
   [actions.setCars]: (state, { payload: { cars } }) => ({ ...state, cars }),
+  [actions.setCarsCategories]: (state, { payload: { categories } }) => ({
+    ...state,
+    carsCategories: { ...state.carsCategories, categories },
+  }),
   [actions.setCityOrder]: (state, { payload: { cityOrder } }) => ({ ...state, cityOrder }),
   [actions.setPointOrder]: (state, { payload: { pointOrder } }) => ({ ...state, pointOrder }),
   [actions.resetPointOrder]: (state) => ({ ...state, pointOrder: { value: '', id: null, isValid: false } }),
+  [actions.setCategoryFilter]: (state, { payload: { selectedCategory } }) => ({
+    ...state,
+    carsCategories: { ...state.carsCategories, selectedCategory },
+  }),
+  [actions.setOrderCar]: (state, { payload: { id } }) => ({
+    ...state,
+    carOrder: { id, isValid: true },
+  }),
   [actions.setCurrentStepOrder]: (state, { payload: { currentStep } }) => ({
     ...state,
     steps: {
