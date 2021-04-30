@@ -2,14 +2,7 @@ import { handleActions } from 'redux-actions';
 import * as actions from './actions';
 
 const defaultState = {
-  // blank  filling  fullfiled
   steps: {
-    status: {
-      location: 'filling',
-      model: 'blank',
-      extra: 'blank',
-      total: 'blank',
-    },
     // blocked  current  available
     location: 'available',
     model: 'blocked',
