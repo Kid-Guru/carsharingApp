@@ -19,90 +19,59 @@
 
 .field {
   position: relative;
-  // display: flex;
-  // justify-content: flex-end;
   margin-bottom: 12px;
-}
-.label {
-  display: flex;
-  justify-content: flex-end;
-  &-text {
-    margin-right: 8px;
-  }
-}
-// .input {
-//   flex: 0 0 215px;
-//   margin-left: 10px;
-//   padding-left: 5px;
-//   padding-right: 20px;
-//   border: none;
-//   border-bottom: 1px solid $main-grey;
-//   outline: none;
-// }
-// .input::-webkit-calendar-picker-indicator {
-//   display: none;
-// }
-
-.inputField {
-  &__control {
-    height: 19px!important;
-    min-height: 19px!important;
-    width: 215px;
-    border: none!important;
-    border-bottom: 1px solid #999999!important;
-    border-radius: 0!important;
-    box-shadow: none!important;
-  }
-  &__value-container {
-    height: 19px!important;
-    padding: 0 6px!important;
+  &__label {
+    display: flex;
+    justify-content: flex-end;
+    &-text {
+      margin-right: 8px;
+    }
   }
   &__input {
-    margin: 0px!important;
-  }
-  &__indicators {
-    height: 19px!important;
-  }
-  &__indicator-separator {
-    display: none!important;
-  }
-  &__dropdown-indicator {
-    display: none!important;
+    &__control {
+      height: 19px!important;
+      min-height: 19px!important;
+      width: 215px;
+      border: none!important;
+      border-bottom: 1px solid #999999!important;
+      border-radius: 0!important;
+      box-shadow: none!important;
+    }
+    &__value-container {
+      height: 19px!important;
+      padding: 0 6px!important;
+    }
+    &__input {
+      margin: 0px!important;
+    }
+    &__indicators {
+      height: 19px!important;
+    }
+    &__indicator-separator {
+      display: none!important;
+    }
+    &__dropdown-indicator {
+      display: none!important;
+    }
   }
 }
 
-.clearBtn {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  outline: none;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: center;
-  background-color: transparent;
-  border: none;
-  border-radius: 50%;
-  filter: none;
-  -webkit-transition: -webkit-filter 0.2s ease;
-  transition: filter 0.2s linear;
-}
+
 
 @media (max-width: $mobile) {
   .field {
     margin-bottom: 15px;
-  }
-  .label {
-    flex-direction: column;
-  }
-  .input {
-    flex: 0 1 0px;
-    margin-left: 0px;
-  }
-  .label-text {
-    margin-left: 5px;
-    margin-bottom: 5px;
+    &__label {
+      flex-direction: column;
+      &-text {
+        margin-left: 5px;
+        margin-bottom: 5px;
+      }
+    }
+    &__input {
+      &__control {
+        width: auto;
+      }
+    }
   }
 }

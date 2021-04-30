@@ -37,43 +37,11 @@ const LocationStep = (props) => {
     <div className="locationStep">
       <div className="locationStep__form form">
         <div className="field">
-          <label className="label" htmlFor="city">
-            <span className="label-text">Город</span>
+          <label className="field__label" htmlFor="cityOrder">
+            <span className="field__label-text">Город</span>
             <Select
-              classNamePrefix="inputField"
-              // styles={{
-              //   // control: (provided) => ({
-              //   //   ...provided,
-              //   //   height: 19,
-              //   //   minHeight: 19,
-              //   //   width: 215,
-              //   //   border: 'none',
-              //   //   borderBottom: '1px solid #999999',
-              //   //   borderRadius: 0,
-              //   //   boxShadow: 'none',
-              //   // }),
-              //   // valueContainer: (provided, state) => ({
-              //   //   ...provided,
-              //   //   height: '19px',
-              //   //   padding: '0 6px',
-              //   // }),
-
-              //   // input: (provided, state) => ({
-              //   //   ...provided,
-              //   //   margin: '0px',
-              //   // }),
-              //   // indicatorSeparator: state => ({
-              //   //   display: 'none',
-              //   // }),
-              //   // dropdownIndicator: state => ({
-              //   //   display: 'none',
-              //   // }),
-              //   // indicatorsContainer: (provided, state) => ({
-              //   //   ...provided,
-              //   //   height: '19px',
-              //   // }),
-              // }}
-              // eslint-disable-next-line react/jsx-props-no-multi-spaces
+              classNamePrefix="field__input"
+              inputId="cityOrder"
               placeholder="Начните вводить город"
               isClearable="true"
               value={cityOrder.value === '' ? null : ({ value: cityOrder.value, label: cityOrder.value })}
@@ -85,10 +53,11 @@ const LocationStep = (props) => {
         </div>
 
         <div className="field">
-          <label className="label" htmlFor="point">
-            <span className="label-text">Пункт выдачи</span>
+          <label className="field__label" htmlFor="orderPoint">
+            <span className="field__label-text">Пункт выдачи</span>
             <Select
-              classNamePrefix="inputField"
+              classNamePrefix="field__input"
+              inputId="orderPoint"
               placeholder="Начните вводить пункт"
               isClearable="true"
               value={pointOrder.value === '' ? null : ({ value: pointOrder.value, label: pointOrder.value })}
