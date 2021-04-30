@@ -5,7 +5,6 @@
   flex: 1 1 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   overflow-y: auto;
 }
 
@@ -18,31 +17,27 @@
 
 .order {
   display: flex;
-  // flex: 1 1 100%;
   @include horizontal-padding;
   min-height: 100%;
-  &__total {
-    flex-basis: 320px;
-    flex-shrink: 0;
-    padding-left: 32px;
-    border-left: 1px solid $main-grey-ligth;
-  }
-  &__step {
-    flex-grow: 1;
-    max-width: 732px;
-    padding-right: 32px;
-    margin-right: auto;
-  }
   &__col {
     padding-top: 32px;
-    min-height: 100%;
   }
-}
-
-@media (max-width: $desktop-min) {
-  .order {
-    &__step {
-      max-width: 580px;
+  &__total {
+    flex-basis: 288px;
+    flex-shrink: 0;
+  }
+  &__step {
+    flex: 0 1 736px;
+    margin-right: auto;
+  }
+  &__delimetr {
+    flex-basis: 64px;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    &_border {
+      width: 1px;
+      background-color: $main-grey-ligth;
     }
   }
 }
@@ -54,12 +49,14 @@
       flex: 0 1 auto;
       padding-right: 0px;
       margin-right: 0;
-      max-width: 100%;
     }
     &__total {
       padding-left: 0px;
       border-left: none;
       flex: 0 1 auto;
+    }
+    &__delimetr {
+      display: none;
     }
   }
 }

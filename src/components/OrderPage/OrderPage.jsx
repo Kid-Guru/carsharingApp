@@ -20,6 +20,9 @@ const OrderPage = () => {
             {currentStep === 0 ? <LocationStep /> : null}
             {currentStep === 1 ? <ModelStep /> : null}
           </div>
+          <div className="order__delimetr order__col">
+            <div className="order__delimetr_border" />
+          </div>
           <div className="order__total order__col">
             <Total />
           </div>
