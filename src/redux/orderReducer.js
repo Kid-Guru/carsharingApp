@@ -30,7 +30,7 @@ const defaultState = {
   },
   carOrder: {
     id: null,
-    valid: false,
+    isValid: false,
   },
 };
 
@@ -41,6 +41,12 @@ const handlers = {
   [actions.setCarsCategories]: (state, { payload: { categories } }) => ({
     ...state,
     carsCategories: { ...state.carsCategories, categories },
+  }),
+  [actions.resetSelectedCarsCategories]: (state) => ({
+    ...state,
+    carsCategories: {
+      categories: [], selectedCategory: null,
+    },
   }),
   [actions.setCityOrder]: (state, { payload: { cityOrder } }) => ({ ...state, cityOrder }),
   [actions.setPointOrder]: (state, { payload: { pointOrder } }) => ({ ...state, pointOrder }),
@@ -53,6 +59,7 @@ const handlers = {
     ...state,
     carOrder: { id, isValid: true },
   }),
+  [actions.resetOrderCar]: (state) => ({ ...state, carOrder: { id: null, valid: false } }),
   [actions.setCurrentStepOrder]: (state, { payload: { currentStep } }) => ({
     ...state,
     steps: {
@@ -65,6 +72,13 @@ const handlers = {
     steps: {
       ...state.steps,
       model: modelStepStatus,
+    },
+  }),
+  [actions.setExtraStepStatus]: (state, { payload: { extraStepStatus } }) => ({
+    ...state,
+    steps: {
+      ...state.steps,
+      extra: extraStepStatus,
     },
   }),
   // [actions.orderLocationStep]: (state) => ({ ...state, step: { name: 'LOCATION', number: 1 } }),

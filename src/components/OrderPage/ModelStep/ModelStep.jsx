@@ -55,7 +55,7 @@ const ModelStep = (props) => {
             <li
               className={cn('cars__card', { cars__card_selected: car.id === selectedCar.id })}
               key={car.id}
-              onClick={() => selectCar({ id: car.id })}
+              onClick={() => selectCar(car.id)}
               role="presentation"
             >
               <h5 className="cars__cardTitle">{car.model}</h5>
@@ -80,7 +80,7 @@ const actionsCreators = {
   getCarsRequest: actions.getCarsRequest,
   getCategoriesRequest: actions.getCategoriesRequest,
   selectCategory: actions.setCategoryFilter,
-  selectCar: actions.setOrderCar,
+  selectCar: actions.handleModelOrder,
 };
 
 export default connect(mapStateToProps, actionsCreators)(ModelStep);

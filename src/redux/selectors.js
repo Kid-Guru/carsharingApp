@@ -51,6 +51,16 @@ export const getTotalLocationStepData = (state) => {
   });
 };
 
+export const getTotalModelStepData = (state) => {
+  const { carOrder, cars } = state.order;
+  const selectedCar = cars.find((c) => c.id === carOrder.id);
+  const isModelStepFullfilled = (carOrder.isValid) === true;
+  return ({
+    model: selectedCar?.name,
+    isFullfilled: isModelStepFullfilled,
+  });
+};
+
 export const getCars = (state) => {
   const prettyPrice = (minPrice, maxPrice) => `${minPrice.toLocaleString()} - ${maxPrice.toLocaleString()} ₽`;
   const getImageURL = (path) => {

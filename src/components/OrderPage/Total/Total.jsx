@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Button from '../../common/Button/Button';
 import * as actions from '../../../redux/actions';
-import { getTotalLocationStepData, getIsNextStepAvailable } from '../../../redux/selectors';
+import { getTotalLocationStepData, getIsNextStepAvailable, getTotalModelStepData } from '../../../redux/selectors';
 import './Total.scss';
 
 const BUTTON_TEXT = ['Выбрать модель', 'Дополнительно', 'Итого', 'Заказать'];
@@ -12,6 +12,7 @@ const Total = (props) => {
     isNextStepAvailable,
     setNewStepOrder,
     locationStep,
+    modelStep,
   } = props;
   return (
     <div className="total">
@@ -23,6 +24,15 @@ const Total = (props) => {
             <span className="total__item-value_container">
               <span className="total__item-value">{locationStep.city}</span>
               <span className="total__item-value">{locationStep.adress}</span>
+              {/* {`${}`} */}
+            </span>
+          </p>
+        )}
+        {modelStep.isFullfilled && (
+          <p className="total__item">
+            <span className="total__item-title">Модель</span>
+            <span className="total__item-value_container">
+              <span className="total__item-value">{modelStep.model}</span>
               {/* {`${}`} */}
             </span>
           </p>
@@ -46,6 +56,7 @@ const mapStateToProps = (state) => ({
   currentStepOrder: state.order.steps.currentStep,
   isNextStepAvailable: getIsNextStepAvailable(state),
   locationStep: getTotalLocationStepData(state),
+  modelStep: getTotalModelStepData(state),
 });
 
 const actionCreators = ({
