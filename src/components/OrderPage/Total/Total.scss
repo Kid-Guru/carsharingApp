@@ -31,26 +31,28 @@
     font-weight: 300;
     font-size: 14px;
     line-height: 16px;
-    border-bottom: 2px dotted $main-grey;
     &-title {
+      display: inline-block;
       color: $main-black;
+      flex-shrink: 0;
       max-width: 55%;
-      margin-bottom: -5px;
-      background-color: #fff;
       padding-right: 6px;
     }
+    &-dots {
+      display: inline-block;
+      flex-grow: 1;
+      border-bottom: 1px dotted $main-grey;
+    }
     &-value {
-      background-color: #fff;
+      display: inline-block;
     }
     &-value_container {
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
       justify-content: end;
-      align-items: flex-end;
       text-align: right;
       padding-left: 6px;
-      max-width: 45%;
-      margin-bottom: -5px;
       color: $main-grey;
     }
   }
