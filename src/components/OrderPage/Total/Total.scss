@@ -4,6 +4,8 @@
 .total {
   max-width: 400px;
   margin: 0 auto;
+  position: sticky;
+  top: 25px;
   &__title {
     margin-top: 0px;
     margin-bottom: 32px;
