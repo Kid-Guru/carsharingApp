@@ -24,7 +24,7 @@ const Total = (props) => {
         {locationStep.isFullfilled && (
           <p className="total__item">
             <span className="total__item-title">Пункт выдачи</span>
-            <span className="total__item-dots"></span>
+            <span className="total__item-dots" />
             <span className="total__item-value_container">
               <span className="total__item-value">{locationStep.city}</span>
               <span className="total__item-value">{locationStep.adress}</span>
@@ -34,7 +34,7 @@ const Total = (props) => {
         {modelStep.isFullfilled && (
           <p className="total__item">
             <span className="total__item-title">Модель</span>
-            <span className="total__item-dots"></span>
+            <span className="total__item-dots" />
             <span className="total__item-value_container">
               <span className="total__item-value">{modelStep.model}</span>
             </span>

@@ -64,11 +64,11 @@ export const handleModelStepStatus = () => (dispatch, getState) => {
 export const handleParamsStepStatus = () => (dispatch, getState) => {
   const { carOrder } = getState().order;
   if (carOrder.isValid) {
-    dispatch(setParamsStepStatus({ ParamsStepStatus: 'available' }));
+    dispatch(setParamsStepStatus({ paramsStepStatus: 'available' }));
   } else {
     // dispatch(resetOrderCar());
     // dispatch(resetCarsCategories());
-    dispatch(setParamsStepStatus({ ParamsStepStatus: 'blocked' }));
+    dispatch(setParamsStepStatus({ paramsStepStatus: 'blocked' }));
   }
 };
 // Обновляем статусы шагов заказа
