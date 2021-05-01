@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import Button from '../../common/Button/Button';
 import * as actions from '../../../redux/actions';
-import { getTotalLocationStepData, getIsNextStepAvailable, getTotalModelStepData } from '../../../redux/selectors';
+import {
+  getTotalLocationStepData, getIsNextStepAvailable, getTotalModelStepData, getPriceData,
+} from '../../../redux/selectors';
 import './Total.scss';
 
 const BUTTON_TEXT = ['Выбрать модель', 'Дополнительно', 'Итого', 'Заказать'];
@@ -13,6 +15,7 @@ const Total = (props) => {
     setNewStepOrder,
     locationStep,
     modelStep,
+    price,
   } = props;
   return (
     <div className="total">
@@ -21,27 +24,30 @@ const Total = (props) => {
         {locationStep.isFullfilled && (
           <p className="total__item">
             <span className="total__item-title">Пункт выдачи</span>
+            <span className="total__item-dots"></span>
             <span className="total__item-value_container">
               <span className="total__item-value">{locationStep.city}</span>
               <span className="total__item-value">{locationStep.adress}</span>
-              {/* {`${}`} */}
             </span>
           </p>
         )}
         {modelStep.isFullfilled && (
           <p className="total__item">
             <span className="total__item-title">Модель</span>
+            <span className="total__item-dots"></span>
             <span className="total__item-value_container">
               <span className="total__item-value">{modelStep.model}</span>
-              {/* {`${}`} */}
             </span>
           </p>
         )}
       </div>
-      {/* <div className="total__price">
-        <span className="total__price-title">Цена: </span>
-        <span className="total__price-number">10 000 ₽</span>
-      </div> */}
+      {price.isShowing && (
+        <div className="total__price">
+          <span className="total__price-title">Цена: </span>
+          <span className="total__price-number">{price.text}</span>
+        </div>
+      )}
+
       <Button
         text={BUTTON_TEXT[currentStepOrder]}
         isFullWidth
@@ -57,6 +63,7 @@ const mapStateToProps = (state) => ({
   isNextStepAvailable: getIsNextStepAvailable(state),
   locationStep: getTotalLocationStepData(state),
   modelStep: getTotalModelStepData(state),
+  price: getPriceData(state),
 });
 
 const actionCreators = ({

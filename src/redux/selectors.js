@@ -1,5 +1,7 @@
 import { IMAGE_URL } from '../api/api';
 
+const prettyPrice = (minPrice, maxPrice) => `${minPrice.toLocaleString()} - ${maxPrice.toLocaleString()} ₽`;
+
 export const getCities = (state) => state.order.cities.map((c) => ({ item: c.name, id: c.id }));
 
 export const getPoints = (state) => {
@@ -62,7 +64,6 @@ export const getTotalModelStepData = (state) => {
 };
 
 export const getCars = (state) => {
-  const prettyPrice = (minPrice, maxPrice) => `${minPrice.toLocaleString()} - ${maxPrice.toLocaleString()} ₽`;
   const getImageURL = (path) => {
     if (path.includes('base64')) {
       return path;
@@ -81,12 +82,16 @@ export const getCars = (state) => {
 };
 
 export const getPriceData = (state) => {
-  const { carOrder } = state.order;
+  const { carOrder, paramsOrder } = state.order;
+  const selectedCar = state.order.cars.find((c) => c.id === carOrder.id);
   const price = {
     isShowing: false,
-
+    text: '',
   };
-  if (carOrder.isValid) {
-
+  if (!carOrder.isValid) return price;
+  if (carOrder.isValid && paramsOrder.rate === null) {
+    price.text = prettyPrice(selectedCar?.priceMin, selectedCar?.priceMax);
+    price.isShowing = true;
   }
-}
+  return price;
+};

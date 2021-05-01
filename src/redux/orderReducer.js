@@ -33,8 +33,8 @@ const defaultState = {
     isValid: false,
   },
   paramsOrder: {
-
-  }
+    rate: null,
+  },
 };
 
 const handlers = {
