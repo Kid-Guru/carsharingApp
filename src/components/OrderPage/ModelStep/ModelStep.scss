@@ -63,6 +63,7 @@
     text-transform: uppercase;
     border: 1px solid $main-grey-ligth;
     transition: border 0.2s ease 0s;
+    cursor: pointer;
   }
   &__card:hover {
     border: 1px solid $main-grey;
