@@ -39,13 +39,16 @@
   &__item_disable &__btn {
     cursor: default;
   }
-  &__item:not(:last-child):after {
+  &__item:after {
     content: '';
     background: url(../../../assets/arrow_breadcrumb.svg) center no-repeat;
     display: inline-block;
     vertical-align: middle;
     height: 6px;
     width: 38px;
+  }
+  &__item:last-child:after {
+    display: none;
   }
   &__btn {
     color: inherit;
@@ -54,6 +57,14 @@
     padding: 0;
     background-color: transparent;
     outline: none;
+  }
+}
+
+@media (max-width: $mobile) {
+  .breadcrumbs {
+    &__item:after  {
+      width: 20px;
+    }
   }
 }
 
