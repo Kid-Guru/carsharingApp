@@ -23,7 +23,7 @@ const BreadCrumbs = (props) => {
           <li className={getItemClass('model')}>
             <button onClick={() => setNewStepOrder(1)} className="breadcrumbs__btn" type="button">Модель</button>
           </li>
-          <li className={getItemClass('extra')}>
+          <li className={getItemClass('params')}>
             <button onClick={() => setNewStepOrder(2)} className="breadcrumbs__btn" type="button">Дополнительно</button>
           </li>
           <li className={getItemClass('total')}>

@@ -79,3 +79,14 @@ export const getCars = (state) => {
       picPath: getImageURL(c.thumbnail.path),
     }));
 };
+
+export const getPriceData = (state) => {
+  const { carOrder } = state.order;
+  const price = {
+    isShowing: false,
+
+  };
+  if (carOrder.isValid) {
+
+  }
+}

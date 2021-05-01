@@ -21,7 +21,7 @@ export const resetOrderCar = createAction('RESET_ORDER_CAR');
 
 export const setCurrentStepOrder = createAction('SET_CURRENT_STEP_ORDER');
 export const setModelStepStatus = createAction('SET_MODEL_STEP_STATUS');
-export const setExtraStepStatus = createAction('SET_EXTRA_STEP_STATUS');
+export const setParamsStepStatus = createAction('SET_PARAMS_STEP_STATUS');
 
 // Запрос всех городов
 export const getCitiesRequest = () => async (dispatch) => {
@@ -61,20 +61,20 @@ export const handleModelStepStatus = () => (dispatch, getState) => {
   }
 };
 
-export const handleExtraStepStatus = () => (dispatch, getState) => {
+export const handleParamsStepStatus = () => (dispatch, getState) => {
   const { carOrder } = getState().order;
   if (carOrder.isValid) {
-    dispatch(setExtraStepStatus({ extraStepStatus: 'available' }));
+    dispatch(setParamsStepStatus({ ParamsStepStatus: 'available' }));
   } else {
     // dispatch(resetOrderCar());
     // dispatch(resetCarsCategories());
-    dispatch(setExtraStepStatus({ extraStepStatus: 'blocked' }));
+    dispatch(setParamsStepStatus({ ParamsStepStatus: 'blocked' }));
   }
 };
 // Обновляем статусы шагов заказа
 export const updateAllStepsStatus = () => (dispatch) => {
   dispatch(handleModelStepStatus());
-  dispatch(handleExtraStepStatus());
+  dispatch(handleParamsStepStatus());
 };
 // Обрабатываем value поля Город
 export const handleCityOrderField = (newCityOrderValue) => (dispatch, getState) => {

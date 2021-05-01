@@ -6,10 +6,10 @@ const defaultState = {
     // blocked  current  available
     location: 'available',
     model: 'blocked',
-    extra: 'blocked',
+    params: 'blocked',
     total: 'blocked',
     currentStep: 0,
-    map: ['location', 'model', 'extra', 'total'],
+    map: ['location', 'model', 'params', 'total'],
   },
   cities: [],
   points: [],
@@ -32,6 +32,9 @@ const defaultState = {
     id: null,
     isValid: false,
   },
+  paramsOrder: {
+
+  }
 };
 
 const handlers = {
@@ -74,17 +77,13 @@ const handlers = {
       model: modelStepStatus,
     },
   }),
-  [actions.setExtraStepStatus]: (state, { payload: { extraStepStatus } }) => ({
+  [actions.setParamsStepStatus]: (state, { payload: { paramsStepStatus } }) => ({
     ...state,
     steps: {
       ...state.steps,
-      extra: extraStepStatus,
+      params: paramsStepStatus,
     },
   }),
-  // [actions.orderLocationStep]: (state) => ({ ...state, step: { name: 'LOCATION', number: 1 } }),
-  // [actions.orderModelStep]: (state) => ({ ...state, step: { name: 'MODEL', number: 2 } }),
-  // [actions.orderExtraStep]: (state) => ({ ...state, step: { name: 'EXTRA', number: 3 } }),
-  // [actions.orderTotalStep]: (state) => ({ ...state, step: { name: 'TOTAL', number: 4 } }),
 };
 
 const orderReducer = handleActions(handlers, defaultState);
