@@ -7,46 +7,6 @@
   }
 }
 
-.radioInput {
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 16px;
-  &__input {
-    display: none;
-  }
-  &__text {
-    display: inline-block;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 16px;
-    padding-left: 25px;
-    color: $main-grey;
-    transition: all 0.2s ease 0s;
-  }
-  &__text:before {
-    content: '';
-    position: absolute;
-    top:50%;
-    left: 5px;
-    transform: translateY(-50%);
-    width: 12px;
-    height: 12px;
-    border: 1px solid $main-grey;
-    border-radius: 50%;
-  }
-  &__input:checked + &__text {
-    color: $main-black;
-  }
-  &__input:checked + &__text:before {
-    border: 3px solid $main-accent;
-  }
-}
-
 .cars {
   &__list {
     display: flex;
@@ -99,12 +59,6 @@
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-  }
-}
-
-@media (max-width: $mobile) {
-  .radioInput {
-    width: 120px;
   }
 }
 

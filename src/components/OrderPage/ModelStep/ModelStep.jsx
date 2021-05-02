@@ -4,6 +4,7 @@ import cn from 'classnames';
 import * as actions from '../../../redux/actions';
 import { getCars } from '../../../redux/selectors';
 import './ModelStep.scss';
+import RadioInput from '../../common/RadioInput/RadioInput';
 
 const ModelStep = (props) => {
   const {
@@ -23,33 +24,25 @@ const ModelStep = (props) => {
   return (
     <div className="modelStep">
       <div className="modelStep__filter">
-        <label className="radioInput" htmlFor="all">
-          <input
-            className="radioInput__input"
-            id="all"
-            type="radio"
-            name="modelFilter"
-            checked={selectedCategory === null}
-            onChange={() => selectCategory({ selectedCategory: null })}
-          />
-          <span className="radioInput__text">Все модели</span>
-        </label>
+        <RadioInput
+          name="modelFilter"
+          htmlFor="all"
+          text="Все модели"
+          checked={selectedCategory === null}
+          onChange={() => selectCategory({ selectedCategory: null })}
+        />
 
         {categories.map((c) => (
-          <label className="radioInput" htmlFor={c.name} key={c.id}>
-            <input
-              className="radioInput__input"
-              id={c.name}
-              type="radio"
-              name="modelFilter"
-              checked={selectedCategory === c.id}
-              onChange={() => selectCategory({ selectedCategory: c.id })}
-            />
-            <span className="radioInput__text">{c.name}</span>
-          </label>
+          <RadioInput
+            name="modelFilter"
+            htmlFor={c.name}
+            text={c.name}
+            checked={selectedCategory === c.id}
+            onChange={() => selectCategory({ selectedCategory: c.id })}
+          />
         ))}
       </div>
-      <div className="modelStep__cars">
+      <div className="modelStep__cars cars">
         <ul className="cars__list">
           {cars.map((car) => (
             <li
