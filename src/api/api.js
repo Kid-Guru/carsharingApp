@@ -24,6 +24,9 @@ const orderApi = {
   getCategories() {
     return client.get('db/category/');
   },
+  getRates() {
+    return client.get('db/rate');
+  },
 };
 
 export { orderApi, IMAGE_URL };

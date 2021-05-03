@@ -101,3 +101,11 @@ export const getAvailableColors = (state) => {
   const selectedCar = state.order.cars.find((c) => c.id === idCar);
   return selectedCar ? selectedCar.colors : [];
 };
+
+export const getRates = (state) => {
+  const { rates } = state.order;
+  return rates.map((r) => ({
+    text: `${r.rateTypeId.name}, ${r.price}₽/${r.rateTypeId.unit}`,
+    id: r.rateTypeId.id,
+  }));
+};

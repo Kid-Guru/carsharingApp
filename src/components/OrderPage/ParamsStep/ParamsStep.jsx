@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState } from 'react';
+import { useEffect } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { connect } from 'react-redux';
-import { getAvailableColors } from '../../../redux/selectors';
 import ru from 'date-fns/locale/ru';
+import { getAvailableColors, getRates } from '../../../redux/selectors';
+import * as actions from '../../../redux/actions';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ParamsStep.scss';
 import RadioInput from '../../common/RadioInput/RadioInput';
@@ -12,7 +13,11 @@ import CheckboxInput from '../../common/CheckboxInput/CheckboxInput';
 registerLocale('ru', ru);
 
 const ParamsStep = (props) => {
-  const { colors } = props;
+  const { colors, rates, getRatesRequest } = props;
+
+  useEffect(() => {
+    getRatesRequest();
+  }, [getRatesRequest]);
 
   return (
     <div className="paramsStep">
@@ -51,7 +56,7 @@ const ParamsStep = (props) => {
                 placeholderText="Введите дату и время"
                 locale="ru"
                 // selected={startDate}
-                // onChange={date => setStartDate(date)}
+                // onChange={date => console.log(date)}
                 showTimeSelect
                 isClearable
                 dateFormat="dd.mm.yyyy hh:mm "
@@ -80,43 +85,36 @@ const ParamsStep = (props) => {
       <div className="paramsStep__group group">
         <div className="group__title">Тариф</div>
         <div className="group__inputs verticalInputs">
-          <RadioInput
-            name="rate select"
-            htmlFor="1"
-            text="Поминутно"
-          // checked={selectedCategory === null}
-          // onChange={() => selectCategory({ selectedCategory: null })}
-          />
-          <RadioInput
-            name="rate select"
-            htmlFor="1"
-            text="На сутки"
-          // checked={selectedCategory === null}
-          // onChange={() => selectCategory({ selectedCategory: null })}
-          />
+          {rates.map((r) => (
+            <RadioInput
+              key={r.id}
+              name="rateSelect"
+              htmlFor={r.text}
+              text={r.text}
+            // checked={selectedCategory === null}
+            // onChange={() => selectCategory({ selectedCategory: null })}
+            />
+          ))}
         </div>
       </div>
       <div className="paramsStep__group group">
         <div className="group__title">Доп услуги</div>
         <div className="group__inputs verticalInputs">
           <CheckboxInput
-            name="options"
-            htmlFor="2"
-            text="Любой xtr"
+            htmlFor="fullTank"
+            text="Полный бак, 500р"
           // checked={selectedCategory === null}
           // onChange={() => selectCategory({ selectedCategory: null })}
           />
           <CheckboxInput
-            name="options"
-            htmlFor="2"
-            text="Любой xtr"
+            htmlFor="babyChair"
+            text="Детское кресло, 200р"
           // checked={selectedCategory === null}
           // onChange={() => selectCategory({ selectedCategory: null })}
           />
           <CheckboxInput
-            name="options"
-            htmlFor="2"
-            text="Любой xtr"
+            htmlFor="rigthHandDrive"
+            text="Правый руль, 1600р"
           // checked={selectedCategory === null}
           // onChange={() => selectCategory({ selectedCategory: null })}
           />
@@ -128,6 +126,11 @@ const ParamsStep = (props) => {
 
 const mapStateToProps = (state) => ({
   colors: getAvailableColors(state),
+  rates: getRates(state),
 });
 
-export default connect(mapStateToProps)(ParamsStep);
+const actionCreators = ({
+  getRatesRequest: actions.getRates,
+});
+
+export default connect(mapStateToProps, actionCreators)(ParamsStep);

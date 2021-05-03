@@ -10,7 +10,8 @@ export const setCities = createAction('SET_CITIES');
 export const setPoints = createAction('SET_POINTS');
 export const setCars = createAction('SET_CARS');
 export const setCarsCategories = createAction('SET_CARS_CATEGORIES');
-export const resetSelectedCarsCategories = createAction('RESET_SELECTED_CARS_CATEGORIES');
+export const resetCarsCategories = createAction('RESET_SELECTED_CARS_CATEGORIES');
+export const setRates = createAction('SET_RATES');
 
 export const setCityOrder = createAction('SET_ORDER_CITY');
 export const setPointOrder = createAction('SET_ORDER_POINT');
@@ -49,6 +50,12 @@ export const getCategoriesRequest = () => async (dispatch) => {
   const categories = responseCategories.data.data;
   dispatch(setCarsCategories({ categories }));
 };
+// Запрос тарифов
+export const getRates = () => async (dispatch) => {
+  const responseRates = await orderApi.getRates();
+  const rates = responseRates.data.data;
+  dispatch(setRates({ rates }));
+};
 // Обновляем статус шага выбора модели
 export const handleModelStepStatus = () => (dispatch, getState) => {
   const { cityOrder, pointOrder } = getState().order;
@@ -56,7 +63,7 @@ export const handleModelStepStatus = () => (dispatch, getState) => {
     dispatch(setModelStepStatus({ modelStepStatus: 'available' }));
   } else {
     dispatch(resetOrderCar());
-    dispatch(resetSelectedCarsCategories());
+    dispatch(resetCarsCategories());
     dispatch(setModelStepStatus({ modelStepStatus: 'blocked' }));
   }
 };

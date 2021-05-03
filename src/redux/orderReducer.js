@@ -14,6 +14,7 @@ const defaultState = {
   cities: [],
   points: [],
   cars: [],
+  rates: [],
   carsCategories: {
     categories: [],
     selectedCategory: null,
@@ -45,12 +46,13 @@ const handlers = {
     ...state,
     carsCategories: { ...state.carsCategories, categories },
   }),
-  [actions.resetSelectedCarsCategories]: (state) => ({
+  [actions.resetCarsCategories]: (state) => ({
     ...state,
     carsCategories: {
       categories: [], selectedCategory: null,
     },
   }),
+  [actions.setRates]: (state, { payload: { rates } }) => ({ ...state, rates }),
   [actions.setCityOrder]: (state, { payload: { cityOrder } }) => ({ ...state, cityOrder }),
   [actions.setPointOrder]: (state, { payload: { pointOrder } }) => ({ ...state, pointOrder }),
   [actions.resetPointOrder]: (state) => ({ ...state, pointOrder: { value: '', id: null, isValid: false } }),
