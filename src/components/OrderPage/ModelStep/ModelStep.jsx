@@ -34,6 +34,7 @@ const ModelStep = (props) => {
 
         {categories.map((c) => (
           <RadioInput
+            key={c.id}
             name="modelFilter"
             htmlFor={c.name}
             text={c.name}
