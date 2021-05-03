@@ -36,11 +36,11 @@ const LocationStep = (props) => {
   return (
     <div className="locationStep">
       <div className="locationStep__form form">
-        <div className="field">
-          <label className="field__label" htmlFor="cityOrder">
-            <span className="field__label-text">Город</span>
+        <div className="locationField">
+          <label className="locationField__label" htmlFor="cityOrder">
+            <span className="locationField__label-text">Город</span>
             <Select
-              classNamePrefix="field__input"
+              classNamePrefix="locationField__input"
               inputId="cityOrder"
               placeholder="Начните вводить город"
               isClearable="true"
@@ -52,11 +52,11 @@ const LocationStep = (props) => {
           </label>
         </div>
 
-        <div className="field">
-          <label className="field__label" htmlFor="orderPoint">
-            <span className="field__label-text">Пункт выдачи</span>
+        <div className="locationField">
+          <label className="locationField__label" htmlFor="orderPoint">
+            <span className="locationField__label-text">Пункт выдачи</span>
             <Select
-              classNamePrefix="field__input"
+              classNamePrefix="locationField__input"
               inputId="orderPoint"
               placeholder="Начните вводить пункт"
               isClearable="true"
