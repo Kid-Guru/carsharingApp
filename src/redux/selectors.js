@@ -95,3 +95,9 @@ export const getPriceData = (state) => {
   }
   return price;
 };
+
+export const getAvailableColors = (state) => {
+  const { id: idCar } = state.order.carOrder;
+  const selectedCar = state.order.cars.find((c) => c.id === idCar);
+  return selectedCar ? selectedCar.colors : [];
+};

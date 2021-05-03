@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
+import { connect } from 'react-redux';
+import { getAvailableColors } from '../../../redux/selectors';
 import ru from 'date-fns/locale/ru';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ParamsStep.scss';
@@ -9,8 +11,8 @@ import CheckboxInput from '../../common/CheckboxInput/CheckboxInput';
 
 registerLocale('ru', ru);
 
-const ParamsStep = () => {
-  const [startDate, setStartDate] = useState(new Date());
+const ParamsStep = (props) => {
+  const { colors } = props;
 
   return (
     <div className="paramsStep">
@@ -24,20 +26,16 @@ const ParamsStep = () => {
           // checked={selectedCategory === null}
           // onChange={() => selectCategory({ selectedCategory: null })}
           />
-          <RadioInput
-            name="color car"
-            htmlFor="any"
-            text="Любой"
-          // checked={selectedCategory === null}
-          // onChange={() => selectCategory({ selectedCategory: null })}
-          />
-          <RadioInput
-            name="color car"
-            htmlFor="any"
-            text="Любой"
-          // checked={selectedCategory === null}
-          // onChange={() => selectCategory({ selectedCategory: null })}
-          />
+          {colors.map((c) => (
+            <RadioInput
+              key={c}
+              name="color car"
+              htmlFor={c}
+              text={c}
+            // checked={selectedCategory === null}
+            // onChange={() => selectCategory({ selectedCategory: null })}
+            />
+          ))}
         </div>
       </div>
       <div className="paramsStep__group group">
@@ -128,4 +126,8 @@ const ParamsStep = () => {
   );
 };
 
-export default ParamsStep;
+const mapStateToProps = (state) => ({
+  colors: getAvailableColors(state),
+});
+
+export default connect(mapStateToProps)(ParamsStep);
