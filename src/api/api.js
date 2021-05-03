@@ -27,6 +27,9 @@ const orderApi = {
   getRates() {
     return client.get('db/rate');
   },
+  postOrder(requestBody) {
+    return client.post('db/order', requestBody);
+  },
 };
 
 export { orderApi, IMAGE_URL };
