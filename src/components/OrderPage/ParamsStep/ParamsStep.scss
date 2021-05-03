@@ -1,0 +1,53 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/_mixins.scss';
+
+.paramsStep {
+  &__group {
+    margin-bottom: 32px;
+  }
+}
+
+.group {
+  &__title {
+    margin-bottom: 16px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: $main-black;
+  }
+}
+
+.dateField {
+  max-width: 250px;
+  &__input {
+    width: 224px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid $main-grey;
+  }
+  &__clear::after {
+    font-size: 21px;
+    color: black!important;
+    background-color: transparent!important;
+  }
+  &__label {
+    display: flex;
+    justify-content: flex-end;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: #121212;
+    &-text {
+      margin-right: 8px;
+    }
+  }
+}
+
+.verticalInputs {
+  display: flex;
+  flex-direction: column;
+}
