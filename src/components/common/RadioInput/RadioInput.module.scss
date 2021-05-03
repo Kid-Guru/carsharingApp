@@ -17,9 +17,13 @@
     font-weight: 300;
     font-size: 14px;
     line-height: 16px;
+    text-transform: lowercase;
     padding-left: 20px;
     color: $main-grey;
     transition: all 0.2s ease 0s;
+  }
+  &__text::first-letter {
+    text-transform: uppercase;
   }
   &__text:before {
     content: '';
