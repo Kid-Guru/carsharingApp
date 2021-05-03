@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import BreadCrumds from './BreadCrumbs/BreadCrumbs';
 import LocationStep from './LocationStep/LocationStep';
 import ModelStep from './ModelStep/ModelStep';
+import ParamsStep from './ParamsStep/ParamsStep';
 import Total from './Total/Total';
 import './OrderPage.scss';
 
@@ -19,6 +20,7 @@ const OrderPage = () => {
           <div className="order__step order__col">
             {currentStep === 0 ? <LocationStep /> : null}
             {currentStep === 1 ? <ModelStep /> : null}
+            {currentStep === 2 ? <ParamsStep /> : null}
           </div>
           <div className="order__delimetr order__col">
             <div className="order__delimetr_border" />
