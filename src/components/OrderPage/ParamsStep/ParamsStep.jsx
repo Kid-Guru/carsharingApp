@@ -13,7 +13,15 @@ import CheckboxInput from '../../common/CheckboxInput/CheckboxInput';
 registerLocale('ru', ru);
 
 const ParamsStep = (props) => {
-  const { colors, rates, getRatesRequest } = props;
+  const {
+    colors,
+    rates,
+    selectedColor,
+    selectedRate,
+    selectColor,
+    selectRate,
+    getRatesRequest,
+  } = props;
 
   useEffect(() => {
     getRatesRequest();
@@ -28,8 +36,8 @@ const ParamsStep = (props) => {
             name="color car"
             htmlFor="any"
             text="Любой"
-          // checked={selectedCategory === null}
-          // onChange={() => selectCategory({ selectedCategory: null })}
+            checked={selectedColor === 'any'}
+            onChange={() => selectColor({ color: 'any' })}
           />
           {colors.map((c) => (
             <RadioInput
@@ -37,8 +45,8 @@ const ParamsStep = (props) => {
               name="color car"
               htmlFor={c}
               text={c}
-            // checked={selectedCategory === null}
-            // onChange={() => selectCategory({ selectedCategory: null })}
+              checked={selectedColor === c}
+              onChange={() => selectColor({ color: c })}
             />
           ))}
         </div>
@@ -91,8 +99,8 @@ const ParamsStep = (props) => {
               name="rateSelect"
               htmlFor={r.text}
               text={r.text}
-            // checked={selectedCategory === null}
-            // onChange={() => selectCategory({ selectedCategory: null })}
+              checked={selectedRate === r.id}
+              onChange={() => selectRate({ rate: r.id })}
             />
           ))}
         </div>
@@ -127,10 +135,14 @@ const ParamsStep = (props) => {
 const mapStateToProps = (state) => ({
   colors: getAvailableColors(state),
   rates: getRates(state),
+  selectedColor: state.order.paramsOrder.color,
+  selectedRate: state.order.paramsOrder.rate,
 });
 
 const actionCreators = ({
   getRatesRequest: actions.getRates,
+  selectColor: actions.setOrderCarColor,
+  selectRate: actions.setOrderRate,
 });
 
 export default connect(mapStateToProps, actionCreators)(ParamsStep);

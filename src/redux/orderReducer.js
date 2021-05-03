@@ -34,7 +34,13 @@ const defaultState = {
     isValid: false,
   },
   paramsOrder: {
+    color: 'any',
     rate: null,
+    dateFrom: 0,
+    dateTo: 0,
+    isFullTank: true,
+    isNeedChildChair: true,
+    isRightWheel: true,
   },
 };
 
@@ -65,6 +71,14 @@ const handlers = {
     carOrder: { id, isValid: true },
   }),
   [actions.resetOrderCar]: (state) => ({ ...state, carOrder: { id: null, valid: false } }),
+  [actions.setOrderCarColor]: (state, { payload: { color } }) => ({
+    ...state,
+    paramsOrder: { ...state.paramsOrder, color },
+  }),
+  [actions.setOrderRate]: (state, { payload: { rate } }) => ({
+    ...state,
+    paramsOrder: { ...state.paramsOrder, rate },
+  }),
   [actions.setCurrentStepOrder]: (state, { payload: { currentStep } }) => ({
     ...state,
     steps: {
