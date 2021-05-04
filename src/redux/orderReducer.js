@@ -38,9 +38,10 @@ const defaultState = {
     rate: null,
     dateFrom: null,
     dateTo: null,
-    isFullTank: true,
-    isNeedChildChair: true,
-    isRightWheel: true,
+    isFullTank: false,
+    isNeedChildChair: false,
+    isRightWheel: false,
+    isValid: false,
   },
 };
 
@@ -79,8 +80,44 @@ const handlers = {
     ...state,
     paramsOrder: { ...state.paramsOrder, rate },
   }),
-  [actions.setDateFrom]: (state, { payload: { dateFrom } }) => ({ ...state, paramsOrder: { ...state.paramsOrder, dateFrom }}),
-  [actions.setDateTo]: (state, { payload: { dateTo } }) => ({ ...state, paramsOrder: { ...state.paramsOrder, dateTo }}),
+  [actions.setDateFrom]: (state, { payload: { dateFrom } }) => ({
+    ...state,
+    paramsOrder: { ...state.paramsOrder, dateFrom },
+  }),
+  [actions.setDateTo]: (state, { payload: { dateTo } }) => ({
+    ...state,
+    paramsOrder: { ...state.paramsOrder, dateTo },
+  }),
+  [actions.setIsFullTank]: (state, { payload: { isFullTank } }) => ({
+    ...state,
+    paramsOrder: { ...state.paramsOrder, isFullTank },
+  }),
+  [actions.setIsNeedChildChair]: (state, { payload: { isNeedChildChair } }) => ({
+    ...state,
+    paramsOrder: { ...state.paramsOrder, isNeedChildChair },
+  }),
+  [actions.setIsRightWheel]: (state, { payload: { isRightWheel } }) => ({
+    ...state,
+    paramsOrder: { ...state.paramsOrder, isRightWheel },
+  }),
+  [actions.setParamsOrderStatus]: (state, { payload: { isValid } }) => ({
+    ...state,
+    paramsOrder: { ...state.paramsOrder, isValid },
+  }),
+  [actions.resetParamsStep]: (state) => ({
+    ...state,
+    paramsOrder: {
+      ...state.paramsOrder,
+      color: 'any',
+      rate: null,
+      dateFrom: null,
+      dateTo: null,
+      isFullTank: false,
+      isNeedChildChair: false,
+      isRightWheel: false,
+      isValid: false,
+    },
+  }),
   [actions.setCurrentStepOrder]: (state, { payload: { currentStep } }) => ({
     ...state,
     steps: {
@@ -100,6 +137,13 @@ const handlers = {
     steps: {
       ...state.steps,
       params: paramsStepStatus,
+    },
+  }),
+  [actions.setTotalStepStatus]: (state, { payload: { totalStepStatus } }) => ({
+    ...state,
+    steps: {
+      ...state.steps,
+      total: totalStepStatus,
     },
   }),
 };

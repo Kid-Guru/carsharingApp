@@ -23,10 +23,16 @@ export const setOrderCarColor = createAction('SET_ORDER_CAR_COLOR');
 export const setOrderRate = createAction('SET_ORDER_RATE');
 export const setDateFrom = createAction('SET_ORDER_DATE_FROM');
 export const setDateTo = createAction('SET_ORDER_DATE_TO');
+export const setIsFullTank = createAction('SET_ORDER_IS_FULL_TANK');
+export const setIsNeedChildChair = createAction('SET_ORDER_IS_NEED_CHILD_CHAIR');
+export const setIsRightWheel = createAction('SET_ORDER_IS_RIGHT_WHEEL');
+export const setParamsOrderStatus = createAction('SET_PARAMS_STEP_ORDER_STATUS');
+export const resetParamsStep = createAction('RESET_PARAMS_STEP_ORDER');
 
 export const setCurrentStepOrder = createAction('SET_CURRENT_STEP_ORDER');
 export const setModelStepStatus = createAction('SET_MODEL_STEP_STATUS');
 export const setParamsStepStatus = createAction('SET_PARAMS_STEP_STATUS');
+export const setTotalStepStatus = createAction('SET_TOTAL_STEP_STATUS');
 
 // Запрос всех городов
 export const getCitiesRequest = () => async (dispatch) => {
@@ -71,21 +77,32 @@ export const handleModelStepStatus = () => (dispatch, getState) => {
     dispatch(setModelStepStatus({ modelStepStatus: 'blocked' }));
   }
 };
-
+// Обновляем статус шага параметров заказа
 export const handleParamsStepStatus = () => (dispatch, getState) => {
   const { carOrder } = getState().order;
   if (carOrder.isValid) {
     dispatch(setParamsStepStatus({ paramsStepStatus: 'available' }));
   } else {
+    dispatch(resetParamsStep());
+    dispatch(setParamsStepStatus({ paramsStepStatus: 'blocked' }));
+  }
+};
+// Обновляем статус шага итога заказа
+export const handleTotalStepStatus = () => (dispatch, getState) => {
+  const { paramsOrder } = getState().order;
+  if (paramsOrder.isValid) {
+    dispatch(setTotalStepStatus({ totalStepStatus: 'available' }));
+  } else {
     // dispatch(resetOrderCar());
     // dispatch(resetCarsCategories());
-    dispatch(setParamsStepStatus({ paramsStepStatus: 'blocked' }));
+    dispatch(setTotalStepStatus({ totalStepStatus: 'blocked' }));
   }
 };
 // Обновляем статусы шагов заказа
 export const updateAllStepsStatus = () => (dispatch) => {
   dispatch(handleModelStepStatus());
   dispatch(handleParamsStepStatus());
+  dispatch(handleTotalStepStatus());
 };
 // Обрабатываем value поля Город
 export const handleCityOrderField = (newCityOrderValue) => (dispatch, getState) => {
@@ -119,8 +136,37 @@ export const handlePointOrderField = (newPointOrderValue) => (dispatch, getState
   dispatch(setPointOrder({ pointOrder }));
   dispatch(updateAllStepsStatus());
 };
+// Обрабатываем выбор модели машины
 export const handleModelOrder = (id) => (dispatch) => {
   dispatch(setOrderCar({ id }));
+  dispatch(updateAllStepsStatus());
+};
+export const updateValidParamsOrderStatus = () => (dispatch, getState) => {
+  const { paramsOrder } = getState().order;
+  let isValid = false;
+  if (paramsOrder.dateFrom !== null
+    && paramsOrder.dateTo !== null
+    && paramsOrder.rate !== null) {
+    isValid = true;
+  }
+  dispatch(setParamsOrderStatus({ isValid }));
+};
+// Обрабатываем выбор тарифа
+export const handleRateOrder = (id) => (dispatch) => {
+  dispatch(setOrderRate({ rate: id }));
+  dispatch(updateValidParamsOrderStatus());
+  dispatch(updateAllStepsStatus());
+};
+// Обрабатываем поле даты начала оренды
+export const handleDateFromOrder = (dateFrom) => (dispatch) => {
+  dispatch(setDateFrom({ dateFrom }));
+  dispatch(updateValidParamsOrderStatus());
+  dispatch(updateAllStepsStatus());
+};
+// Обрабатываем поле даты конца оренды
+export const handleDateToOrder = (dateTo) => (dispatch) => {
+  dispatch(setDateTo({ dateTo }));
+  dispatch(updateValidParamsOrderStatus());
   dispatch(updateAllStepsStatus());
 };
 // Обрабатываем изменение текущего шага заказа

@@ -109,3 +109,8 @@ export const getRates = (state) => {
     id: r.rateTypeId.id,
   }));
 };
+
+export const getExtraOptions = (state) => {
+  const { isFullTank, isNeedChildChair, isRightWheel } = state.order.paramsOrder;
+  return { isFullTank, isNeedChildChair, isRightWheel };
+};

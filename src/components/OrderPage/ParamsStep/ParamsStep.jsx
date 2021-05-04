@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { connect } from 'react-redux';
 import ru from 'date-fns/locale/ru';
-import { getAvailableColors, getRates } from '../../../redux/selectors';
+import { getAvailableColors, getExtraOptions, getRates } from '../../../redux/selectors';
 import * as actions from '../../../redux/actions';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ParamsStep.scss';
@@ -20,16 +20,31 @@ const ParamsStep = (props) => {
     selectedRate,
     dateFrom,
     dateTo,
+    extraOptions,
     selectColor,
     selectRate,
     selectDateFrom,
     selectDateTo,
     getRatesRequest,
+    selectIsFullTank,
+    selectIsNeedChildChair,
+    selectIsRightWheel,
   } = props;
 
   useEffect(() => {
     getRatesRequest();
   }, [getRatesRequest]);
+
+  const filterTimeFrom = (time) => {
+    const selectedDate = new Date(time);
+    if (dateTo === null) return true;
+    return dateTo.getTime() > selectedDate.getTime();
+  };
+  const filterTimeTo = (time) => {
+    const selectedDate = new Date(time);
+    if (dateFrom === null) return true;
+    return dateFrom.getTime() < selectedDate.getTime();
+  };
 
   return (
     <div className="paramsStep">
@@ -68,10 +83,12 @@ const ParamsStep = (props) => {
                 placeholderText="Введите дату и время"
                 locale="ru"
                 selected={dateFrom}
-                onChange={(date) => selectDateFrom({ dateFrom: date })}
+                onChange={(date) => selectDateFrom(date)}
+                maxDate={dateTo}
+                filterTime={filterTimeFrom}
                 showTimeSelect
                 isClearable
-                dateFormat="dd.mm.yyyy hh:mm "
+                dateFormat="dd.MM.yyyy HH:mm "
               />
             </label>
           </div>
@@ -85,10 +102,12 @@ const ParamsStep = (props) => {
                 placeholderText="Введите дату и время"
                 locale="ru"
                 selected={dateTo}
-                onChange={(date) => selectDateTo({ dateTo: date })}
+                onChange={(date) => selectDateTo(date)}
+                minDate={dateFrom}
+                filterTime={filterTimeTo}
                 showTimeSelect
                 isClearable
-                dateFormat="dd.mm.yyyy hh:mm "
+                dateFormat="dd.MM.yyyy HH:mm "
               />
             </label>
           </div>
@@ -104,7 +123,7 @@ const ParamsStep = (props) => {
               htmlFor={r.text}
               text={r.text}
               checked={selectedRate === r.id}
-              onChange={() => selectRate({ rate: r.id })}
+              onChange={() => selectRate(r.id)}
             />
           ))}
         </div>
@@ -113,22 +132,22 @@ const ParamsStep = (props) => {
         <div className="group__title">Доп услуги</div>
         <div className="group__inputs verticalInputs">
           <CheckboxInput
-            htmlFor="fullTank"
+            htmlFor="isFullTank"
             text="Полный бак, 500р"
-          // checked={selectedCategory === null}
-          // onChange={() => selectCategory({ selectedCategory: null })}
+            checked={extraOptions.isFullTank}
+            onChange={() => selectIsFullTank({ isFullTank: !extraOptions.isFullTank })}
           />
           <CheckboxInput
-            htmlFor="babyChair"
+            htmlFor="isNeedChildChair"
             text="Детское кресло, 200р"
-          // checked={selectedCategory === null}
-          // onChange={() => selectCategory({ selectedCategory: null })}
+            checked={extraOptions.isNeedChildChair}
+            onChange={() => selectIsNeedChildChair({ isNeedChildChair: !extraOptions.isNeedChildChair })}
           />
           <CheckboxInput
-            htmlFor="rigthHandDrive"
+            htmlFor="isRightWheel"
             text="Правый руль, 1600р"
-          // checked={selectedCategory === null}
-          // onChange={() => selectCategory({ selectedCategory: null })}
+            checked={extraOptions.isRightWheel}
+            onChange={() => selectIsRightWheel({ isRightWheel: !extraOptions.isRightWheel })}
           />
         </div>
       </div>
@@ -143,14 +162,18 @@ const mapStateToProps = (state) => ({
   selectedRate: state.order.paramsOrder.rate,
   dateFrom: state.order.paramsOrder.dateFrom,
   dateTo: state.order.paramsOrder.dateTo,
+  extraOptions: getExtraOptions(state),
 });
 
 const actionCreators = ({
   getRatesRequest: actions.getRates,
   selectColor: actions.setOrderCarColor,
-  selectRate: actions.setOrderRate,
-  selectDateFrom: actions.setDateFrom,
-  selectDateTo: actions.setDateTo,
+  selectRate: actions.handleRateOrder,
+  selectDateFrom: actions.handleDateFromOrder,
+  selectDateTo: actions.handleDateToOrder,
+  selectIsFullTank: actions.setIsFullTank,
+  selectIsNeedChildChair: actions.setIsNeedChildChair,
+  selectIsRightWheel: actions.setIsRightWheel,
 });
 
 export default connect(mapStateToProps, actionCreators)(ParamsStep);
