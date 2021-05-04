@@ -32,6 +32,9 @@
     font-size: 21px;
     color: black!important;
     background-color: transparent!important;
+    line-height: 16px;
+    display: inline;
+    vertical-align: baseline;
   }
   &__label {
     display: flex;
