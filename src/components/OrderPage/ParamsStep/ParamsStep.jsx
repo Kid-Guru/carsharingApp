@@ -18,8 +18,12 @@ const ParamsStep = (props) => {
     rates,
     selectedColor,
     selectedRate,
+    dateFrom,
+    dateTo,
     selectColor,
     selectRate,
+    selectDateFrom,
+    selectDateTo,
     getRatesRequest,
   } = props;
 
@@ -63,8 +67,8 @@ const ParamsStep = (props) => {
                 clearButtonClassName="dateField__clear"
                 placeholderText="Введите дату и время"
                 locale="ru"
-                // selected={startDate}
-                // onChange={date => console.log(date)}
+                selected={dateFrom}
+                onChange={(date) => selectDateFrom({ dateFrom: date })}
                 showTimeSelect
                 isClearable
                 dateFormat="dd.mm.yyyy hh:mm "
@@ -77,11 +81,11 @@ const ParamsStep = (props) => {
               <DatePicker
                 id="end time"
                 className="dateField__input"
-                clearButtonClassName="dateField__clrbtn"
+                clearButtonClassName="dateField__clear"
                 placeholderText="Введите дату и время"
                 locale="ru"
-                // selected={startDate}
-                // onChange={date => setStartDate(date)}
+                selected={dateTo}
+                onChange={(date) => selectDateTo({ dateTo: date })}
                 showTimeSelect
                 isClearable
                 dateFormat="dd.mm.yyyy hh:mm "
@@ -137,12 +141,16 @@ const mapStateToProps = (state) => ({
   rates: getRates(state),
   selectedColor: state.order.paramsOrder.color,
   selectedRate: state.order.paramsOrder.rate,
+  dateFrom: state.order.paramsOrder.dateFrom,
+  dateTo: state.order.paramsOrder.dateTo,
 });
 
 const actionCreators = ({
   getRatesRequest: actions.getRates,
   selectColor: actions.setOrderCarColor,
   selectRate: actions.setOrderRate,
+  selectDateFrom: actions.setDateFrom,
+  selectDateTo: actions.setDateTo,
 });
 
 export default connect(mapStateToProps, actionCreators)(ParamsStep);

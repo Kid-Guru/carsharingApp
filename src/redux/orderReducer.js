@@ -36,8 +36,8 @@ const defaultState = {
   paramsOrder: {
     color: 'any',
     rate: null,
-    dateFrom: 0,
-    dateTo: 0,
+    dateFrom: null,
+    dateTo: null,
     isFullTank: true,
     isNeedChildChair: true,
     isRightWheel: true,
@@ -79,6 +79,8 @@ const handlers = {
     ...state,
     paramsOrder: { ...state.paramsOrder, rate },
   }),
+  [actions.setDateFrom]: (state, { payload: { dateFrom } }) => ({ ...state, paramsOrder: { ...state.paramsOrder, dateFrom }}),
+  [actions.setDateTo]: (state, { payload: { dateTo } }) => ({ ...state, paramsOrder: { ...state.paramsOrder, dateTo }}),
   [actions.setCurrentStepOrder]: (state, { payload: { currentStep } }) => ({
     ...state,
     steps: {

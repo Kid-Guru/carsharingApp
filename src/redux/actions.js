@@ -21,6 +21,8 @@ export const setOrderCar = createAction('SET_ORDER_CAR');
 export const resetOrderCar = createAction('RESET_ORDER_CAR');
 export const setOrderCarColor = createAction('SET_ORDER_CAR_COLOR');
 export const setOrderRate = createAction('SET_ORDER_RATE');
+export const setDateFrom = createAction('SET_ORDER_DATE_FROM');
+export const setDateTo = createAction('SET_ORDER_DATE_TO');
 
 export const setCurrentStepOrder = createAction('SET_CURRENT_STEP_ORDER');
 export const setModelStepStatus = createAction('SET_MODEL_STEP_STATUS');
