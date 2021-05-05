@@ -27,7 +27,12 @@
 .city {
   display: flex;
   align-items: center;
+  opacity: 1;
+  &_isHidden {
+    opacity: 0;
+  }
   &__name {
+    height: 16px;
     position: relative;
     margin-left: 30px;
     vertical-align: middle;
@@ -37,6 +42,9 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
+    &::first-letter {
+      text-transform: uppercase;
+    }
     &::before {
       content: '';
       position: absolute;
