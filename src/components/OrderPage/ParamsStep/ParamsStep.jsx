@@ -141,7 +141,9 @@ const ParamsStep = (props) => {
             htmlFor="isNeedChildChair"
             text="Детское кресло, 200р"
             checked={extraOptions.isNeedChildChair}
-            onChange={() => selectIsNeedChildChair({ isNeedChildChair: !extraOptions.isNeedChildChair })}
+            onChange={() => selectIsNeedChildChair({
+              isNeedChildChair: !extraOptions.isNeedChildChair,
+            })}
           />
           <CheckboxInput
             htmlFor="isRightWheel"
