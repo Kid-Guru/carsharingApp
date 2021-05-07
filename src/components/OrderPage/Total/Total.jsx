@@ -5,7 +5,7 @@ import {
   getTotalLocationStepData,
   getIsNextStepAvailable,
   getTotalModelStepData,
-  getPriceData,
+  getPriceTotalData,
   getTotalTimeRentData,
   getTotalRateData,
   getFullTankData,
@@ -126,7 +126,7 @@ const mapStateToProps = (state) => ({
   fullTank: getFullTankData(state),
   childChair: getChildChairData(state),
   rightWheel: getRightWheelData(state),
-  price: getPriceData(state),
+  price: getPriceTotalData(state),
 });
 
 const actionCreators = ({
