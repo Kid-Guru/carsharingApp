@@ -1,21 +1,10 @@
 import { IMAGE_URL } from '../api/api';
-
-const prettyPrice = (minPrice, maxPrice) => `${minPrice.toLocaleString()} - ${maxPrice.toLocaleString()} ₽`;
-const prettyTimeRent = (timestamp) => {
-  const DAY_RATIO = 86400000;
-  const HOUR_RATIO = 3600000;
-  const MINUTE_RATIO = 60000;
-  let rest = timestamp;
-  const d = Math.floor(rest / DAY_RATIO);
-  rest = timestamp - (d * DAY_RATIO);
-  const h = Math.floor(rest / HOUR_RATIO);
-  rest -= h * HOUR_RATIO;
-  const m = Math.floor(rest / MINUTE_RATIO);
-  const days = d !== 0 ? `${d}Д` : '';
-  const hours = h !== 0 ? `${h}Ч` : '';
-  const minutes = m !== 0 ? `${m}М` : '';
-  return `${days} ${hours} ${minutes}`.trim();
-};
+import {
+  prettyPrice,
+  prettyPriceRange,
+  prettyTimeRent,
+  calculateRentPrice,
+} from '../helpers/utils';
 
 export const getCities = (state) => state.order.cities.map((c) => ({ item: c.name, id: c.id }));
 
@@ -141,16 +130,27 @@ export const getCars = (state) => {
     }));
 };
 
-export const getPriceData = (state) => {
-  const { carOrder, paramsOrder } = state.order;
+export const getPriceTotalData = (state) => {
+  const { carOrder, paramsOrder, rates } = state.order;
   const selectedCar = state.order.cars.find((c) => c.id === carOrder.id);
   const price = {
     isShowing: false,
     text: '',
   };
   if (!carOrder.isValid) return price;
-  if (carOrder.isValid && paramsOrder.rate === null) {
-    price.text = prettyPrice(selectedCar?.priceMin, selectedCar?.priceMax);
+  if (paramsOrder.isValid === false) {
+    price.text = prettyPriceRange(selectedCar?.priceMin, selectedCar?.priceMax);
+    price.isShowing = true;
+  } else {
+    const selectedRate = rates.find((r) => r.rateTypeId.id === paramsOrder.rate);
+    const timeRent = paramsOrder.dateTo.getTime() - paramsOrder.dateFrom.getTime();
+    const extraOptions = {
+      isFullTank: paramsOrder.isFullTank,
+      isNeedChildChair: paramsOrder.isNeedChildChair,
+      isRightWheel: paramsOrder.isRightWheel,
+    };
+    const rentPrice = calculateRentPrice(selectedRate, timeRent, extraOptions);
+    price.text = prettyPrice(rentPrice);
     price.isShowing = true;
   }
   return price;
