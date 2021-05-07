@@ -99,6 +99,30 @@ export const getTotalRateData = (state) => {
   });
 };
 
+export const getFullTankData = (state) => {
+  const { isFullTank } = state.order.paramsOrder;
+  return ({
+    value: 'Да',
+    isFullfilled: isFullTank,
+  });
+};
+
+export const getChildChairData = (state) => {
+  const { isNeedChildChair } = state.order.paramsOrder;
+  return ({
+    value: 'Да',
+    isFullfilled: isNeedChildChair,
+  });
+};
+
+export const getRightWheelData = (state) => {
+  const { isRightWheel } = state.order.paramsOrder;
+  return ({
+    value: 'Да',
+    isFullfilled: isRightWheel,
+  });
+};
+
 export const getCars = (state) => {
   const getImageURL = (path) => {
     if (path.includes('base64')) {

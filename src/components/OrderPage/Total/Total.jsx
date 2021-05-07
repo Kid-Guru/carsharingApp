@@ -8,6 +8,9 @@ import {
   getPriceData,
   getTotalTimeRentData,
   getTotalRateData,
+  getFullTankData,
+  getChildChairData,
+  getRightWheelData,
 } from '../../../redux/selectors';
 import './Total.scss';
 
@@ -22,6 +25,9 @@ const Total = (props) => {
     modelStep,
     timeRent,
     rate,
+    fullTank,
+    childChair,
+    rightWheel,
     price,
   } = props;
   return (
@@ -65,6 +71,33 @@ const Total = (props) => {
             </span>
           </p>
         )}
+        {fullTank.isFullfilled && (
+          <p className="total__item">
+            <span className="total__item-title">Полный бак</span>
+            <span className="total__item-dots" />
+            <span className="total__item-value_container">
+              <span className="total__item-value">{fullTank.value}</span>
+            </span>
+          </p>
+        )}
+        {childChair.isFullfilled && (
+          <p className="total__item">
+            <span className="total__item-title">Детское кресло</span>
+            <span className="total__item-dots" />
+            <span className="total__item-value_container">
+              <span className="total__item-value">{childChair.value}</span>
+            </span>
+          </p>
+        )}
+        {rightWheel.isFullfilled && (
+          <p className="total__item">
+            <span className="total__item-title">Правый руль</span>
+            <span className="total__item-dots" />
+            <span className="total__item-value_container">
+              <span className="total__item-value">{rightWheel.value}</span>
+            </span>
+          </p>
+        )}
       </div>
       {price.isShowing && (
         <div className="total__price">
@@ -90,6 +123,9 @@ const mapStateToProps = (state) => ({
   modelStep: getTotalModelStepData(state),
   timeRent: getTotalTimeRentData(state),
   rate: getTotalRateData(state),
+  fullTank: getFullTankData(state),
+  childChair: getChildChairData(state),
+  rightWheel: getRightWheelData(state),
   price: getPriceData(state),
 });
 
