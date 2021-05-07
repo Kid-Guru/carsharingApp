@@ -37,8 +37,10 @@ const ParamsStep = (props) => {
 
   const filterTimeFrom = (time) => {
     const selectedDate = new Date(time);
-    if (dateTo === null) return true;
-    return dateTo.getTime() > selectedDate.getTime();
+    if (dateTo === null) {
+      return selectedDate.getTime() > Date.now();
+    }
+    return dateTo.getTime() > selectedDate.getTime() && selectedDate.getTime() > Date.now();
   };
   const filterTimeTo = (time) => {
     const selectedDate = new Date(time);
@@ -84,6 +86,7 @@ const ParamsStep = (props) => {
                 locale="ru"
                 selected={dateFrom}
                 onChange={(date) => selectDateFrom(date)}
+                minDate={new Date()}
                 maxDate={dateTo}
                 filterTime={filterTimeFrom}
                 showTimeSelect
