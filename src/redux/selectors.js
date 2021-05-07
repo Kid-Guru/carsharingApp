@@ -1,6 +1,21 @@
 import { IMAGE_URL } from '../api/api';
 
 const prettyPrice = (minPrice, maxPrice) => `${minPrice.toLocaleString()} - ${maxPrice.toLocaleString()} ₽`;
+const prettyTimeRent = (timestamp) => {
+  const DAY_RATIO = 86400000;
+  const HOUR_RATIO = 3600000;
+  const MINUTE_RATIO = 60000;
+  let rest = timestamp;
+  const d = Math.floor(rest / DAY_RATIO);
+  rest = timestamp - (d * DAY_RATIO);
+  const h = Math.floor(rest / HOUR_RATIO);
+  rest -= h * HOUR_RATIO;
+  const m = Math.floor(rest / MINUTE_RATIO);
+  const days = d !== 0 ? `${d}Д` : '';
+  const hours = h !== 0 ? `${h}Ч` : '';
+  const minutes = m !== 0 ? `${m}М` : '';
+  return `${days} ${hours} ${minutes}`.trim();
+};
 
 export const getCities = (state) => state.order.cities.map((c) => ({ item: c.name, id: c.id }));
 
@@ -60,6 +75,27 @@ export const getTotalModelStepData = (state) => {
   return ({
     model: selectedCar?.name,
     isFullfilled: isModelStepFullfilled,
+  });
+};
+
+export const getTotalTimeRentData = (state) => {
+  const { dateFrom, dateTo } = state.order.paramsOrder;
+  const isFullfilled = dateFrom !== null && dateTo !== null;
+  if (!isFullfilled) return ({ timeRent: '', isFullfilled });
+  const timeRent = dateTo.getTime() - dateFrom.getTime();
+  return ({
+    timeRent: prettyTimeRent(timeRent),
+    isFullfilled,
+  });
+};
+
+export const getTotalRateData = (state) => {
+  const { rates, paramsOrder: { rate } } = state.order;
+  const isFullfilled = !!rate;
+  const selectedRate = rates.find((r) => r.rateTypeId.id === rate);
+  return ({
+    rate: selectedRate?.rateTypeId?.name,
+    isFullfilled,
   });
 };
 

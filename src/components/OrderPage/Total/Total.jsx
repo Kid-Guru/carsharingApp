@@ -2,7 +2,12 @@ import { connect } from 'react-redux';
 import Button from '../../common/Button/Button';
 import * as actions from '../../../redux/actions';
 import {
-  getTotalLocationStepData, getIsNextStepAvailable, getTotalModelStepData, getPriceData,
+  getTotalLocationStepData,
+  getIsNextStepAvailable,
+  getTotalModelStepData,
+  getPriceData,
+  getTotalTimeRentData,
+  getTotalRateData,
 } from '../../../redux/selectors';
 import './Total.scss';
 
@@ -15,6 +20,8 @@ const Total = (props) => {
     setNewStepOrder,
     locationStep,
     modelStep,
+    timeRent,
+    rate,
     price,
   } = props;
   return (
@@ -37,6 +44,24 @@ const Total = (props) => {
             <span className="total__item-dots" />
             <span className="total__item-value_container">
               <span className="total__item-value">{modelStep.model}</span>
+            </span>
+          </p>
+        )}
+        {timeRent.isFullfilled && (
+          <p className="total__item">
+            <span className="total__item-title">Длительность аренды</span>
+            <span className="total__item-dots" />
+            <span className="total__item-value_container">
+              <span className="total__item-value">{timeRent.timeRent}</span>
+            </span>
+          </p>
+        )}
+        {rate.isFullfilled && (
+          <p className="total__item">
+            <span className="total__item-title">Тариф</span>
+            <span className="total__item-dots" />
+            <span className="total__item-value_container">
+              <span className="total__item-value">{rate.rate}</span>
             </span>
           </p>
         )}
@@ -63,6 +88,8 @@ const mapStateToProps = (state) => ({
   isNextStepAvailable: getIsNextStepAvailable(state),
   locationStep: getTotalLocationStepData(state),
   modelStep: getTotalModelStepData(state),
+  timeRent: getTotalTimeRentData(state),
+  rate: getTotalRateData(state),
   price: getPriceData(state),
 });
 
