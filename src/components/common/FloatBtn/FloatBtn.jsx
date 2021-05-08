@@ -20,7 +20,6 @@ const FloatBtn = (props) => {
         {children}
         {text}
       </span>
-      {/* <span className={s.button__label}>тест</span> */}
     </button>
   );
 };

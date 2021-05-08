@@ -92,6 +92,7 @@ const ParamsStep = (props) => {
                 showTimeSelect
                 isClearable
                 dateFormat="dd.MM.yyyy HH:mm "
+                onFocus={(e) => { e.target.readOnly = true; }}
               />
             </label>
           </div>
@@ -111,6 +112,7 @@ const ParamsStep = (props) => {
                 showTimeSelect
                 isClearable
                 dateFormat="dd.MM.yyyy HH:mm "
+                onFocus={(e) => { e.target.readOnly = true; }}
               />
             </label>
           </div>
