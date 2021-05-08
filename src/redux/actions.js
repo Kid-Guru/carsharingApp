@@ -3,6 +3,7 @@ import { orderApi } from '../api/api';
 
 export const toggleMenu = createAction('TOGGLE_MENU');
 export const toggleLanguage = createAction('TOGGLE_LANGUAGE');
+export const toggleCart = createAction('TOGGLE_CART');
 
 export const setStepOrder = createAction('SET_STEP_ORDER');
 
