@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import {
   getCities, getCenterMap, getPoints, getPointsMap,
@@ -9,24 +9,24 @@ import LocationStepMap from './LocationStepMap';
 import * as actions from '../../../redux/actions';
 import './LocationStep.scss';
 
-const LocationStep = (props) => {
-  const {
-    getCitiesRequest,
-    getPointsRequest,
-    cities,
-    points,
-    cityOrder,
-    pointOrder,
-    centerMap,
-    pointsMap,
-    updateCityField,
-    updatePointField,
-  } = props;
+const LocationStep = () => {
+  const dispatch = useDispatch();
+  const updateCityField = (value) => dispatch(actions.handleCityOrderField(value));
+  const updatePointField = (value) => dispatch(actions.handlePointOrderField(value));
+
+  const cities = useSelector((state) => getCities(state));
+  const points = useSelector((state) => getPoints(state));
+  const cityOrder = useSelector((state) => state.order.cityOrder);
+  const pointOrder = useSelector((state) => state.order.pointOrder);
+  const centerMap = useSelector((state) => getCenterMap(state));
+  const pointsMap = useSelector((state) => getPointsMap(state));
 
   useEffect(() => {
+    const getCitiesRequest = () => dispatch(actions.getCitiesRequest());
+    const getPointsRequest = () => dispatch(actions.getPointsRequest());
     getCitiesRequest();
     getPointsRequest();
-  }, [getCitiesRequest, getPointsRequest]);
+  }, []);
 
   const onChangeCityHandle = (value) => updateCityField(value);
   const onChangePointHandle = (value) => updatePointField(value);
@@ -75,20 +75,4 @@ const LocationStep = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  cities: getCities(state),
-  points: getPoints(state),
-  cityOrder: state.order.cityOrder,
-  pointOrder: state.order.pointOrder,
-  centerMap: getCenterMap(state),
-  pointsMap: getPointsMap(state),
-});
-
-const actionCreators = {
-  getCitiesRequest: actions.getCitiesRequest,
-  getPointsRequest: actions.getPointsRequest,
-  updateCityField: actions.handleCityOrderField,
-  updatePointField: actions.handlePointOrderField,
-};
-
-export default connect(mapStateToProps, actionCreators)(LocationStep);
+export default (LocationStep);
