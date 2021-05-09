@@ -28,9 +28,11 @@ const OrderPage = () => {
       <div className="container container-order">
         <div className="order">
           <div className="order__step order__col">
-            {currentStep === 0 ? <LocationStep /> : null}
-            {currentStep === 1 ? <ModelStep /> : null}
-            {currentStep === 2 ? <ParamsStep /> : null}
+            <div className="scroll">
+              {currentStep === 0 ? <LocationStep /> : null}
+              {currentStep === 1 ? <ModelStep /> : null}
+              {currentStep === 2 ? <ParamsStep /> : null}
+            </div>
           </div>
           <div className="order__delimetr order__col">
             <div className="order__delimetr_border" />
