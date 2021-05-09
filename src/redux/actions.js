@@ -140,6 +140,7 @@ export const handlePointOrderField = (newPointOrderValue) => (dispatch, getState
 // Обрабатываем выбор модели машины
 export const handleModelOrder = (id) => (dispatch) => {
   dispatch(setOrderCar({ id }));
+  dispatch(resetParamsStep());
   dispatch(updateAllStepsStatus());
 };
 export const updateValidParamsOrderStatus = () => (dispatch, getState) => {
