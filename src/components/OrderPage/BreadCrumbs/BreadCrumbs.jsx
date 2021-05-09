@@ -1,11 +1,14 @@
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
-import * as actions from '../../../redux/actions';
+import { handleCurrentStepOrder } from '../../../redux/actions';
 import { getCurrentStep } from '../../../redux/selectors';
 import './BreadCrumbs.scss';
 
-const BreadCrumbs = (props) => {
-  const { steps, currentStep, setNewStepOrder } = props;
+const BreadCrumbs = () => {
+  const steps = useSelector((state) => state.order.steps);
+  const currentStep = useSelector((state) => getCurrentStep(state));
+  const dispatch = useDispatch();
+  const setNewStepOrder = (newStep) => dispatch(handleCurrentStepOrder(newStep));
   const getItemClass = (stepOrder) => cn({
     breadcrumbs__item: true,
     breadcrumbs__item_available: steps[stepOrder] === 'available',
@@ -35,13 +38,4 @@ const BreadCrumbs = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  steps: state.order.steps,
-  currentStep: getCurrentStep(state),
-});
-
-const actionCreators = {
-  setNewStepOrder: actions.handleCurrentStepOrder,
-};
-
-export default connect(mapStateToProps, actionCreators)(BreadCrumbs);
+export default (BreadCrumbs);
