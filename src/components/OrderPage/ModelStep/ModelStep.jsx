@@ -1,26 +1,27 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
 import * as actions from '../../../redux/actions';
 import { getCars } from '../../../redux/selectors';
 import './ModelStep.scss';
 import RadioInput from '../../common/RadioInput/RadioInput';
 
-const ModelStep = (props) => {
-  const {
-    cars,
-    categories,
-    selectedCategory,
-    selectedCar,
-    getCarsRequest,
-    getCategoriesRequest,
-    selectCategory,
-    selectCar,
-  } = props;
+const ModelStep = () => {
+  const dispatch = useDispatch();
+  const selectCategory = (categoryId) => dispatch(actions.setCategoryFilter(categoryId));
+  const selectCar = (carId) => dispatch(actions.handleModelOrder(carId));
+
+  const cars = useSelector((state) => getCars(state));
+  const categories = useSelector((state) => state.order.carsCategories.categories);
+  const selectedCategory = useSelector((state) => state.order.carsCategories.selectedCategory);
+  const selectedCar = useSelector((state) => state.order.carOrder);
+
   useEffect(() => {
+    const getCarsRequest = () => dispatch(actions.getCarsRequest());
+    const getCategoriesRequest = () => dispatch(actions.getCategoriesRequest());
     getCarsRequest();
     getCategoriesRequest();
-  }, [getCarsRequest, getCategoriesRequest]);
+  }, []);
   return (
     <div className="modelStep">
       <div className="modelStep__filter">
@@ -63,18 +64,4 @@ const ModelStep = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  cars: getCars(state),
-  categories: state.order.carsCategories.categories,
-  selectedCategory: state.order.carsCategories.selectedCategory,
-  selectedCar: state.order.carOrder,
-});
-
-const actionsCreators = {
-  getCarsRequest: actions.getCarsRequest,
-  getCategoriesRequest: actions.getCategoriesRequest,
-  selectCategory: actions.setCategoryFilter,
-  selectCar: actions.handleModelOrder,
-};
-
-export default connect(mapStateToProps, actionsCreators)(ModelStep);
+export default (ModelStep);
