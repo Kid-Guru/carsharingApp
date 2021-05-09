@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import DatePicker, { registerLocale } from 'react-datepicker';
-import { connect } from 'react-redux';
 import ru from 'date-fns/locale/ru';
 import { getAvailableColors, getExtraOptions, getRates } from '../../../redux/selectors';
 import * as actions from '../../../redux/actions';
@@ -12,28 +12,30 @@ import CheckboxInput from '../../common/CheckboxInput/CheckboxInput';
 
 registerLocale('ru', ru);
 
-const ParamsStep = (props) => {
-  const {
-    colors,
-    rates,
-    selectedColor,
-    selectedRate,
-    dateFrom,
-    dateTo,
-    extraOptions,
-    selectColor,
-    selectRate,
-    selectDateFrom,
-    selectDateTo,
-    getRatesRequest,
-    selectIsFullTank,
-    selectIsNeedChildChair,
-    selectIsRightWheel,
-  } = props;
+const ParamsStep = () => {
+  const dispatch = useDispatch();
+  const selectColor = (color) => dispatch(actions.setOrderCarColor(color));
+  const selectRate = (rate) => dispatch(actions.handleRateOrder(rate));
+  const selectDateFrom = (dateFrom) => dispatch(actions.handleDateFromOrder(dateFrom));
+  const selectDateTo = (dateTo) => dispatch(actions.handleDateToOrder(dateTo));
+  const selectIsFullTank = (isFullTank) => dispatch(actions.setIsFullTank(isFullTank));
+  const selectIsNeedChildChair = (isNeedChair) => {
+    dispatch(actions.setIsNeedChildChair(isNeedChair));
+  };
+  const selectIsRightWheel = (isRigthWheel) => dispatch(actions.setIsRightWheel(isRigthWheel));
+
+  const colors = useSelector((state) => getAvailableColors(state));
+  const rates = useSelector((state) => getRates(state));
+  const selectedColor = useSelector((state) => state.order.paramsOrder.color);
+  const selectedRate = useSelector((state) => state.order.paramsOrder.rate);
+  const dateFrom = useSelector((state) => state.order.paramsOrder.dateFrom);
+  const dateTo = useSelector((state) => state.order.paramsOrder.dateTo);
+  const extraOptions = useSelector((state) => getExtraOptions(state));
 
   useEffect(() => {
+    const getRatesRequest = () => dispatch(actions.getRates());
     getRatesRequest();
-  }, [getRatesRequest]);
+  }, []);
 
   const filterTimeFrom = (time) => {
     const selectedDate = new Date(time);
@@ -162,25 +164,4 @@ const ParamsStep = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  colors: getAvailableColors(state),
-  rates: getRates(state),
-  selectedColor: state.order.paramsOrder.color,
-  selectedRate: state.order.paramsOrder.rate,
-  dateFrom: state.order.paramsOrder.dateFrom,
-  dateTo: state.order.paramsOrder.dateTo,
-  extraOptions: getExtraOptions(state),
-});
-
-const actionCreators = ({
-  getRatesRequest: actions.getRates,
-  selectColor: actions.setOrderCarColor,
-  selectRate: actions.handleRateOrder,
-  selectDateFrom: actions.handleDateFromOrder,
-  selectDateTo: actions.handleDateToOrder,
-  selectIsFullTank: actions.setIsFullTank,
-  selectIsNeedChildChair: actions.setIsNeedChildChair,
-  selectIsRightWheel: actions.setIsRightWheel,
-});
-
-export default connect(mapStateToProps, actionCreators)(ParamsStep);
+export default (ParamsStep);
