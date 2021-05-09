@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Header from '../Header/Header';
 import BreadCrumds from './BreadCrumbs/BreadCrumbs';
 import LocationStep from './LocationStep/LocationStep';
@@ -7,17 +7,11 @@ import ParamsStep from './ParamsStep/ParamsStep';
 import TotalStep from './TotalStep/TotalStep';
 import Total from './Total/Total';
 import './OrderPage.scss';
-import FloatBtn from '../common/FloatBtn/FloatBtn';
-import { ReactComponent as CartIcon } from '../../assets/shopping-cart.svg';
-import { ReactComponent as NextIcon } from '../../assets/next-arrow.svg';
-import { getIsNextStepAvailable } from '../../redux/selectors';
-import { toggleCart, handleCurrentStepOrder as setNewStepOrder } from '../../redux/actions';
+import ToggleCardBtn from './ToggleCardBtn/ToggleCardBtn';
+import NextStepBtn from './NextStepBtn/NextStepBtn';
 
 const OrderPage = () => {
-  const dispatch = useDispatch();
   const currentStep = useSelector((state) => state.order.steps.currentStep);
-  const isNextStepAvailable = useSelector((state) => getIsNextStepAvailable(state));
-  const currentStepOrder = useSelector((state) => state.order.steps.currentStep);
   const isCartVisible = useSelector((state) => state.stateUI.cartIsVisible);
 
   return (
@@ -43,18 +37,8 @@ const OrderPage = () => {
             <Total />
           </div>
           <div className="order__mobileBtn">
-            <FloatBtn
-              onClickHandle={() => dispatch(toggleCart())}
-            >
-              <CartIcon />
-            </FloatBtn>
-            <FloatBtn
-              text="Далее"
-              isDisabled={!isNextStepAvailable}
-              onClickHandle={() => dispatch(setNewStepOrder(currentStepOrder + 1))}
-            >
-              <NextIcon />
-            </FloatBtn>
+            <ToggleCardBtn />
+            <NextStepBtn />
           </div>
         </div>
       </div>
