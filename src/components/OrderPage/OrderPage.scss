@@ -53,7 +53,7 @@
     display: none;
     position: fixed;
     // left: 50%;
-    bottom: 50px;
+    bottom: 16px;
     // transform: translateX(-50%);
   }
 }
@@ -79,7 +79,7 @@
       bottom: 32px;
       left: 16px;
       right: 16px;
-      transform: translateX(100%);
+      transform: translateX(120%);
       transition: transform 0.4s ease 0s;
       // display: none;
       &_active {
