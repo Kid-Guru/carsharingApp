@@ -4,6 +4,7 @@ import BreadCrumds from './BreadCrumbs/BreadCrumbs';
 import LocationStep from './LocationStep/LocationStep';
 import ModelStep from './ModelStep/ModelStep';
 import ParamsStep from './ParamsStep/ParamsStep';
+import TotalStep from './TotalStep/TotalStep';
 import Total from './Total/Total';
 import './OrderPage.scss';
 import FloatBtn from '../common/FloatBtn/FloatBtn';
@@ -32,6 +33,7 @@ const OrderPage = () => {
               {currentStep === 0 ? <LocationStep /> : null}
               {currentStep === 1 ? <ModelStep /> : null}
               {currentStep === 2 ? <ParamsStep /> : null}
+              {currentStep === 3 ? <TotalStep /> : null}
             </div>
           </div>
           <div className="order__delimetr order__col">

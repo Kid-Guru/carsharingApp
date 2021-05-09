@@ -1,0 +1,63 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/_mixins.scss';
+
+.totalStep {
+  display: flex;
+  &__col {
+    flex: 1 0 50%;
+  }
+  &__line {
+    margin: 0px 0px 8px 0px;
+    padding: 0;
+  }
+  &__car {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+  }
+  &__carNum {
+    padding: 0px 8px;
+    display: inline-block;
+    border: 1px solid $main-grey;
+    border-radius: 4px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+  }
+  &__fuel, &__timeStart {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  &__fuel_title, &__timeStart_title {
+    font-weight: bold;
+    margin-right: 6px;
+  }
+  &__img {
+    height: 120px;
+    background-position: bottom right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(https://api-factory.simbirsoft1.com//files/5f21d9de9d3a610b850fcd59_5ea9eb72099b810b946c7236_9803fa5e10ed34fce69fc7d5552fd43b.png);
+  }
+}
+
+@media (max-width: $mobile) {
+  .totalStep {
+    flex-direction: column;
+    &__col:first-child {
+      order: 1;
+    }
+    &__img {
+      background-position: bottom left;
+    }
+  }
+}
