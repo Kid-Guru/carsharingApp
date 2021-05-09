@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../common/Button/Button';
 import * as actions from '../../../redux/actions';
 import {
@@ -16,20 +16,21 @@ import './Total.scss';
 
 const BUTTON_TEXT = ['Выбрать модель', 'Дополнительно', 'Итого', 'Заказать'];
 
-const Total = (props) => {
-  const {
-    currentStepOrder,
-    isNextStepAvailable,
-    setNewStepOrder,
-    locationStep,
-    modelStep,
-    timeRent,
-    rate,
-    fullTank,
-    childChair,
-    rightWheel,
-    price,
-  } = props;
+const Total = () => {
+  const dispatch = useDispatch();
+  const setNewStepOrder = (newStepOrder) => dispatch(actions.handleCurrentStepOrder(newStepOrder));
+
+  const currentStepOrder = useSelector((state) => state.order.steps.currentStep);
+  const isNextStepAvailable = useSelector((state) => getIsNextStepAvailable(state));
+  const locationStep = useSelector((state) => getTotalLocationStepData(state));
+  const modelStep = useSelector((state) => getTotalModelStepData(state));
+  const timeRent = useSelector((state) => getTotalTimeRentData(state));
+  const rate = useSelector((state) => getTotalRateData(state));
+  const fullTank = useSelector((state) => getFullTankData(state));
+  const childChair = useSelector((state) => getChildChairData(state));
+  const rightWheel = useSelector((state) => getRightWheelData(state));
+  const price = useSelector((state) => getPriceTotalData(state));
+
   return (
     <div className="total">
       <h4 className="total__title">Ваш заказ</h4>
@@ -116,21 +117,4 @@ const Total = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  currentStepOrder: state.order.steps.currentStep,
-  isNextStepAvailable: getIsNextStepAvailable(state),
-  locationStep: getTotalLocationStepData(state),
-  modelStep: getTotalModelStepData(state),
-  timeRent: getTotalTimeRentData(state),
-  rate: getTotalRateData(state),
-  fullTank: getFullTankData(state),
-  childChair: getChildChairData(state),
-  rightWheel: getRightWheelData(state),
-  price: getPriceTotalData(state),
-});
-
-const actionCreators = ({
-  setNewStepOrder: actions.handleCurrentStepOrder,
-});
-
-export default connect(mapStateToProps, actionCreators)(Total);
+export default (Total);
