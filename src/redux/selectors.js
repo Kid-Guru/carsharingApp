@@ -112,13 +112,14 @@ export const getRightWheelData = (state) => {
   });
 };
 
+const getImageURL = (path) => {
+  if (path.includes('base64')) {
+    return path;
+  }
+  return `${IMAGE_URL}${path}`;
+};
+
 export const getCars = (state) => {
-  const getImageURL = (path) => {
-    if (path.includes('base64')) {
-      return path;
-    }
-    return `${IMAGE_URL}${path}`;
-  };
   const { cars, carsCategories: { selectedCategory } } = state.order;
   return cars
     .filter((c) => c.categoryId.id === selectedCategory || selectedCategory === null)
@@ -154,6 +155,36 @@ export const getPriceTotalData = (state) => {
     price.isShowing = true;
   }
   return price;
+};
+
+export const getSelectedCarForTotalStep = (state) => {
+  const { id: idCar } = state.order.carOrder;
+  const { isFullTank } = state.order.paramsOrder;
+  const selectedCar = state.order.cars.find((c) => c.id === idCar);
+  let carNumberPretty;
+  if (selectedCar.number) {
+    carNumberPretty = `${selectedCar.number[0]} ${selectedCar.number.slice(1, 4)} ${selectedCar.number.slice(4)} 73`;
+  } else {
+    carNumberPretty = 'K 761 HA 73';
+  }
+  return {
+    name: selectedCar.name,
+    number: carNumberPretty,
+    tank: isFullTank ? 100 : selectedCar.tank,
+    picPath: getImageURL(selectedCar.thumbnail.path),
+  };
+};
+
+export const getAvailableFrom = (state) => {
+  const { dateFrom } = state.order.paramsOrder;
+  const options = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  };
+  return dateFrom.toLocaleString('ru-RU', options);
 };
 
 export const getAvailableColors = (state) => {

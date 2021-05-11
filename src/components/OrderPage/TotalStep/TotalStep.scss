@@ -29,6 +29,7 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 24px;
+    text-transform: uppercase;
   }
   &__fuel, &__timeStart {
     font-family: Roboto;
@@ -46,7 +47,6 @@
     background-position: bottom right;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url(https://api-factory.simbirsoft1.com//files/5f21d9de9d3a610b850fcd59_5ea9eb72099b810b946c7236_9803fa5e10ed34fce69fc7d5552fd43b.png);
   }
 }
 
