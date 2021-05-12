@@ -3,6 +3,7 @@ import SideBar from './components/SideBar/SideBar';
 import MainPage from './components/MainPage/MainPage';
 import Menu from './components/Menu/Menu';
 import OrderPage from './components/OrderPage/OrderPage';
+import ConfirmOrderModal from './components/ConfirmOrderModal/ConfirmOrderModal';
 import './App.scss';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" render={() => <Redirect to="/main" />} />
       </Switch>
 
+      <ConfirmOrderModal />
     </div>
   );
 }

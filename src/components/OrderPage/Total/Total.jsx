@@ -4,6 +4,7 @@ import * as actions from '../../../redux/actions';
 import {
   getTotalLocationStepData,
   getIsNextStepAvailable,
+  getIsFinalStep,
   getTotalModelStepData,
   getPriceTotalData,
   getTotalTimeRentData,
@@ -17,11 +18,9 @@ import './Total.scss';
 const BUTTON_TEXT = ['Выбрать модель', 'Дополнительно', 'Итого', 'Заказать'];
 
 const Total = () => {
-  const dispatch = useDispatch();
-  const setNewStepOrder = (newStepOrder) => dispatch(actions.handleCurrentStepOrder(newStepOrder));
-
   const currentStepOrder = useSelector((state) => state.order.steps.currentStep);
   const isNextStepAvailable = useSelector((state) => getIsNextStepAvailable(state));
+  const isFinalStep = useSelector((state) => getIsFinalStep(state));
   const locationStep = useSelector((state) => getTotalLocationStepData(state));
   const modelStep = useSelector((state) => getTotalModelStepData(state));
   const timeRent = useSelector((state) => getTotalTimeRentData(state));
@@ -30,6 +29,15 @@ const Total = () => {
   const childChair = useSelector((state) => getChildChairData(state));
   const rightWheel = useSelector((state) => getRightWheelData(state));
   const price = useSelector((state) => getPriceTotalData(state));
+
+  const dispatch = useDispatch();
+  const handleClickNewStep = () => {
+    if (!isFinalStep) {
+      dispatch(actions.handleCurrentStepOrder(currentStepOrder + 1));
+    } else {
+      dispatch(actions.showConfirmModalOrder());
+    }
+  };
 
   return (
     <div className="total">
@@ -110,8 +118,8 @@ const Total = () => {
       <Button
         text={BUTTON_TEXT[currentStepOrder]}
         isFullWidth
-        isDisabled={!isNextStepAvailable}
-        onClickHandle={() => setNewStepOrder(currentStepOrder + 1)}
+        isDisabled={!(isNextStepAvailable || isFinalStep)}
+        onClickHandle={handleClickNewStep}
       />
     </div>
   );

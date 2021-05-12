@@ -31,6 +31,12 @@ export const getIsNextStepAvailable = (state) => {
   return state.order.steps[nextStep] === 'available';
 };
 
+export const getIsFinalStep = (state) => {
+  const { currentStep: currentStepIndex, map } = state.order.steps;
+  const lastIndex = map.length - 1;
+  return currentStepIndex === lastIndex;
+};
+
 export const getCenterMap = (state) => {
   const { cityOrder, pointOrder } = state.order;
   if (pointOrder.isValid) {

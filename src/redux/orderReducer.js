@@ -3,7 +3,6 @@ import * as actions from './actions';
 
 const defaultState = {
   steps: {
-    // blocked  current  available
     location: 'available',
     model: 'blocked',
     params: 'blocked',

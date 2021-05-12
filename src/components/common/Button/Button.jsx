@@ -2,9 +2,14 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import s from './Button.module.scss';
 
-const Button = ({
-  text, onClickHandle, isDisabled, isFullWidth,
-}) => {
+const Button = (props) => {
+  const {
+    text,
+    onClickHandle,
+    isDisabled,
+    isFullWidth,
+    style,
+  } = props;
   const buttonClass = cn(s.button, { [s.button__fullWidth]: isFullWidth });
   return (
     <button
@@ -12,6 +17,7 @@ const Button = ({
       disabled={isDisabled}
       type="button"
       onClick={onClickHandle}
+      style={style}
     >
       {text}
     </button>

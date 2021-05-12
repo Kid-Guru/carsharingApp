@@ -4,6 +4,8 @@ import { orderApi } from '../api/api';
 export const toggleMenu = createAction('TOGGLE_MENU');
 export const toggleLanguage = createAction('TOGGLE_LANGUAGE');
 export const toggleCart = createAction('TOGGLE_CART');
+export const showConfirmModalOrder = createAction('SHOW_COMFIRM_MODAL');
+export const hideConfirmModalOrder = createAction('HIDE_COMFIRM_MODAL');
 
 export const setStepOrder = createAction('SET_STEP_ORDER');
 
@@ -94,8 +96,6 @@ export const handleTotalStepStatus = () => (dispatch, getState) => {
   if (paramsOrder.isValid) {
     dispatch(setTotalStepStatus({ totalStepStatus: 'available' }));
   } else {
-    // dispatch(resetOrderCar());
-    // dispatch(resetCarsCategories());
     dispatch(setTotalStepStatus({ totalStepStatus: 'blocked' }));
   }
 };
