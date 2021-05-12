@@ -21,6 +21,19 @@
     text-align: center;
   }
   &__button {
+    display: inline-block;
     margin: 0 10px;
   }
 }
+
+@media (max-width: $mobile) {
+  .modal {
+    &__container {
+      flex-basis: 100%;
+    }
+    &__button {
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+};
