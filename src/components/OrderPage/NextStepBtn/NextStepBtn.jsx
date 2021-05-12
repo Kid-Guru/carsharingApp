@@ -1,18 +1,26 @@
 import { useDispatch, useSelector } from 'react-redux';
 import FloatBtn from '../../common/FloatBtn/FloatBtn';
 import { ReactComponent as NextIcon } from '../../../assets/next-arrow.svg';
-import { handleCurrentStepOrder as setNewStepOrder } from '../../../redux/actions';
-import { getIsNextStepAvailable } from '../../../redux/selectors';
+import { showConfirmModalOrder, handleCurrentStepOrder } from '../../../redux/actions';
+import { getIsNextStepAvailable, getIsFinalStep } from '../../../redux/selectors';
 
 const NextStepBtn = () => {
   const dispatch = useDispatch();
   const currentStepOrder = useSelector((state) => state.order.steps.currentStep);
   const isNextStepAvailable = useSelector((state) => getIsNextStepAvailable(state));
+  const isFinalStep = useSelector((state) => getIsFinalStep(state));
+  const handleClickNewStep = () => {
+    if (!isFinalStep) {
+      dispatch(handleCurrentStepOrder(currentStepOrder + 1));
+    } else {
+      dispatch(showConfirmModalOrder());
+    }
+  };
   return (
     <FloatBtn
       text="Далее"
-      isDisabled={!isNextStepAvailable}
-      onClickHandle={() => dispatch(setNewStepOrder(currentStepOrder + 1))}
+      isDisabled={!(isNextStepAvailable || isFinalStep)}
+      onClickHandle={handleClickNewStep}
     >
       <NextIcon />
     </FloatBtn>
