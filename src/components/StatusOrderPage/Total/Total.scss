@@ -1,0 +1,69 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/_mixins.scss';
+
+.total {
+  max-width: 400px;
+  margin: 0 auto;
+  position: sticky;
+  top: 25px;
+  &__title {
+    margin-top: 0px;
+    margin-bottom: 32px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: right;
+    color: $main-black;
+  }
+  &__order {
+    margin-bottom: 32px;
+  }
+  &__item {
+    margin-top: 0px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    &-title {
+      display: inline-block;
+      color: $main-black;
+      flex-shrink: 0;
+      max-width: 55%;
+      padding-right: 6px;
+    }
+    &-dots {
+      display: inline-block;
+      flex-grow: 1;
+      border-bottom: 1px dotted $main-grey;
+    }
+    &-value {
+      display: inline-block;
+    }
+    &-value_container {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      padding-left: 6px;
+      color: $main-grey;
+    }
+  }
+  &__price {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    margin-bottom: 32px;
+    &-number {
+      font-weight: 400;
+    }
+  }
+}

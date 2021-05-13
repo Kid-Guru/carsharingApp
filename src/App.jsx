@@ -16,7 +16,7 @@ function App() {
       <Switch>
         <Route path="/main" render={() => <MainPage />} />
         <Route path="/order" render={() => <OrderPage />} />
-        <Route path="/order/:id" render={() => <StatusOrderPage />} />
+        <Route path="/order/:id" exact render={() => <StatusOrderPage />} />
         <Route path="/" render={() => <Redirect to="/main" />} />
       </Switch>
 

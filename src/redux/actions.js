@@ -16,6 +16,7 @@ export const setCars = createAction('SET_CARS');
 export const setCarsCategories = createAction('SET_CARS_CATEGORIES');
 export const resetCarsCategories = createAction('RESET_SELECTED_CARS_CATEGORIES');
 export const setRates = createAction('SET_RATES');
+export const setOrderData = createAction('SET_ORDER_DATA');
 
 export const setCityOrder = createAction('SET_ORDER_CITY');
 export const setPointOrder = createAction('SET_ORDER_POINT');
@@ -186,7 +187,7 @@ export const sendOrder = () => async (dispatch, getState) => {
   const {
     cityOrder, pointOrder, carOrder, paramsOrder, rates,
   } = getState().order;
-  const selectedRate = rates.find((r) => r.rateTypeId.id === paramsOrder.rate);
+  const selectedRate = rates.find((r) => r.id === paramsOrder.rate);
   const timeRent = paramsOrder.dateTo.getTime() - paramsOrder.dateFrom.getTime();
   const extraOptions = {
     isFullTank: paramsOrder.isFullTank,
@@ -210,6 +211,7 @@ export const sendOrder = () => async (dispatch, getState) => {
   };
   // const responseOrder = await orderApi.getStatuses();
   const responseOrder = await orderApi.postOrder(orderBody);
+  const order = responseOrder.data.data;
+  dispatch(setOrderData({ orderData: order }));
   dispatch(hideConfirmModalOrder());
-  console.log(responseOrder);
 };

@@ -1,8 +1,9 @@
+import { useSelector } from 'react-redux';
+import { getOrderData } from '../../redux/selectors';
 import Header from '../Header/Header';
 
 const StatusOrderPage = () => {
-  const currentStep = useSelector((state) => state.order.steps.currentStep);
-  // const isCartVisible = useSelector((state) => state.stateUI.cartIsVisible);
+  const orderData = useSelector((state) => getOrderData(state));
 
   return (
     <div className="page">
@@ -11,7 +12,8 @@ const StatusOrderPage = () => {
       </div>
       <div className="orderNumber">
         <div className="orderNumber__container">
-          Заказ номер RU58491823
+          Заказ номер
+          {orderData.id}
         </div>
       </div>
       <div className="container container-order">
@@ -24,25 +26,25 @@ const StatusOrderPage = () => {
                     <span className="totalInfo__status">Ваш заказ подтвержден</span>
                   </p>
                   <p className="totalInfo__line">
-                    <span className="totalInfo__car">{selectedCar.name}</span>
+                    <span className="totalInfo__car">{orderData.carName}</span>
                   </p>
                   <p className="totalInfo__line">
                     <span className="totalInfo__carNum">
-                      {selectedCar.number}
+                      {orderData.carNumber}
                     </span>
                   </p>
                   <p className="totalInfo__line totalInfo__fuel">
                     <span className="totalInfo__fuel_title">Топливо</span>
-                    {selectedCar.tank}
-          %
-        </p>
+                    {orderData.carTank}
+                    %
+                  </p>
                   <p className="totalInfo__line totalInfo__timeStart">
                     <span className="totalInfo__timeStart_title">Доступна с</span>
-                    {availableFrom}
+                    {orderData.availableFrom}
                   </p>
                 </div>
                 <div className="totalInfo__col">
-                  <div className="totalInfo__img" style={{ backgroundImage: `url(${selectedCar.picPath})` }} />
+                  <div className="totalInfo__img" style={{ backgroundImage: `url(${orderData.picPath})` }} />
                 </div>
               </div>
             </div>
@@ -50,12 +52,12 @@ const StatusOrderPage = () => {
           <div className="order__delimetr order__col">
             <div className="order__delimetr_border" />
           </div>
-          <div className={`order__total order__col ${isCartVisible ? 'order__total_active' : ''}`}>
+          {/* <div className={`order__total order__col ${isCartVisible ? 'order__total_active' : ''}`}>
             <Total />
-          </div>
+          </div> */}
           <div className="order__mobileBtn">
-            <ToggleCardBtn />
-            <NextStepBtn />
+            {/* <ToggleCardBtn /> */}
+            {/* <NextStepBtn /> */}
           </div>
         </div>
       </div>

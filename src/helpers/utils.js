@@ -1,6 +1,17 @@
 const prettyPrice = (price) => `${price.toLocaleString()} ₽`;
 const prettyPriceRange = (minPrice, maxPrice) => `${minPrice.toLocaleString()} - ${maxPrice.toLocaleString()} ₽`;
 
+const prettyDate = (dateObj) => {
+  const options = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  };
+  return dateObj.toLocaleString('ru-RU', options);
+};
+
 const prettyTimeRent = (timestamp) => {
   const DAY_RATIO = 86400000;
   const HOUR_RATIO = 3600000;
@@ -41,4 +52,5 @@ export {
   prettyPriceRange,
   prettyTimeRent,
   calculateRentPrice,
+  prettyDate,
 };

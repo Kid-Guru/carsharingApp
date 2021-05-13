@@ -4,6 +4,7 @@ import {
   prettyPriceRange,
   prettyTimeRent,
   calculateRentPrice,
+  prettyDate,
 } from '../helpers/utils';
 
 export const getCities = (state) => state.order.cities.map((c) => ({ item: c.name, id: c.id }));
@@ -87,7 +88,7 @@ export const getTotalTimeRentData = (state) => {
 export const getTotalRateData = (state) => {
   const { rates, paramsOrder: { rate } } = state.order;
   const isFullfilled = !!rate;
-  const selectedRate = rates.find((r) => r.rateTypeId.id === rate);
+  const selectedRate = rates.find((r) => r.id === rate);
   return ({
     rate: selectedRate?.rateTypeId?.name,
     isFullfilled,
@@ -162,7 +163,7 @@ export const getPriceTotalData = (state) => {
     price.text = prettyPriceRange(selectedCar?.priceMin, selectedCar?.priceMax);
     price.isShowing = true;
   } else {
-    const selectedRate = rates.find((r) => r.rateTypeId.id === paramsOrder.rate);
+    const selectedRate = rates.find((r) => r.id === paramsOrder.rate);
     const timeRent = paramsOrder.dateTo.getTime() - paramsOrder.dateFrom.getTime();
     const extraOptions = {
       isFullTank: paramsOrder.isFullTank,
@@ -196,14 +197,7 @@ export const getSelectedCarForTotalStep = (state) => {
 
 export const getAvailableFrom = (state) => {
   const { dateFrom } = state.order.paramsOrder;
-  const options = {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  };
-  return dateFrom.toLocaleString('ru-RU', options);
+  return prettyDate(dateFrom);
 };
 
 export const getAvailableColors = (state) => {
@@ -216,11 +210,29 @@ export const getRates = (state) => {
   const { rates } = state.order;
   return rates.map((r) => ({
     text: `${r.rateTypeId.name}, ${r.price}₽/${r.rateTypeId.unit}`,
-    id: r.rateTypeId.id,
+    id: r.id,
   }));
 };
 
 export const getExtraOptions = (state) => {
   const { isFullTank, isNeedChildChair, isRightWheel } = state.order.paramsOrder;
   return { isFullTank, isNeedChildChair, isRightWheel };
+};
+
+export const getOrderData = (state) => {
+  const { orderData } = state.order;
+  let carNumberPretty;
+  if (orderData.carId.number) {
+    carNumberPretty = `${orderData.carId.number[0]} ${orderData.carId.number.slice(1, 4)} ${orderData.carId.number.slice(4)} 73`;
+  } else {
+    carNumberPretty = 'K 761 HA 73';
+  }
+  return {
+    id: orderData.id,
+    carName: orderData.carId.name,
+    carNumber: carNumberPretty,
+    cartank: orderData.carId.tank,
+    availableFrom: prettyDate(orderData.dateFrom),
+    picPath: getImageURL(order.carId.thumbnail.path),
+  };
 };
