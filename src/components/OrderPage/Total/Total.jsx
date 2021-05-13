@@ -2,32 +2,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../common/Button/Button';
 import * as actions from '../../../redux/actions';
 import {
-  getTotalLocationStepData,
   getIsNextStepAvailable,
   getIsFinalStep,
-  getTotalModelStepData,
   getPriceTotalData,
-  getTotalTimeRentData,
-  getTotalRateData,
-  getFullTankData,
-  getChildChairData,
-  getRightWheelData,
+  getTotalRowsData,
 } from '../../../redux/selectors';
 import './Total.scss';
 
 const BUTTON_TEXT = ['Выбрать модель', 'Дополнительно', 'Итого', 'Заказать'];
+const TOTAL_ROW_TEXT = ['Пункт выдачи', 'Модель', 'Длительность аренды', 'Тариф', 'Полный бак', 'Детское кресло', 'Правый руль'];
 
 const Total = () => {
   const currentStepOrder = useSelector((state) => state.order.steps.currentStep);
   const isNextStepAvailable = useSelector((state) => getIsNextStepAvailable(state));
   const isFinalStep = useSelector((state) => getIsFinalStep(state));
-  const locationStep = useSelector((state) => getTotalLocationStepData(state));
-  const modelStep = useSelector((state) => getTotalModelStepData(state));
-  const timeRent = useSelector((state) => getTotalTimeRentData(state));
-  const rate = useSelector((state) => getTotalRateData(state));
-  const fullTank = useSelector((state) => getFullTankData(state));
-  const childChair = useSelector((state) => getChildChairData(state));
-  const rightWheel = useSelector((state) => getRightWheelData(state));
+  const totalRowsData = useSelector((state) => getTotalRowsData(state));
   const price = useSelector((state) => getPriceTotalData(state));
 
   const dispatch = useDispatch();
@@ -43,70 +32,20 @@ const Total = () => {
     <div className="total">
       <h4 className="total__title">Ваш заказ</h4>
       <div className="total__order">
-        {locationStep.isFullfilled && (
-          <p className="total__item">
-            <span className="total__item-title">Пункт выдачи</span>
-            <span className="total__item-dots" />
-            <span className="total__item-value_container">
-              <span className="total__item-value">{locationStep.city}</span>
-              <span className="total__item-value">{locationStep.adress}</span>
-            </span>
-          </p>
-        )}
-        {modelStep.isFullfilled && (
-          <p className="total__item">
-            <span className="total__item-title">Модель</span>
-            <span className="total__item-dots" />
-            <span className="total__item-value_container">
-              <span className="total__item-value">{modelStep.model}</span>
-            </span>
-          </p>
-        )}
-        {timeRent.isFullfilled && (
-          <p className="total__item">
-            <span className="total__item-title">Длительность аренды</span>
-            <span className="total__item-dots" />
-            <span className="total__item-value_container">
-              <span className="total__item-value">{timeRent.timeRent}</span>
-            </span>
-          </p>
-        )}
-        {rate.isFullfilled && (
-          <p className="total__item">
-            <span className="total__item-title">Тариф</span>
-            <span className="total__item-dots" />
-            <span className="total__item-value_container">
-              <span className="total__item-value">{rate.rate}</span>
-            </span>
-          </p>
-        )}
-        {fullTank.isFullfilled && (
-          <p className="total__item">
-            <span className="total__item-title">Полный бак</span>
-            <span className="total__item-dots" />
-            <span className="total__item-value_container">
-              <span className="total__item-value">{fullTank.value}</span>
-            </span>
-          </p>
-        )}
-        {childChair.isFullfilled && (
-          <p className="total__item">
-            <span className="total__item-title">Детское кресло</span>
-            <span className="total__item-dots" />
-            <span className="total__item-value_container">
-              <span className="total__item-value">{childChair.value}</span>
-            </span>
-          </p>
-        )}
-        {rightWheel.isFullfilled && (
-          <p className="total__item">
-            <span className="total__item-title">Правый руль</span>
-            <span className="total__item-dots" />
-            <span className="total__item-value_container">
-              <span className="total__item-value">{rightWheel.value}</span>
-            </span>
-          </p>
-        )}
+
+        {totalRowsData.map((d, i) => {
+          if (!d.isFullfilled) return null;
+          return (
+            <p className="total__item">
+              <span className="total__item-title">{TOTAL_ROW_TEXT[i]}</span>
+              <span className="total__item-dots" />
+              <span className="total__item-value_container">
+                {d.value.map((v) => <span className="total__item-value">{v}</span>)}
+              </span>
+            </p>
+          );
+        })}
+
       </div>
       {price.isShowing && (
         <div className="total__price">

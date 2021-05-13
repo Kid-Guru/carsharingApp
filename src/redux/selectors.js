@@ -57,9 +57,8 @@ export const getTotalLocationStepData = (state) => {
   const { cityOrder, pointOrder } = state.order;
   const isLocationStepFullfilled = (cityOrder.isValid && pointOrder.isValid) === true;
   return ({
-    city: cityOrder.value,
-    adress: pointOrder.value,
     isFullfilled: isLocationStepFullfilled,
+    value: [cityOrder.value, pointOrder.value],
   });
 };
 
@@ -68,8 +67,8 @@ export const getTotalModelStepData = (state) => {
   const selectedCar = cars.find((c) => c.id === carOrder.id);
   const isModelStepFullfilled = (carOrder.isValid) === true;
   return ({
-    model: selectedCar?.name,
     isFullfilled: isModelStepFullfilled,
+    value: [selectedCar?.name],
   });
 };
 
@@ -78,8 +77,9 @@ export const getTotalTimeRentData = (state) => {
   const isFullfilled = dateFrom !== null && dateTo !== null;
   if (!isFullfilled) return ({ timeRent: '', isFullfilled });
   const timeRent = dateTo.getTime() - dateFrom.getTime();
+  const prettyTimeRentString = prettyTimeRent(timeRent);
   return ({
-    timeRent: prettyTimeRent(timeRent),
+    value: [prettyTimeRentString],
     isFullfilled,
   });
 };
@@ -91,31 +91,44 @@ export const getTotalRateData = (state) => {
   return ({
     rate: selectedRate?.rateTypeId?.name,
     isFullfilled,
+    value: [selectedRate?.rateTypeId?.name],
   });
 };
 
 export const getFullTankData = (state) => {
   const { isFullTank } = state.order.paramsOrder;
   return ({
-    value: 'Да',
     isFullfilled: isFullTank,
+    value: ['Да'],
   });
 };
 
 export const getChildChairData = (state) => {
   const { isNeedChildChair } = state.order.paramsOrder;
   return ({
-    value: 'Да',
     isFullfilled: isNeedChildChair,
+    value: ['Да'],
   });
 };
 
 export const getRightWheelData = (state) => {
   const { isRightWheel } = state.order.paramsOrder;
   return ({
-    value: 'Да',
     isFullfilled: isRightWheel,
+    value: ['Да'],
   });
+};
+
+export const getTotalRowsData = (state) => {
+  const totalRowsData = [];
+  totalRowsData.push(getTotalLocationStepData(state));
+  totalRowsData.push(getTotalModelStepData(state));
+  totalRowsData.push(getTotalTimeRentData(state));
+  totalRowsData.push(getTotalRateData(state));
+  totalRowsData.push(getFullTankData(state));
+  totalRowsData.push(getChildChairData(state));
+  totalRowsData.push(getRightWheelData(state));
+  return totalRowsData;
 };
 
 const getImageURL = (path) => {
