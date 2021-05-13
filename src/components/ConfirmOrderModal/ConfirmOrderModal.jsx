@@ -6,18 +6,19 @@ import './ConfirmOrderModal.scss';
 const ConfirmModal = () => {
   const modalIsVisible = useSelector((state) => state.stateUI.confirmModalOrderIsVisible);
   const dispatch = useDispatch();
-  const hideModal = () => dispatch(actions.hideConfirmModalOrder());
+  const confirm = () => dispatch(actions.sendOrder());
+  const undo = () => dispatch(actions.hideConfirmModalOrder());
   if (!modalIsVisible) return null;
   return (
     <div className="modal">
       <div className="modal__container">
         <p className="modal__text">Подтвердить заказ</p>
         <span className="modal__button">
-          <Button text="Подтвердить" />
+          <Button onClickHandle={confirm} text="Подтвердить" />
         </span>
         <span className="modal__button">
           <Button
-            onClickHandle={hideModal}
+            onClickHandle={undo}
             text="Вернуться"
             style={{ background: 'linear-gradient(90deg, #493013 0%, #7B0C3B 100%)' }}
           />

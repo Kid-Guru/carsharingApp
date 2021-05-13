@@ -27,6 +27,9 @@ const orderApi = {
   getRates() {
     return client.get('db/rate');
   },
+  getStatuses() {
+    return client.get('db/orderStatus');
+  },
   postOrder(requestBody) {
     return client.post('db/order', requestBody);
   },

@@ -1,5 +1,6 @@
 import { createAction } from 'redux-actions';
 import { orderApi } from '../api/api';
+import { calculateRentPrice } from '../helpers/utils';
 
 export const toggleMenu = createAction('TOGGLE_MENU');
 export const toggleLanguage = createAction('TOGGLE_LANGUAGE');
@@ -179,4 +180,36 @@ export const handleCurrentStepOrder = (newStepOrder) => (dispatch, getState) => 
   if (isNewStepAvailable) {
     dispatch(setCurrentStepOrder({ currentStep: newStepOrder }));
   }
+};
+
+export const sendOrder = () => async (dispatch, getState) => {
+  const {
+    cityOrder, pointOrder, carOrder, paramsOrder, rates,
+  } = getState().order;
+  const selectedRate = rates.find((r) => r.rateTypeId.id === paramsOrder.rate);
+  const timeRent = paramsOrder.dateTo.getTime() - paramsOrder.dateFrom.getTime();
+  const extraOptions = {
+    isFullTank: paramsOrder.isFullTank,
+    isNeedChildChair: paramsOrder.isNeedChildChair,
+    isRightWheel: paramsOrder.isRightWheel,
+  };
+  const rentPrice = calculateRentPrice(selectedRate, timeRent, extraOptions);
+  const orderBody = {
+    orderStatusId: { name: 'new', id: '5e26a191099b810b946c5d89' },
+    cityId: cityOrder.id,
+    pointId: pointOrder.id,
+    carId: carOrder.id,
+    color: paramsOrder.color,
+    dateFrom: paramsOrder.dateFrom.getTime(),
+    dateTo: paramsOrder.dateTo.getTime(),
+    rateId: paramsOrder.rate,
+    price: rentPrice,
+    isFullTank: paramsOrder.isFullTank,
+    isNeedChildChair: paramsOrder.isNeedChildChair,
+    isRightWheel: paramsOrder.isRightWheel,
+  };
+  // const responseOrder = await orderApi.getStatuses();
+  const responseOrder = await orderApi.postOrder(orderBody);
+  dispatch(hideConfirmModalOrder());
+  console.log(responseOrder);
 };
