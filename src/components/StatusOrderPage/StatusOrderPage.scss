@@ -123,6 +123,17 @@
     margin: 0px 0px 8px 0px;
     padding: 0;
   }
+  &__line:first-child {
+    margin: 0px 0px 16px 0px;
+    padding: 0;
+  }
+  &__status {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+  }
   &__car {
     margin: 0;
     padding: 0;
