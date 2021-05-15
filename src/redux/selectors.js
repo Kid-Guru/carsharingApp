@@ -242,6 +242,7 @@ export const getOrderData = (state) => {
     carTank: orderData.carId.tank,
     availableFrom: prettyDate(new Date(orderData.dateFrom)),
     picPath: getImageURL(orderData.carId.thumbnail.path),
+    status: orderData.orderStatusId.name,
   };
 };
 

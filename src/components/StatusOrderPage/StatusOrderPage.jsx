@@ -7,6 +7,12 @@ import Header from '../Header/Header';
 import Total from './Total/Total';
 import './StatusOrderPage.scss';
 
+const orderStatusText = {
+  new: 'Ваш заказ зарегестрирован',
+  confirmed: 'Ваш заказ подтвержден',
+  cancelled: 'Ваш заказ отменен',
+};
+
 const StatusOrderPage = () => {
   const { id } = useParams();
   const prevIdRef = useRef();
@@ -20,10 +26,11 @@ const StatusOrderPage = () => {
   }, [id]);
 
   const statusViewOrderData = useSelector((state) => state.viewOrder.status);
+  const statusStatusesData = useSelector((state) => state.statuses.status);
   const viewOrderData = useSelector(getOrderData);
   const isCartVisible = useSelector((state) => state.stateUI.viewOrderCartIsVisible);
 
-  if (statusViewOrderData === 'fetching') return null;
+  if (statusViewOrderData === 'fetching' || statusStatusesData === 'fetching') return null;
   return (
     <div className="page">
       <div className="container container-header">
@@ -42,7 +49,7 @@ const StatusOrderPage = () => {
               <div className="totalInfo">
                 <div className="totalInfo__col">
                   <p className="totalInfo__line">
-                    <span className="totalInfo__status">Ваш заказ подтвержден</span>
+                    <span className="totalInfo__status">{orderStatusText[viewOrderData.status]}</span>
                   </p>
                   <p className="totalInfo__line">
                     <span className="totalInfo__car">{viewOrderData.carName}</span>
