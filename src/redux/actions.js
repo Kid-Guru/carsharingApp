@@ -215,3 +215,9 @@ export const sendOrder = () => async (dispatch, getState) => {
   dispatch(setOrderData({ orderData: order }));
   dispatch(hideConfirmModalOrder());
 };
+
+export const requestOrder = (id) => async (dispatch) => {
+  const responseOrder = await orderApi.getOrder(id);
+  const order = responseOrder.data.data;
+  dispatch(setOrderData({ orderData: order }));
+};
