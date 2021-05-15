@@ -197,7 +197,7 @@ export const sendOrder = () => async (dispatch, getState) => {
     isRightWheel: paramsOrder.isRightWheel,
   };
   const rentPrice = calculateRentPrice(selectedRate, timeRent, extraOptions);
-  const statusNewOrder = state.statuses.data[0];
+  const statusNewOrder = state.statuses.data[2];
   const orderBody = {
     orderStatusId: statusNewOrder,
     cityId: cityOrder.id,
