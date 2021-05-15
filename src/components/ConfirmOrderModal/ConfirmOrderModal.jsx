@@ -26,7 +26,7 @@ const ConfirmModal = () => {
           <Button
             onClickHandle={undo}
             text="Вернуться"
-            style={{ background: 'linear-gradient(90deg, #493013 0%, #7B0C3B 100%)' }}
+            red
           />
         </span>
       </div>
