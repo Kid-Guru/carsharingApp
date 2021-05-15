@@ -42,7 +42,7 @@ const defaultState = {
     isRightWheel: false,
     isValid: false,
   },
-  orderData: {},
+  // orderData: {},
 };
 
 const handlers = {
@@ -60,7 +60,7 @@ const handlers = {
     },
   }),
   [actions.setRates]: (state, { payload: { rates } }) => ({ ...state, rates }),
-  [actions.setOrderData]: (state, { payload: { orderData } }) => ({ ...state, orderData }),
+  // [actions.setOrderData]: (state, { payload: { orderData } }) => ({ ...state, orderData }),
   [actions.setCityOrder]: (state, { payload: { cityOrder } }) => ({ ...state, cityOrder }),
   [actions.setPointOrder]: (state, { payload: { pointOrder } }) => ({ ...state, pointOrder }),
   [actions.resetPointOrder]: (state) => ({ ...state, pointOrder: { value: '', id: null, isValid: false } }),

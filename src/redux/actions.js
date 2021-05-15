@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 import { orderApi } from '../api/api';
 import { calculateRentPrice } from '../helpers/utils';
+import { setViewOrderData } from './viewOrder/actions';
 
 export const toggleMenu = createAction('TOGGLE_MENU');
 export const toggleLanguage = createAction('TOGGLE_LANGUAGE');
@@ -16,7 +17,7 @@ export const setCars = createAction('SET_CARS');
 export const setCarsCategories = createAction('SET_CARS_CATEGORIES');
 export const resetCarsCategories = createAction('RESET_SELECTED_CARS_CATEGORIES');
 export const setRates = createAction('SET_RATES');
-export const setOrderData = createAction('SET_ORDER_DATA');
+// export const setOrderData = createAction('SET_ORDER_DATA');
 
 export const setCityOrder = createAction('SET_ORDER_CITY');
 export const setPointOrder = createAction('SET_ORDER_POINT');
@@ -212,12 +213,12 @@ export const sendOrder = () => async (dispatch, getState) => {
   // const responseOrder = await orderApi.getStatuses();
   const responseOrder = await orderApi.postOrder(orderBody);
   const order = responseOrder.data.data;
-  dispatch(setOrderData({ orderData: order }));
+  dispatch(setViewOrderData({ data: order }));
   dispatch(hideConfirmModalOrder());
 };
 
-export const requestOrder = (id) => async (dispatch) => {
-  const responseOrder = await orderApi.getOrder(id);
-  const order = responseOrder.data.data;
-  dispatch(setOrderData({ orderData: order }));
-};
+// export const requestOrder = (id) => async (dispatch) => {
+//   const responseOrder = await orderApi.getOrder(id);
+//   const order = responseOrder.data.data;
+//   dispatch(setOrderData({ orderData: order }));
+// };

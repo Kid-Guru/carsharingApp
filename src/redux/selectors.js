@@ -220,7 +220,8 @@ export const getExtraOptions = (state) => {
 };
 
 export const getOrderData = (state) => {
-  const { orderData } = state.order;
+  const { data: orderData, status } = state.viewOrder;
+  if (status === 'fetching') return null;
   let carNumberPretty;
   if (orderData.carId.number) {
     carNumberPretty = `${orderData.carId.number[0]} ${orderData.carId.number.slice(1, 4)} ${orderData.carId.number.slice(4)} 73`;
