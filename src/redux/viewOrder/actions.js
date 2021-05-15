@@ -11,3 +11,14 @@ export const requestOrder = (id) => async (dispatch) => {
   dispatch(setViewOrderData({ data: order }));
   dispatch(updateStatusViewOrderData({ status: 'received' }));
 };
+
+export const cancelViewedOrder = () => async (dispatch, getState) => {
+  const { viewOrder, statuses } = getState();
+  dispatch(updateStatusViewOrderData({ status: 'fetching' }));
+  const orderBody = { ...viewOrder.data, orderStatusId: statuses.data[3] };
+  const orderId = viewOrder.data.id;
+  const responseOrder = await orderApi.updateOrder(orderId, orderBody);
+  const order = responseOrder.data.data;
+  dispatch(setViewOrderData({ data: order }));
+  dispatch(updateStatusViewOrderData({ status: 'received' }));
+};
