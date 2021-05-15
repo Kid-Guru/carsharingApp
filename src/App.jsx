@@ -14,7 +14,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(requestStatuses());
-  }, []);
+  }, [dispatch]);
   return (
     <div className="App">
       <SideBar />
