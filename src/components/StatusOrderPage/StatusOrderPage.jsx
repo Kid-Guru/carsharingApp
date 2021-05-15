@@ -21,7 +21,7 @@ const StatusOrderPage = () => {
 
   const statusViewOrderData = useSelector((state) => state.viewOrder.status);
   const viewOrderData = useSelector(getOrderData);
-  const isCartVisible = useSelector((state) => state.stateUI.cartIsVisible);
+  const isCartVisible = useSelector((state) => state.stateUI.viewOrderCartIsVisible);
 
   if (statusViewOrderData === 'fetching') return null;
   return (

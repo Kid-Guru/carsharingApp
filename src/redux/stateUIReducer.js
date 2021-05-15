@@ -6,6 +6,7 @@ const defaultState = {
   currentLang: 0,
   availableLang: ['Рус', 'Eng'],
   cartIsVisible: false,
+  viewOrderCartIsVisible: false,
   confirmModalOrderIsVisible: false,
 };
 
