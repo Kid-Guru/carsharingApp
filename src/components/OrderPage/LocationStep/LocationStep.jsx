@@ -26,6 +26,7 @@ const LocationStep = () => {
     const getPointsRequest = () => dispatch(actions.getPointsRequest());
     getCitiesRequest();
     getPointsRequest();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onChangeCityHandle = (value) => updateCityField(value);
