@@ -185,9 +185,10 @@ export const handleCurrentStepOrder = (newStepOrder) => (dispatch, getState) => 
 };
 
 export const sendOrder = () => async (dispatch, getState) => {
+  const state = getState();
   const {
     cityOrder, pointOrder, carOrder, paramsOrder, rates,
-  } = getState().order;
+  } = state.order;
   const selectedRate = rates.find((r) => r.id === paramsOrder.rate);
   const timeRent = paramsOrder.dateTo.getTime() - paramsOrder.dateFrom.getTime();
   const extraOptions = {
@@ -196,8 +197,9 @@ export const sendOrder = () => async (dispatch, getState) => {
     isRightWheel: paramsOrder.isRightWheel,
   };
   const rentPrice = calculateRentPrice(selectedRate, timeRent, extraOptions);
+  const statusNewOrder = state.statuses.data[0];
   const orderBody = {
-    orderStatusId: { name: 'new', id: '5e26a191099b810b946c5d89' },
+    orderStatusId: statusNewOrder,
     cityId: cityOrder.id,
     pointId: pointOrder.id,
     carId: carOrder.id,

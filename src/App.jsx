@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import SideBar from './components/SideBar/SideBar';
 import MainPage from './components/MainPage/MainPage';
@@ -5,9 +7,14 @@ import Menu from './components/Menu/Menu';
 import OrderPage from './components/OrderPage/OrderPage';
 import ConfirmOrderModal from './components/ConfirmOrderModal/ConfirmOrderModal';
 import StatusOrderPage from './components/StatusOrderPage/StatusOrderPage';
+import { requestStatuses } from './redux/statuses/actions';
 import './App.scss';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(requestStatuses());
+  }, []);
   return (
     <div className="App">
       <SideBar />
