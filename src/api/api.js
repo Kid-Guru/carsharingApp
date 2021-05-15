@@ -33,6 +33,9 @@ const orderApi = {
   postOrder(requestBody) {
     return client.post('db/order', requestBody);
   },
+  getOrder(id) {
+    return client.get(`db/order/${id}`);
+  },
 };
 
 export { orderApi, IMAGE_URL };
