@@ -1,8 +1,6 @@
 @import './variables.scss';
 
 @mixin button($gradient_color1:#0ec261 , $gradient_color2: #039f67, $intesity_darken1: 10%, $intesity_darken2: 20%) {
-
-  color: #FFFFFF;
   padding: 14px 60px;
   font-family: Roboto;
   font-style: normal;
@@ -10,8 +8,6 @@
   font-size: 18px;
   line-height: 20px;
   text-align: center;
-  background: linear-gradient(90deg, $gradient_color1 2.61%, $gradient_color2 112.6%);
-  background-blend-mode: darken;
   border: none;
   border-radius: 8px;
   outline: none;
@@ -22,6 +18,20 @@
     width: 100%;
     border-radius: 0px;
   }
+  &:disabled {
+    cursor: default;
+  }
+}
+
+@mixin button-color($gradient_color1:#0ec261 , $gradient_color2: #039f67, $intesity_darken1: 10%, $intesity_darken2: 20%) {
+  $gradient_red_start: #493013;
+  $gradient_red_end: #7B0C3B;
+  $intesity_red_darken1: 5%;
+  $intesity_red_darken2: 10%;
+
+  color: #FFFFFF;
+  background-blend-mode: darken;
+  background: linear-gradient(90deg, $gradient_color1 2.61%, $gradient_color2 112.6%);
 
   &:visited {
     background: linear-gradient(90deg, darken($gradient_color1, $intesity_darken1) 2.61%, darken($gradient_color2, $intesity_darken1) 112.6%);
@@ -34,7 +44,19 @@
   }
   &:disabled {
     background: $main-grey;
-    cursor: default;
+  }
+
+  &__red {
+    background: linear-gradient(90deg, $gradient_red_start 0%, $gradient_red_end 100%);
+    &:visited {
+      background: linear-gradient(90deg, darken($gradient_red_start, $intesity_red_darken1) 0%, darken($gradient_red_end, $intesity_red_darken2) 100%);
+    }
+    &:hover {
+      background: linear-gradient(90deg, darken($gradient_red_start, $intesity_red_darken1) 0%, darken($gradient_red_end, $intesity_red_darken2) 100%);
+    }
+    &:active {
+      background: linear-gradient(90deg, darken($gradient_red_start, $intesity_red_darken1) 0%, darken($gradient_red_end, $intesity_red_darken2) 100%);
+    }
   }
 }
 
@@ -50,7 +72,6 @@
 
 @mixin fluid-container {
   max-width: 1248px + (64 * 2);
-  // margin: 0 auto;
   margin: 0 calc((100% - 1376px) / 2);
 
   @media (max-width: $desktop-min) {

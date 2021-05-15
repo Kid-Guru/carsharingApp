@@ -3,6 +3,7 @@
 
 .button {
   @include button;
+  @include button-color;
   &__fullWidth {
     width: 100%;
   }

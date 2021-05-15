@@ -9,8 +9,9 @@ const Button = (props) => {
     isDisabled,
     isFullWidth,
     style,
+    red,
   } = props;
-  const buttonClass = cn(s.button, { [s.button__fullWidth]: isFullWidth });
+  const buttonClass = cn(s.button, { [s.button__fullWidth]: isFullWidth, [s.button__red]: red });
   return (
     <button
       className={buttonClass}
@@ -29,6 +30,7 @@ Button.propTypes = {
   onClickHandle: PropTypes.func,
   isDisabled: PropTypes.bool,
   isFullWidth: PropTypes.bool,
+  red: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -36,6 +38,7 @@ Button.defaultProps = {
   onClickHandle: () => { },
   isDisabled: false,
   isFullWidth: false,
+  red: false,
 };
 
 export default Button;
