@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import { orderApi } from '../api/api';
 import { calculateRentPrice } from '../helpers/utils';
-import { setViewOrderData } from './viewOrder/actions';
+import { setViewOrderData, updateStatusViewOrderData } from './viewOrder/actions';
 
 export const toggleMenu = createAction('TOGGLE_MENU');
 export const toggleLanguage = createAction('TOGGLE_LANGUAGE');
@@ -214,6 +214,7 @@ export const sendOrder = () => async (dispatch, getState) => {
   const responseOrder = await orderApi.postOrder(orderBody);
   const order = responseOrder.data.data;
   dispatch(setViewOrderData({ data: order }));
+  dispatch(updateStatusViewOrderData({ status: 'received' }));
   dispatch(hideConfirmModalOrder());
 };
 

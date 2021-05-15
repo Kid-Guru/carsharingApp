@@ -59,6 +59,7 @@ export const getTotalLocationStepData = (state) => {
   const isLocationStepFullfilled = (cityOrder.isValid && pointOrder.isValid) === true;
   return ({
     isFullfilled: isLocationStepFullfilled,
+    title: 'Пункт выдачи',
     value: [cityOrder.value, pointOrder.value],
   });
 };
@@ -69,6 +70,7 @@ export const getTotalModelStepData = (state) => {
   const isModelStepFullfilled = (carOrder.isValid) === true;
   return ({
     isFullfilled: isModelStepFullfilled,
+    title: 'Модель',
     value: [selectedCar?.name],
   });
 };
@@ -81,6 +83,7 @@ export const getTotalTimeRentData = (state) => {
   const prettyTimeRentString = prettyTimeRent(timeRent);
   return ({
     value: [prettyTimeRentString],
+    title: 'Длительность аренды',
     isFullfilled,
   });
 };
@@ -90,8 +93,9 @@ export const getTotalRateData = (state) => {
   const isFullfilled = !!rate;
   const selectedRate = rates.find((r) => r.id === rate);
   return ({
-    rate: selectedRate?.rateTypeId?.name,
+    // rate: selectedRate?.rateTypeId?.name,
     isFullfilled,
+    title: 'Тариф',
     value: [selectedRate?.rateTypeId?.name],
   });
 };
@@ -100,6 +104,7 @@ export const getFullTankData = (state) => {
   const { isFullTank } = state.order.paramsOrder;
   return ({
     isFullfilled: isFullTank,
+    title: 'Полный бак',
     value: ['Да'],
   });
 };
@@ -108,6 +113,7 @@ export const getChildChairData = (state) => {
   const { isNeedChildChair } = state.order.paramsOrder;
   return ({
     isFullfilled: isNeedChildChair,
+    title: 'Детское кресло',
     value: ['Да'],
   });
 };
@@ -116,6 +122,7 @@ export const getRightWheelData = (state) => {
   const { isRightWheel } = state.order.paramsOrder;
   return ({
     isFullfilled: isRightWheel,
+    title: 'Правый руль',
     value: ['Да'],
   });
 };
@@ -236,4 +243,49 @@ export const getOrderData = (state) => {
     availableFrom: prettyDate(new Date(orderData.dateFrom)),
     picPath: getImageURL(orderData.carId.thumbnail.path),
   };
+};
+
+export const orderListRowsSelector = (state) => {
+  const { data: d } = state.viewOrder;
+  const location = {
+    isFullfilled: true,
+    title: 'Пункт выдачи',
+    value: [d.cityId.name, d.pointId.adress],
+  };
+  const model = {
+    isFullfilled: true,
+    title: 'Модель',
+    value: [d.carId.name],
+  };
+  const timeRent = {
+    isFullfilled: true,
+    title: 'Длительность аренды',
+    value: [prettyTimeRent(d.dateTo - d.dateFrom)],
+  };
+  const rate = {
+    isFullfilled: true,
+    title: 'Тариф',
+    value: [d.rateId.rateTypeId.name],
+  };
+  const fullTank = {
+    isFullfilled: d.isFullTank,
+    title: 'Полный бак',
+    value: ['Да'],
+  };
+  const childChair = {
+    isFullfilled: d.isNeedChildChair,
+    title: 'Детское кресло',
+    value: ['Да'],
+  };
+  const rightWheel = {
+    isFullfilled: d.isRightWheel,
+    title: 'Правый руль',
+    value: ['Да'],
+  };
+  return [location, model, timeRent, rate, fullTank, childChair, rightWheel];
+};
+
+export const priceOrderSelector = (state) => {
+  const { price } = state.viewOrder.data;
+  return prettyPrice(price);
 };
