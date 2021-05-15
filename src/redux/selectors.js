@@ -231,8 +231,8 @@ export const getOrderData = (state) => {
     id: orderData.id,
     carName: orderData.carId.name,
     carNumber: carNumberPretty,
-    cartank: orderData.carId.tank,
-    availableFrom: prettyDate(orderData.dateFrom),
-    picPath: getImageURL(order.carId.thumbnail.path),
+    carTank: orderData.carId.tank,
+    availableFrom: prettyDate(new Date(orderData.dateFrom)),
+    picPath: getImageURL(orderData.carId.thumbnail.path),
   };
 };
