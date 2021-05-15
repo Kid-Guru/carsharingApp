@@ -1,14 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as actions from '../../redux/actions';
 import Button from '../common/Button/Button';
 import './ConfirmOrderModal.scss';
 
 const ConfirmModal = () => {
   const modalIsVisible = useSelector((state) => state.stateUI.confirmModalOrderIsVisible);
+  const orderData = useSelector((state) => state.order.orderData);
   const dispatch = useDispatch();
   const confirm = () => dispatch(actions.sendOrder());
   const undo = () => dispatch(actions.hideConfirmModalOrder());
   if (!modalIsVisible) return null;
+  if (orderData.id) {
+    return <Redirect to={`/order/${orderData.id}`} />;
+  }
   return (
     <div className="modal">
       <div className="modal__container">
