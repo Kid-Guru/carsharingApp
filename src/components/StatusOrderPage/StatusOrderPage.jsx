@@ -1,10 +1,27 @@
-import { useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { requestOrder } from '../../redux/viewOrder/actions';
 import { getOrderData } from '../../redux/selectors';
 import Header from '../Header/Header';
+import './StatusOrderPage.scss';
 
 const StatusOrderPage = () => {
-  const orderData = useSelector((state) => getOrderData(state));
+  const { id } = useParams();
+  const prevIdRef = useRef();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    prevIdRef.current = id;
+  });
+  const prevId = prevIdRef.current;
+  useEffect(() => {
+    if (id !== prevId) dispatch(requestOrder(id));
+  }, [id]);
 
+  const statusOrderData = useSelector((state) => state.viewOrder.status);
+  const orderData = useSelector(getOrderData);
+
+  if (statusOrderData === 'fetching') return null;
   return (
     <div className="page">
       <div className="container container-header">
@@ -12,7 +29,7 @@ const StatusOrderPage = () => {
       </div>
       <div className="orderNumber">
         <div className="orderNumber__container">
-          Заказ номер
+          {'Заказ номер '}
           {orderData.id}
         </div>
       </div>
