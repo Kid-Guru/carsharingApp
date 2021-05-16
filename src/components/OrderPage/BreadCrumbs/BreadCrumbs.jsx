@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
-import { handleCurrentStepOrder } from '../../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleCurrentStepOrder } from '../../../redux/order/actions';
 import { getCurrentStep } from '../../../redux/selectors';
 import './BreadCrumbs.scss';
 

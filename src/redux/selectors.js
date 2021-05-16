@@ -149,7 +149,7 @@ const getImageURL = (path) => {
 };
 
 export const getCars = (state) => {
-  const { carsCategories: { selectedCategory } } = state.order;
+  const { selectedCategory } = state.order;
   const { data: cars } = state.cars;
   return cars
     .filter((c) => c.categoryId.id === selectedCategory || selectedCategory === null)

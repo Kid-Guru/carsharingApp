@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import * as actions from '../../redux/actions';
+import { sendOrder } from '../../redux/order/actions';
 import { hideConfirmModalOrder } from '../../redux/UI/actions';
 import Button from '../common/Button/Button';
 import './ConfirmOrderModal.scss';
@@ -10,7 +10,7 @@ const ConfirmModal = () => {
   const idViewOrder = useSelector((state) => state.viewOrder.data?.id);
   const statusViewOrderData = useSelector((state) => state.viewOrder.status);
   const dispatch = useDispatch();
-  const confirm = () => dispatch(actions.sendOrder());
+  const confirm = () => dispatch(sendOrder());
   const undo = () => dispatch(hideConfirmModalOrder());
   if (!modalIsVisible) return null;
   if (statusViewOrderData === 'received') {

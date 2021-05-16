@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import UIReducer from './UI/reducer';
-import orderReducer from './orderReducer';
+import orderReducer from './order/reducer';
 import citiesReducer from './cities/reducer';
 import pointsReducer from './points/reducer';
 import carsReducer from './cars/reducer';

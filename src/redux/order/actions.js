@@ -1,8 +1,8 @@
 import { createAction } from 'redux-actions';
-import { orderApi } from '../api/api';
-import { calculateRentPrice } from '../helpers/utils';
-import { hideConfirmModalOrder } from './UI/actions';
-import { setViewOrderData, updateStatusViewOrderData } from './viewOrder/actions';
+import { orderApi } from '../../api/api';
+import { calculateRentPrice } from '../../helpers/utils';
+import { hideConfirmModalOrder } from '../UI/actions';
+import { setViewOrderData, updateStatusViewOrderData } from '../viewOrder/actions';
 
 export const setStepOrder = createAction('SET_STEP_ORDER');
 export const resetCarsCategories = createAction('RESET_SELECTED_CARS_CATEGORIES');

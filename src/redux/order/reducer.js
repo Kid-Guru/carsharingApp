@@ -10,9 +10,7 @@ const defaultState = {
     currentStep: 0,
     map: ['location', 'model', 'params', 'total'],
   },
-  carsCategories: {
-    selectedCategory: null,
-  },
+  selectedCategory: null,
   cityOrder: {
     value: '',
     id: null,
@@ -40,18 +38,13 @@ const defaultState = {
 };
 
 const handlers = {
-  [actions.resetCarsCategories]: (state) => ({
-    ...state,
-    carsCategories: {
-      selectedCategory: null,
-    },
-  }),
+  [actions.resetCarsCategories]: (state) => ({ ...state, selectedCategory: null }),
   [actions.setCityOrder]: (state, { payload: { cityOrder } }) => ({ ...state, cityOrder }),
   [actions.setPointOrder]: (state, { payload: { pointOrder } }) => ({ ...state, pointOrder }),
   [actions.resetPointOrder]: (state) => ({ ...state, pointOrder: { value: '', id: null, isValid: false } }),
   [actions.setCategoryFilter]: (state, { payload: { selectedCategory } }) => ({
     ...state,
-    carsCategories: { ...state.carsCategories, selectedCategory },
+    selectedCategory,
   }),
   [actions.setOrderCar]: (state, { payload: { id } }) => ({
     ...state,

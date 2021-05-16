@@ -2,19 +2,19 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
-import {
-  getCities, getCenterMap, getPoints, getPointsMap,
-} from '../../../redux/selectors';
-import LocationStepMap from './LocationStepMap';
 import { getCitiesRequest } from '../../../redux/cities/actions';
+import { handleCityOrderField, handlePointOrderField } from '../../../redux/order/actions';
 import { getPointsRequest } from '../../../redux/points/actions';
-import * as actions from '../../../redux/actions';
+import {
+  getCenterMap, getCities, getPoints, getPointsMap,
+} from '../../../redux/selectors';
 import './LocationStep.scss';
+import LocationStepMap from './LocationStepMap';
 
 const LocationStep = () => {
   const dispatch = useDispatch();
-  const updateCityField = (value) => dispatch(actions.handleCityOrderField(value));
-  const updatePointField = (value) => dispatch(actions.handlePointOrderField(value));
+  const updateCityField = (value) => dispatch(handleCityOrderField(value));
+  const updatePointField = (value) => dispatch(handlePointOrderField(value));
 
   const cities = useSelector(getCities);
   const points = useSelector(getPoints);

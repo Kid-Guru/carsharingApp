@@ -5,25 +5,33 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
 import { getAvailableColors, getExtraOptions, getRatesSelector } from '../../../redux/selectors';
 import { getRates } from '../../../redux/rates/actions';
-import * as actions from '../../../redux/actions';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ParamsStep.scss';
 import RadioInput from '../../common/RadioInput/RadioInput';
 import CheckboxInput from '../../common/CheckboxInput/CheckboxInput';
+import {
+  handleDateFromOrder,
+  handleDateToOrder,
+  handleRateOrder,
+  setIsFullTank,
+  setIsNeedChildChair,
+  setIsRightWheel,
+  setOrderCarColor,
+} from '../../../redux/order/actions';
 
 registerLocale('ru', ru);
 
 const ParamsStep = () => {
   const dispatch = useDispatch();
-  const selectColor = (color) => dispatch(actions.setOrderCarColor(color));
-  const selectRate = (rate) => dispatch(actions.handleRateOrder(rate));
-  const selectDateFrom = (dateFrom) => dispatch(actions.handleDateFromOrder(dateFrom));
-  const selectDateTo = (dateTo) => dispatch(actions.handleDateToOrder(dateTo));
-  const selectIsFullTank = (isFullTank) => dispatch(actions.setIsFullTank(isFullTank));
+  const selectColor = (color) => dispatch(setOrderCarColor(color));
+  const selectRate = (rate) => dispatch(handleRateOrder(rate));
+  const selectDateFrom = (dateFrom) => dispatch(handleDateFromOrder(dateFrom));
+  const selectDateTo = (dateTo) => dispatch(handleDateToOrder(dateTo));
+  const selectIsFullTank = (isFullTank) => dispatch(setIsFullTank(isFullTank));
   const selectIsNeedChildChair = (isNeedChair) => {
-    dispatch(actions.setIsNeedChildChair(isNeedChair));
+    dispatch(setIsNeedChildChair(isNeedChair));
   };
-  const selectIsRightWheel = (isRigthWheel) => dispatch(actions.setIsRightWheel(isRigthWheel));
+  const selectIsRightWheel = (isRigthWheel) => dispatch(setIsRightWheel(isRigthWheel));
 
   const colors = useSelector(getAvailableColors);
   const rates = useSelector(getRatesSelector);

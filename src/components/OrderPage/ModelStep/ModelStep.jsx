@@ -1,21 +1,21 @@
 import cn from 'classnames';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../../../redux/actions';
 import { getCarsRequest } from '../../../redux/cars/actions';
 import { getCategoriesRequest } from '../../../redux/categories/actions';
+import { handleModelOrder, setCategoryFilter } from '../../../redux/order/actions';
 import { getCars } from '../../../redux/selectors';
 import RadioInput from '../../common/RadioInput/RadioInput';
 import './ModelStep.scss';
 
 const ModelStep = () => {
   const dispatch = useDispatch();
-  const selectCategory = (categoryId) => dispatch(actions.setCategoryFilter(categoryId));
-  const selectCar = (carId) => dispatch(actions.handleModelOrder(carId));
+  const selectCategory = (categoryId) => dispatch(setCategoryFilter(categoryId));
+  const selectCar = (carId) => dispatch(handleModelOrder(carId));
 
   const cars = useSelector(getCars);
   const categories = useSelector((state) => state.categories.data);
-  const selectedCategory = useSelector((state) => state.order.carsCategories.selectedCategory);
+  const selectedCategory = useSelector((state) => state.order.selectedCategory);
   const selectedCar = useSelector((state) => state.order.carOrder);
 
   useEffect(() => {

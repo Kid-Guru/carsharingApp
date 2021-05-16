@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '../../common/Button/Button';
-import TotalList from '../../common/TotalList/TotalList';
-import * as actions from '../../../redux/actions';
+import { handleCurrentStepOrder } from '../../../redux/order/actions';
 import {
-  getIsNextStepAvailable,
   getIsFinalStep,
+  getIsNextStepAvailable,
   getPriceTotalData,
   getTotalRowsData,
 } from '../../../redux/selectors';
 import { showConfirmModalOrder } from '../../../redux/UI/actions';
+import Button from '../../common/Button/Button';
+import TotalList from '../../common/TotalList/TotalList';
 
 const BUTTON_TEXT = ['Выбрать модель', 'Дополнительно', 'Итого', 'Заказать'];
 const ButtonNext = () => {
@@ -18,7 +18,7 @@ const ButtonNext = () => {
   const isFinalStep = useSelector(getIsFinalStep);
   const handleClickNewStep = () => {
     if (!isFinalStep) {
-      dispatch(actions.handleCurrentStepOrder(currentStepOrder + 1));
+      dispatch(handleCurrentStepOrder(currentStepOrder + 1));
     } else {
       dispatch(showConfirmModalOrder());
     }
