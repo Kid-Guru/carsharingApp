@@ -32,7 +32,7 @@ const LocationStep = () => {
   const onChangePointHandle = (value) => updatePointField(value);
 
   const optionsCity = cities.map((c) => ({ value: c.item, label: c.item }));
-  const optionsPoints = points.map((p) => ({ value: p.item, label: p.item }));
+  const optionsPoints = points.map((p) => ({ value: p.item, label: p.item, id: p.id }));
   return (
     <div className="locationStep">
       <div className="locationStep__form form">
@@ -60,7 +60,7 @@ const LocationStep = () => {
               inputId="orderPoint"
               placeholder="Начните вводить пункт"
               isClearable="true"
-              value={pointOrder.value === '' ? null : ({ value: pointOrder.value, label: pointOrder.value })}
+              value={pointOrder.value === '' ? null : ({ value: pointOrder.value, label: pointOrder.value, id: pointOrder.id })}
               onChange={(input) => onChangePointHandle(input === null ? '' : input.value)}
               options={optionsPoints}
               noOptionsMessage={() => 'Нет вариантов'}
