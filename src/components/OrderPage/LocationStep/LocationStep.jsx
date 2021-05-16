@@ -24,10 +24,8 @@ const LocationStep = () => {
   const pointsMap = useSelector(getPointsMap);
 
   useEffect(() => {
-    const citiesRequest = () => dispatch(getCitiesRequest());
-    const pointsRequest = () => dispatch(getPointsRequest());
-    citiesRequest();
-    pointsRequest();
+    dispatch(getCitiesRequest());
+    dispatch(getPointsRequest());
   }, [dispatch]);
 
   const onChangeCityHandle = (value) => updateCityField(value);

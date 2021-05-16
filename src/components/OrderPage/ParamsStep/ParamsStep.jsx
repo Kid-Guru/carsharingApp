@@ -34,8 +34,7 @@ const ParamsStep = () => {
   const extraOptions = useSelector(getExtraOptions);
 
   useEffect(() => {
-    const getRatesRequest = () => dispatch(getRates());
-    getRatesRequest();
+    dispatch(getRates());
   }, [dispatch]);
 
   const filterTimeFrom = (time) => {
