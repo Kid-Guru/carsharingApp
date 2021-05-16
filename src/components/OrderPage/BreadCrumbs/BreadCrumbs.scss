@@ -2,16 +2,6 @@
 @import '../../../styles/_mixins.scss';
 
 .breadcrumbs {
-  border-top: 1px solid $main-grey-ligth;
-  border-bottom: 1px solid $main-grey-ligth;
-  &__container {
-    @include horizontal-padding;
-    @include fluid-container;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
   &__list {
     margin: 0;
     padding: 0;

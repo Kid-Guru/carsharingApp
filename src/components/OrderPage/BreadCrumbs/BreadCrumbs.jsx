@@ -17,24 +17,20 @@ const BreadCrumbs = () => {
   });
 
   return (
-    <div className="breadcrumbs">
-      <div className="breadcrumbs__container">
-        <ul className="breadcrumbs__list">
-          <li className={getItemClass('location')}>
-            <button onClick={() => setNewStepOrder(0)} className="breadcrumbs__btn" type="button">Местоположение</button>
-          </li>
-          <li className={getItemClass('model')}>
-            <button onClick={() => setNewStepOrder(1)} className="breadcrumbs__btn" type="button">Модель</button>
-          </li>
-          <li className={getItemClass('params')}>
-            <button onClick={() => setNewStepOrder(2)} className="breadcrumbs__btn" type="button">Дополнительно</button>
-          </li>
-          <li className={getItemClass('total')}>
-            <button onClick={() => setNewStepOrder(3)} className="breadcrumbs__btn" type="button">Итого</button>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <ul className="breadcrumbs__list">
+      <li className={getItemClass('location')}>
+        <button onClick={() => setNewStepOrder(0)} className="breadcrumbs__btn" type="button">Местоположение</button>
+      </li>
+      <li className={getItemClass('model')}>
+        <button onClick={() => setNewStepOrder(1)} className="breadcrumbs__btn" type="button">Модель</button>
+      </li>
+      <li className={getItemClass('params')}>
+        <button onClick={() => setNewStepOrder(2)} className="breadcrumbs__btn" type="button">Дополнительно</button>
+      </li>
+      <li className={getItemClass('total')}>
+        <button onClick={() => setNewStepOrder(3)} className="breadcrumbs__btn" type="button">Итого</button>
+      </li>
+    </ul>
   );
 };
 

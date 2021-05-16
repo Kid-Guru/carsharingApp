@@ -36,8 +36,8 @@ const StatusOrderPage = () => {
       <div className="container container-header">
         <Header />
       </div>
-      <div className="orderNumber">
-        <div className="orderNumber__container">
+      <div className="line">
+        <div className="container line__container">
           {'Заказ номер '}
           {viewOrderData.id}
         </div>

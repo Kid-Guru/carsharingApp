@@ -19,7 +19,11 @@ const OrderPage = () => {
       <div className="container container-header">
         <Header />
       </div>
-      <BreadCrumds />
+      <div className="line">
+        <div className="container line__container">
+          <BreadCrumds />
+        </div>
+      </div>
       <div className="container container-order">
         <div className="order">
           <div className="order__step order__col">
