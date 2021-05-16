@@ -12,6 +12,7 @@ const handlers = {
     ...state,
     data,
   }),
+  [actions.resetViewedOrder]: (state) => ({ ...state, data: {} }),
   [actions.updateStatusViewOrderData]: (state, { payload: { status } }) => ({
     ...state,
     status,

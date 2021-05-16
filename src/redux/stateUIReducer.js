@@ -14,6 +14,10 @@ const handlers = {
   [a.toggleMenu]: (state) => ({ ...state, sidebarActive: !state.sidebarActive }),
   [a.toggleLanguage]: (state, { payload: { currentLang } }) => ({ ...state, currentLang }),
   [a.toggleCart]: (state) => ({ ...state, cartIsVisible: !state.cartIsVisible }),
+  [a.toggleViewOrderCart]: (state) => ({
+    ...state,
+    viewOrderCartIsVisible: !state.viewOrderCartIsVisible,
+  }),
   [a.showConfirmModalOrder]: (state) => ({ ...state, confirmModalOrderIsVisible: true }),
   [a.hideConfirmModalOrder]: (state) => ({ ...state, confirmModalOrderIsVisible: false }),
 };

@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { requestOrder } from '../../redux/viewOrder/actions';
+import { requestOrder, cleanViewedOrder } from '../../redux/viewOrder/actions';
 import { getOrderData } from '../../redux/selectors';
 import Header from '../Header/Header';
 import Total from './Total/Total';
+import ToggleCardBtn from './ToggleCardBtn/ToggleCardBtn';
 import './StatusOrderPage.scss';
 
 const orderStatusText = {
@@ -21,6 +22,9 @@ const StatusOrderPage = () => {
   useEffect(() => {
     if (id !== prevIdRef.current) dispatch(requestOrder(id));
     prevIdRef.current = id;
+    return () => {
+      dispatch(cleanViewedOrder());
+    };
   }, [id, dispatch]);
 
   const statusViewOrderData = useSelector((state) => state.viewOrder.status);
@@ -80,7 +84,7 @@ const StatusOrderPage = () => {
             <Total />
           </div>
           <div className="order__mobileBtn">
-            {/* <ToggleCardBtn /> */}
+            <ToggleCardBtn />
             {/* <NextStepBtn /> */}
           </div>
         </div>
