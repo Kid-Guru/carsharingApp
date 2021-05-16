@@ -7,7 +7,7 @@ import {
   prettyDate,
 } from '../helpers/utils';
 
-export const getCities = (state) => state.order.cities.map((c) => ({ item: c.name, id: c.id }));
+export const getCities = (state) => state.cities.data.map((c) => ({ item: c.name, id: c.id }));
 
 export const getPoints = (state) => {
   if (state.order.points.length === 0) {

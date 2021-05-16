@@ -10,7 +10,7 @@ const defaultState = {
     currentStep: 0,
     map: ['location', 'model', 'params', 'total'],
   },
-  cities: [],
+  // cities: [],
   points: [],
   cars: [],
   rates: [],
@@ -46,7 +46,7 @@ const defaultState = {
 };
 
 const handlers = {
-  [actions.setCities]: (state, { payload: { cities } }) => ({ ...state, cities }),
+  // [actions.setCities]: (state, { payload: { cities } }) => ({ ...state, cities }),
   [actions.setPoints]: (state, { payload: { points } }) => ({ ...state, points }),
   [actions.setCars]: (state, { payload: { cars } }) => ({ ...state, cars }),
   [actions.setCarsCategories]: (state, { payload: { categories } }) => ({

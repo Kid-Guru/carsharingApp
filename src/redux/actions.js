@@ -12,7 +12,7 @@ export const hideConfirmModalOrder = createAction('HIDE_COMFIRM_MODAL');
 
 export const setStepOrder = createAction('SET_STEP_ORDER');
 
-export const setCities = createAction('SET_CITIES');
+// export const setCities = createAction('SET_CITIES');
 export const setPoints = createAction('SET_POINTS');
 export const setCars = createAction('SET_CARS');
 export const setCarsCategories = createAction('SET_CARS_CATEGORIES');
@@ -41,12 +41,12 @@ export const setModelStepStatus = createAction('SET_MODEL_STEP_STATUS');
 export const setParamsStepStatus = createAction('SET_PARAMS_STEP_STATUS');
 export const setTotalStepStatus = createAction('SET_TOTAL_STEP_STATUS');
 
-// Запрос всех городов
-export const getCitiesRequest = () => async (dispatch) => {
-  const responseCity = await orderApi.getCity();
-  const cities = responseCity.data.data;
-  dispatch(setCities({ cities }));
-};
+// // Запрос всех городов
+// export const getCitiesRequest = () => async (dispatch) => {
+//   const responseCity = await orderApi.getCity();
+//   const cities = responseCity.data.data;
+//   dispatch(setCities({ cities }));
+// };
 // Запрос всех точек
 export const getPointsRequest = () => async (dispatch) => {
   const responsePoint = await orderApi.getPoint();
@@ -111,7 +111,7 @@ export const updateAllStepsStatus = () => (dispatch) => {
 };
 // Обрабатываем value поля Город
 export const handleCityOrderField = (newCityOrderValue) => (dispatch, getState) => {
-  const { cities } = getState().order;
+  const { data: cities } = getState().cities;
   const findCity = cities.find((c) => c.name.toLowerCase() === newCityOrderValue.toLowerCase());
   const isValid = !!findCity;
   const id = findCity ? findCity.id : null;
