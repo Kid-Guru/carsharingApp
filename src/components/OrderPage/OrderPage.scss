@@ -64,9 +64,7 @@
   &__mobileBtn {
     display: none;
     position: fixed;
-    // left: 50%;
     bottom: 16px;
-    // transform: translateX(-50%);
   }
 }
 
@@ -85,7 +83,6 @@
       background-color: white;
       padding-top: 0px;
       padding-left: 0px;
-      // flex: 0 1 auto;
       position: absolute;
       top: 32px;
       bottom: 32px;
@@ -93,7 +90,6 @@
       right: 16px;
       transform: translateX(120%);
       transition: transform 0.4s ease 0s;
-      // display: none;
       &_active {
         transform: translateX(0%);
       }

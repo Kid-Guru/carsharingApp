@@ -4,7 +4,6 @@
 .header {
   @include vertical-padding;
   @include horizontal-padding;
-  // padding: 32px 64px;
   display: flex;
   justify-content: space-between;
   &__btnCol {
@@ -60,15 +59,8 @@
   }
 }
 
-// @media (max-width: $desktop-min) {
-//   .header {
-//     padding: 32px 32px;
-//   }
-// }
-
 @media (max-width: $mobile) {
   .header {
-    // padding: 16px 16px;
     &__btnCol {
       display: flex;
       align-items: center;

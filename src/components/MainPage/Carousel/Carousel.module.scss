@@ -27,9 +27,6 @@
 }
 
 .slide {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
   position: relative;
   background-position: center;
   background-size:cover;
@@ -90,7 +87,6 @@
 
 .dots {
   position: absolute;
-  // height: 8px;
   bottom: 38px;
   left: 50%;
   transform: translateX(-50%);

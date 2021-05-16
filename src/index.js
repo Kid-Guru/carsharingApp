@@ -9,14 +9,6 @@ import reportWebVitals from './reportWebVitals';
 import rootReducer from './redux/rootReducer';
 import './index.scss';
 
-// const store = createStore(
-//   /* eslint-disable no-underscore-dangle */
-//   rootReducer,
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-//   applyMiddleware(thunk),
-//   /* eslint-enable */
-// );
-
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 

@@ -7,7 +7,6 @@ const client = axios.create({
   baseURL: APIURL,
   headers: {
     'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b',
-    // Authorization: '4cbcea96de',
   },
 });
 

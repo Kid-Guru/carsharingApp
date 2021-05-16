@@ -95,7 +95,6 @@ export const getTotalRateData = (state) => {
   const isFullfilled = !!rate;
   const selectedRate = rates.find((r) => r.id === rate);
   return ({
-    // rate: selectedRate?.rateTypeId?.name,
     isFullfilled,
     title: 'Тариф',
     value: [selectedRate?.rateTypeId?.name],
