@@ -14,10 +14,10 @@ export const setStepOrder = createAction('SET_STEP_ORDER');
 
 // export const setCities = createAction('SET_CITIES');
 // export const setPoints = createAction('SET_POINTS');
-export const setCars = createAction('SET_CARS');
+// export const setCars = createAction('SET_CARS');
 export const setCarsCategories = createAction('SET_CARS_CATEGORIES');
 export const resetCarsCategories = createAction('RESET_SELECTED_CARS_CATEGORIES');
-export const setRates = createAction('SET_RATES');
+// export const setRates = createAction('SET_RATES');
 // export const setOrderData = createAction('SET_ORDER_DATA');
 
 export const setCityOrder = createAction('SET_ORDER_CITY');
@@ -55,24 +55,24 @@ export const setTotalStepStatus = createAction('SET_TOTAL_STEP_STATUS');
 //   const filtredPoints = points.filter((p) => p.cityId !== null);
 //   dispatch(setPoints({ points: filtredPoints }));
 // };
-// Запрос всех машин
-export const getCarsRequest = () => async (dispatch) => {
-  const responseCars = await orderApi.getCars();
-  const cars = responseCars.data.data;
-  dispatch(setCars({ cars }));
-};
+// // Запрос всех машин
+// export const getCarsRequest = () => async (dispatch) => {
+//   const responseCars = await orderApi.getCars();
+//   const cars = responseCars.data.data;
+//   dispatch(setCars({ cars }));
+// };
 // Запрос всех категорий машин
 export const getCategoriesRequest = () => async (dispatch) => {
   const responseCategories = await orderApi.getCategories();
   const categories = responseCategories.data.data;
   dispatch(setCarsCategories({ categories }));
 };
-// Запрос тарифов
-export const getRates = () => async (dispatch) => {
-  const responseRates = await orderApi.getRates();
-  const rates = responseRates.data.data;
-  dispatch(setRates({ rates }));
-};
+// // Запрос тарифов
+// export const getRates = () => async (dispatch) => {
+//   const responseRates = await orderApi.getRates();
+//   const rates = responseRates.data.data;
+//   dispatch(setRates({ rates }));
+// };
 // Обновляем статус шага выбора модели
 export const handleModelStepStatus = () => (dispatch, getState) => {
   const { cityOrder, pointOrder } = getState().order;
@@ -199,8 +199,9 @@ export const resetAllOrderSteps = () => async (dispatch) => {
 export const sendOrder = () => async (dispatch, getState) => {
   const state = getState();
   const {
-    cityOrder, pointOrder, carOrder, paramsOrder, rates,
+    cityOrder, pointOrder, carOrder, paramsOrder,
   } = state.order;
+  const { data: rates } = state.rates;
   const selectedRate = rates.find((r) => r.id === paramsOrder.rate);
   const timeRent = paramsOrder.dateTo.getTime() - paramsOrder.dateFrom.getTime();
   const extraOptions = {

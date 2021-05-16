@@ -65,7 +65,8 @@ export const getTotalLocationStepData = (state) => {
 };
 
 export const getTotalModelStepData = (state) => {
-  const { carOrder, cars } = state.order;
+  const { carOrder } = state.order;
+  const { data: cars } = state.cars;
   const selectedCar = cars.find((c) => c.id === carOrder.id);
   const isModelStepFullfilled = (carOrder.isValid) === true;
   return ({
@@ -89,7 +90,8 @@ export const getTotalTimeRentData = (state) => {
 };
 
 export const getTotalRateData = (state) => {
-  const { rates, paramsOrder: { rate } } = state.order;
+  const { paramsOrder: { rate } } = state.order;
+  const { data: rates } = state.rates;
   const isFullfilled = !!rate;
   const selectedRate = rates.find((r) => r.id === rate);
   return ({
@@ -147,7 +149,8 @@ const getImageURL = (path) => {
 };
 
 export const getCars = (state) => {
-  const { cars, carsCategories: { selectedCategory } } = state.order;
+  const { carsCategories: { selectedCategory } } = state.order;
+  const { data: cars } = state.cars;
   return cars
     .filter((c) => c.categoryId.id === selectedCategory || selectedCategory === null)
     .map((c) => ({
@@ -159,8 +162,9 @@ export const getCars = (state) => {
 };
 
 export const getPriceTotalData = (state) => {
-  const { carOrder, paramsOrder, rates } = state.order;
-  const selectedCar = state.order.cars.find((c) => c.id === carOrder.id);
+  const { carOrder, paramsOrder } = state.order;
+  const { data: rates } = state.rates;
+  const selectedCar = state.cars.data.find((c) => c.id === carOrder.id);
   const price = {
     isShowing: false,
     text: '',
@@ -187,7 +191,7 @@ export const getPriceTotalData = (state) => {
 export const getSelectedCarForTotalStep = (state) => {
   const { id: idCar } = state.order.carOrder;
   const { isFullTank } = state.order.paramsOrder;
-  const selectedCar = state.order.cars.find((c) => c.id === idCar);
+  const selectedCar = state.cars.data.find((c) => c.id === idCar);
   let carNumberPretty;
   if (selectedCar.number) {
     carNumberPretty = `${selectedCar.number[0]} ${selectedCar.number.slice(1, 4)} ${selectedCar.number.slice(4)} 73`;
@@ -209,12 +213,12 @@ export const getAvailableFrom = (state) => {
 
 export const getAvailableColors = (state) => {
   const { id: idCar } = state.order.carOrder;
-  const selectedCar = state.order.cars.find((c) => c.id === idCar);
+  const selectedCar = state.cars.data.find((c) => c.id === idCar);
   return selectedCar ? selectedCar.colors : [];
 };
 
-export const getRates = (state) => {
-  const { rates } = state.order;
+export const getRatesSelector = (state) => {
+  const { data: rates } = state.rates;
   return rates.map((r) => ({
     text: `${r.rateTypeId.name}, ${r.price}₽/${r.rateTypeId.unit}`,
     id: r.id,

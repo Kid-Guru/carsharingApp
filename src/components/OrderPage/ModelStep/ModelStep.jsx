@@ -5,6 +5,7 @@ import * as actions from '../../../redux/actions';
 import { getCars } from '../../../redux/selectors';
 import './ModelStep.scss';
 import RadioInput from '../../common/RadioInput/RadioInput';
+import { getCarsRequest } from '../../../redux/cars/actions';
 
 const ModelStep = () => {
   const dispatch = useDispatch();
@@ -17,9 +18,9 @@ const ModelStep = () => {
   const selectedCar = useSelector((state) => state.order.carOrder);
 
   useEffect(() => {
-    const getCarsRequest = () => dispatch(actions.getCarsRequest());
+    const carsRequest = () => dispatch(getCarsRequest());
     const getCategoriesRequest = () => dispatch(actions.getCategoriesRequest());
-    getCarsRequest();
+    carsRequest();
     getCategoriesRequest();
   }, [dispatch]);
   return (

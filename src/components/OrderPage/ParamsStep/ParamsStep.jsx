@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
-import { getAvailableColors, getExtraOptions, getRates } from '../../../redux/selectors';
+import { getAvailableColors, getExtraOptions, getRatesSelector } from '../../../redux/selectors';
+import { getRates } from '../../../redux/rates/actions';
 import * as actions from '../../../redux/actions';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ParamsStep.scss';
@@ -25,7 +26,7 @@ const ParamsStep = () => {
   const selectIsRightWheel = (isRigthWheel) => dispatch(actions.setIsRightWheel(isRigthWheel));
 
   const colors = useSelector(getAvailableColors);
-  const rates = useSelector(getRates);
+  const rates = useSelector(getRatesSelector);
   const selectedColor = useSelector((state) => state.order.paramsOrder.color);
   const selectedRate = useSelector((state) => state.order.paramsOrder.rate);
   const dateFrom = useSelector((state) => state.order.paramsOrder.dateFrom);
@@ -33,7 +34,7 @@ const ParamsStep = () => {
   const extraOptions = useSelector(getExtraOptions);
 
   useEffect(() => {
-    const getRatesRequest = () => dispatch(actions.getRates());
+    const getRatesRequest = () => dispatch(getRates());
     getRatesRequest();
   }, [dispatch]);
 
