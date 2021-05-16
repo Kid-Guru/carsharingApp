@@ -7,8 +7,9 @@ const FloatBtn = (props) => {
     onClickHandle,
     text = '',
     children,
+    red,
   } = props;
-  const buttonClass = cn(s.button, { [s.button__extended]: text !== '' });
+  const buttonClass = cn(s.button, { [s.button__extended]: text !== '', [s.button__red]: red });
   return (
     <button
       className={buttonClass}

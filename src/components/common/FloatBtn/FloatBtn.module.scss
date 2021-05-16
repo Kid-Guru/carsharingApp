@@ -4,7 +4,6 @@
 .button {
   margin: 5px;
   padding: 0;
-  color: #ffffff;
   height: 50px;
   min-width: 50px;
   // padding: 14px 60px;
@@ -14,11 +13,10 @@
   font-size: 18px;
   line-height: 25px;
   text-align: center;
-  background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
-  background-blend-mode: darken;
   border: none;
   border-radius: 50%;
   outline: none;
+  @include button-color;
 
   &__label {
     display: inline-flex;
@@ -32,22 +30,7 @@
     display: inline-block;
   }
 
-  &:hover {
-    background: linear-gradient(
-      90deg,
-      darken(#0ec261, 10%) 2.61%,
-      darken(#039f67, 10%) 112.6%
-    );
-  }
-  &:active {
-    background: linear-gradient(
-      90deg,
-      darken(#0ec261, 20%) 2.61%,
-      darken(#039f67, 20%) 112.6%
-    );
-  }
   &:disabled {
-    background: $main-grey;
     cursor: default;
   }
 }
