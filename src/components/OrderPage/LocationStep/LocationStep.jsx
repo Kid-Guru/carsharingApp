@@ -7,6 +7,7 @@ import {
 } from '../../../redux/selectors';
 import LocationStepMap from './LocationStepMap';
 import { getCitiesRequest } from '../../../redux/cities/actions';
+import { getPointsRequest } from '../../../redux/points/actions';
 import * as actions from '../../../redux/actions';
 import './LocationStep.scss';
 
@@ -24,9 +25,9 @@ const LocationStep = () => {
 
   useEffect(() => {
     const citiesRequest = () => dispatch(getCitiesRequest());
-    const getPointsRequest = () => dispatch(actions.getPointsRequest());
+    const pointsRequest = () => dispatch(getPointsRequest());
     citiesRequest();
-    getPointsRequest();
+    pointsRequest();
   }, [dispatch]);
 
   const onChangeCityHandle = (value) => updateCityField(value);

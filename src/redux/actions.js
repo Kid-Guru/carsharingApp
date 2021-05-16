@@ -13,7 +13,7 @@ export const hideConfirmModalOrder = createAction('HIDE_COMFIRM_MODAL');
 export const setStepOrder = createAction('SET_STEP_ORDER');
 
 // export const setCities = createAction('SET_CITIES');
-export const setPoints = createAction('SET_POINTS');
+// export const setPoints = createAction('SET_POINTS');
 export const setCars = createAction('SET_CARS');
 export const setCarsCategories = createAction('SET_CARS_CATEGORIES');
 export const resetCarsCategories = createAction('RESET_SELECTED_CARS_CATEGORIES');
@@ -48,13 +48,13 @@ export const setTotalStepStatus = createAction('SET_TOTAL_STEP_STATUS');
 //   dispatch(setCities({ cities }));
 // };
 // Запрос всех точек
-export const getPointsRequest = () => async (dispatch) => {
-  const responsePoint = await orderApi.getPoint();
-  const points = responsePoint.data.data;
-  // Фильтруем невалидные данные
-  const filtredPoints = points.filter((p) => p.cityId !== null);
-  dispatch(setPoints({ points: filtredPoints }));
-};
+// export const getPointsRequest = () => async (dispatch) => {
+//   const responsePoint = await orderApi.getPoint();
+//   const points = responsePoint.data.data;
+//   // Фильтруем невалидные данные
+//   const filtredPoints = points.filter((p) => p.cityId !== null);
+//   dispatch(setPoints({ points: filtredPoints }));
+// };
 // Запрос всех машин
 export const getCarsRequest = () => async (dispatch) => {
   const responseCars = await orderApi.getCars();
@@ -127,7 +127,7 @@ export const handleCityOrderField = (newCityOrderValue) => (dispatch, getState) 
 };
 // Обрабатываем value поля Пункт выдачи
 export const handlePointOrderField = (newPointOrderValue) => (dispatch, getState) => {
-  const { points } = getState().order;
+  const { data: points } = getState().points;
   const findPoint = points
     .find((c) => c.address.toLowerCase() === newPointOrderValue.toLowerCase());
   const isValid = !!findPoint;

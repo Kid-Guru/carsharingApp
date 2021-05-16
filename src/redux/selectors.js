@@ -10,11 +10,11 @@ import {
 export const getCities = (state) => state.cities.data.map((c) => ({ item: c.name, id: c.id }));
 
 export const getPoints = (state) => {
-  if (state.order.points.length === 0) {
+  if (state.points.data.length === 0) {
     return [];
   }
   const { cityOrder } = state.order;
-  return state.order.points
+  return state.points.data
     .filter((p) => p.cityId.id === cityOrder.id)
     .map((p) => ({ item: p.address, id: p.id }));
 };
