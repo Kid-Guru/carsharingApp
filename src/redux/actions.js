@@ -16,7 +16,7 @@ export const setStepOrder = createAction('SET_STEP_ORDER');
 // export const setCities = createAction('SET_CITIES');
 // export const setPoints = createAction('SET_POINTS');
 // export const setCars = createAction('SET_CARS');
-export const setCarsCategories = createAction('SET_CARS_CATEGORIES');
+// export const setCarsCategories = createAction('SET_CARS_CATEGORIES');
 export const resetCarsCategories = createAction('RESET_SELECTED_CARS_CATEGORIES');
 // export const setRates = createAction('SET_RATES');
 // export const setOrderData = createAction('SET_ORDER_DATA');
@@ -62,12 +62,12 @@ export const setTotalStepStatus = createAction('SET_TOTAL_STEP_STATUS');
 //   const cars = responseCars.data.data;
 //   dispatch(setCars({ cars }));
 // };
-// Запрос всех категорий машин
-export const getCategoriesRequest = () => async (dispatch) => {
-  const responseCategories = await orderApi.getCategories();
-  const categories = responseCategories.data.data;
-  dispatch(setCarsCategories({ categories }));
-};
+// // Запрос всех категорий машин
+// export const getCategoriesRequest = () => async (dispatch) => {
+//   const responseCategories = await orderApi.getCategories();
+//   const categories = responseCategories.data.data;
+//   dispatch(setCarsCategories({ categories }));
+// };
 // // Запрос тарифов
 // export const getRates = () => async (dispatch) => {
 //   const responseRates = await orderApi.getRates();

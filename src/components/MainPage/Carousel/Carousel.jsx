@@ -19,7 +19,7 @@ const renderSlides = (dataArray) => dataArray.map((dataItem) => (
 let currentSlide = 1;
 
 const Carousel = () => {
-  const dataSlides = useSelector((state) => state.main.carouselData);
+  const dataSlides = useSelector((state) => state.stateUI.carouselData);
   const [offset, setOffset] = useState(0);
 
   const nextSlideMap = {
