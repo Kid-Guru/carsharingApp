@@ -17,13 +17,11 @@ const StatusOrderPage = () => {
   const { id } = useParams();
   const prevIdRef = useRef();
   const dispatch = useDispatch();
+
   useEffect(() => {
+    if (id !== prevIdRef.current) dispatch(requestOrder(id));
     prevIdRef.current = id;
-  });
-  const prevId = prevIdRef.current;
-  useEffect(() => {
-    if (id !== prevId) dispatch(requestOrder(id));
-  }, [id]);
+  }, [id, dispatch]);
 
   const statusViewOrderData = useSelector((state) => state.viewOrder.status);
   const statusStatusesData = useSelector((state) => state.statuses.status);
