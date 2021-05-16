@@ -185,6 +185,17 @@ export const handleCurrentStepOrder = (newStepOrder) => (dispatch, getState) => 
   }
 };
 
+export const resetAllOrderSteps = () => async (dispatch) => {
+  dispatch(setCurrentStepOrder({ currentStep: 0 }));
+  dispatch(setTotalStepStatus({ totalStepStatus: 'blocked' }));
+  dispatch(resetParamsStep());
+  dispatch(setParamsStepStatus({ paramsStepStatus: 'blocked' }));
+  dispatch(resetOrderCar());
+  dispatch(resetCarsCategories());
+  dispatch(setModelStepStatus({ modelStepStatus: 'blocked' }));
+  dispatch(resetPointOrder());
+};
+
 export const sendOrder = () => async (dispatch, getState) => {
   const state = getState();
   const {
@@ -219,6 +230,7 @@ export const sendOrder = () => async (dispatch, getState) => {
   dispatch(setViewOrderData({ data: order }));
   dispatch(updateStatusViewOrderData({ status: 'received' }));
   dispatch(hideConfirmModalOrder());
+  dispatch(resetAllOrderSteps());
 };
 
 // export const requestOrder = (id) => async (dispatch) => {
