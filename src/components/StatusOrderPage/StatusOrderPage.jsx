@@ -7,6 +7,7 @@ import Header from '../Header/Header';
 import Total from './Total/Total';
 import ToggleCardBtn from './ToggleCardBtn/ToggleCardBtn';
 import './StatusOrderPage.scss';
+import CancelOrderBtn from './CancelOrderBtn/CancelOrderBtn';
 
 const orderStatusText = {
   new: 'Ваш заказ зарегестрирован',
@@ -85,7 +86,7 @@ const StatusOrderPage = () => {
           </div>
           <div className="order__mobileBtn">
             <ToggleCardBtn />
-            {/* <NextStepBtn /> */}
+            <CancelOrderBtn />
           </div>
         </div>
       </div>
