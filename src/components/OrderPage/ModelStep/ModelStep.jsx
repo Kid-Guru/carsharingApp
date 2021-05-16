@@ -21,8 +21,7 @@ const ModelStep = () => {
     const getCategoriesRequest = () => dispatch(actions.getCategoriesRequest());
     getCarsRequest();
     getCategoriesRequest();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
   return (
     <div className="modelStep">
       <div className="modelStep__filter">

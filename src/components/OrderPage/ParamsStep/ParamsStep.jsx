@@ -35,8 +35,7 @@ const ParamsStep = () => {
   useEffect(() => {
     const getRatesRequest = () => dispatch(actions.getRates());
     getRatesRequest();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   const filterTimeFrom = (time) => {
     const selectedDate = new Date(time);
