@@ -10,12 +10,7 @@ const defaultState = {
     currentStep: 0,
     map: ['location', 'model', 'params', 'total'],
   },
-  // cities: [],
-  // points: [],
-  // cars: [],
-  // rates: [],
   carsCategories: {
-    // categories: [],
     selectedCategory: null,
   },
   cityOrder: {
@@ -42,25 +37,15 @@ const defaultState = {
     isRightWheel: false,
     isValid: false,
   },
-  // orderData: {},
 };
 
 const handlers = {
-  // [actions.setCities]: (state, { payload: { cities } }) => ({ ...state, cities }),
-  // [actions.setPoints]: (state, { payload: { points } }) => ({ ...state, points }),
-  // [actions.setCars]: (state, { payload: { cars } }) => ({ ...state, cars }),
-  // [actions.setCarsCategories]: (state, { payload: { categories } }) => ({
-  //   ...state,
-  //   carsCategories: { ...state.carsCategories, categories },
-  // }),
   [actions.resetCarsCategories]: (state) => ({
     ...state,
     carsCategories: {
       selectedCategory: null,
     },
   }),
-  // [actions.setRates]: (state, { payload: { rates } }) => ({ ...state, rates }),
-  // [actions.setOrderData]: (state, { payload: { orderData } }) => ({ ...state, orderData }),
   [actions.setCityOrder]: (state, { payload: { cityOrder } }) => ({ ...state, cityOrder }),
   [actions.setPointOrder]: (state, { payload: { pointOrder } }) => ({ ...state, pointOrder }),
   [actions.resetPointOrder]: (state) => ({ ...state, pointOrder: { value: '', id: null, isValid: false } }),

@@ -4,22 +4,8 @@ import { calculateRentPrice } from '../helpers/utils';
 import { hideConfirmModalOrder } from './UI/actions';
 import { setViewOrderData, updateStatusViewOrderData } from './viewOrder/actions';
 
-// export const toggleMenu = createAction('TOGGLE_MENU');
-// export const toggleLanguage = createAction('TOGGLE_LANGUAGE');
-// export const toggleCart = createAction('TOGGLE_CART');
-// export const toggleViewOrderCart = createAction('TOGGLE_VIEW_ORDER_CART');
-// export const showConfirmModalOrder = createAction('SHOW_COMFIRM_MODAL');
-// export const hideConfirmModalOrder = createAction('HIDE_COMFIRM_MODAL');
-
 export const setStepOrder = createAction('SET_STEP_ORDER');
-
-// export const setCities = createAction('SET_CITIES');
-// export const setPoints = createAction('SET_POINTS');
-// export const setCars = createAction('SET_CARS');
-// export const setCarsCategories = createAction('SET_CARS_CATEGORIES');
 export const resetCarsCategories = createAction('RESET_SELECTED_CARS_CATEGORIES');
-// export const setRates = createAction('SET_RATES');
-// export const setOrderData = createAction('SET_ORDER_DATA');
 
 export const setCityOrder = createAction('SET_ORDER_CITY');
 export const setPointOrder = createAction('SET_ORDER_POINT');
@@ -42,38 +28,6 @@ export const setModelStepStatus = createAction('SET_MODEL_STEP_STATUS');
 export const setParamsStepStatus = createAction('SET_PARAMS_STEP_STATUS');
 export const setTotalStepStatus = createAction('SET_TOTAL_STEP_STATUS');
 
-// // Запрос всех городов
-// export const getCitiesRequest = () => async (dispatch) => {
-//   const responseCity = await orderApi.getCity();
-//   const cities = responseCity.data.data;
-//   dispatch(setCities({ cities }));
-// };
-// Запрос всех точек
-// export const getPointsRequest = () => async (dispatch) => {
-//   const responsePoint = await orderApi.getPoint();
-//   const points = responsePoint.data.data;
-//   // Фильтруем невалидные данные
-//   const filtredPoints = points.filter((p) => p.cityId !== null);
-//   dispatch(setPoints({ points: filtredPoints }));
-// };
-// // Запрос всех машин
-// export const getCarsRequest = () => async (dispatch) => {
-//   const responseCars = await orderApi.getCars();
-//   const cars = responseCars.data.data;
-//   dispatch(setCars({ cars }));
-// };
-// // Запрос всех категорий машин
-// export const getCategoriesRequest = () => async (dispatch) => {
-//   const responseCategories = await orderApi.getCategories();
-//   const categories = responseCategories.data.data;
-//   dispatch(setCarsCategories({ categories }));
-// };
-// // Запрос тарифов
-// export const getRates = () => async (dispatch) => {
-//   const responseRates = await orderApi.getRates();
-//   const rates = responseRates.data.data;
-//   dispatch(setRates({ rates }));
-// };
 // Обновляем статус шага выбора модели
 export const handleModelStepStatus = () => (dispatch, getState) => {
   const { cityOrder, pointOrder } = getState().order;
@@ -226,7 +180,6 @@ export const sendOrder = () => async (dispatch, getState) => {
     isNeedChildChair: paramsOrder.isNeedChildChair,
     isRightWheel: paramsOrder.isRightWheel,
   };
-  // const responseOrder = await orderApi.getStatuses();
   const responseOrder = await orderApi.postOrder(orderBody);
   const order = responseOrder.data.data;
   dispatch(setViewOrderData({ data: order }));
@@ -234,9 +187,3 @@ export const sendOrder = () => async (dispatch, getState) => {
   dispatch(hideConfirmModalOrder());
   dispatch(resetAllOrderSteps());
 };
-
-// export const requestOrder = (id) => async (dispatch) => {
-//   const responseOrder = await orderApi.getOrder(id);
-//   const order = responseOrder.data.data;
-//   dispatch(setOrderData({ orderData: order }));
-// };
