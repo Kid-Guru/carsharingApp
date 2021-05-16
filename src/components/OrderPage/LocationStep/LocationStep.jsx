@@ -14,12 +14,12 @@ const LocationStep = () => {
   const updateCityField = (value) => dispatch(actions.handleCityOrderField(value));
   const updatePointField = (value) => dispatch(actions.handlePointOrderField(value));
 
-  const cities = useSelector((state) => getCities(state));
-  const points = useSelector((state) => getPoints(state));
+  const cities = useSelector(getCities);
+  const points = useSelector(getPoints);
   const cityOrder = useSelector((state) => state.order.cityOrder);
   const pointOrder = useSelector((state) => state.order.pointOrder);
-  const centerMap = useSelector((state) => getCenterMap(state));
-  const pointsMap = useSelector((state) => getPointsMap(state));
+  const centerMap = useSelector(getCenterMap);
+  const pointsMap = useSelector(getPointsMap);
 
   useEffect(() => {
     const getCitiesRequest = () => dispatch(actions.getCitiesRequest());

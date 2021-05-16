@@ -6,7 +6,7 @@ import './BreadCrumbs.scss';
 
 const BreadCrumbs = () => {
   const steps = useSelector((state) => state.order.steps);
-  const currentStep = useSelector((state) => getCurrentStep(state));
+  const currentStep = useSelector(getCurrentStep);
   const dispatch = useDispatch();
   const setNewStepOrder = (newStep) => dispatch(handleCurrentStepOrder(newStep));
   const getItemClass = (stepOrder) => cn({

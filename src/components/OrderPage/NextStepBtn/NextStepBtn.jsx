@@ -7,8 +7,8 @@ const BUTTON_TEXT = ['Выбрать модель', 'Дополнительно'
 const NextStepBtn = () => {
   const dispatch = useDispatch();
   const currentStepOrder = useSelector((state) => state.order.steps.currentStep);
-  const isNextStepAvailable = useSelector((state) => getIsNextStepAvailable(state));
-  const isFinalStep = useSelector((state) => getIsFinalStep(state));
+  const isNextStepAvailable = useSelector(getIsNextStepAvailable);
+  const isFinalStep = useSelector(getIsFinalStep);
   const handleClickNewStep = () => {
     if (!isFinalStep) {
       dispatch(handleCurrentStepOrder(currentStepOrder + 1));

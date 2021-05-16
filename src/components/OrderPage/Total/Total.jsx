@@ -13,8 +13,8 @@ const BUTTON_TEXT = ['Выбрать модель', 'Дополнительно'
 const ButtonNext = () => {
   const dispatch = useDispatch();
   const currentStepOrder = useSelector((state) => state.order.steps.currentStep);
-  const isNextStepAvailable = useSelector((state) => getIsNextStepAvailable(state));
-  const isFinalStep = useSelector((state) => getIsFinalStep(state));
+  const isNextStepAvailable = useSelector(getIsNextStepAvailable);
+  const isFinalStep = useSelector(getIsFinalStep);
   const handleClickNewStep = () => {
     if (!isFinalStep) {
       dispatch(actions.handleCurrentStepOrder(currentStepOrder + 1));
@@ -34,8 +34,8 @@ const ButtonNext = () => {
 };
 
 const Total = () => {
-  const totalRowsData = useSelector((state) => getTotalRowsData(state));
-  const price = useSelector((state) => getPriceTotalData(state));
+  const totalRowsData = useSelector(getTotalRowsData);
+  const price = useSelector(getPriceTotalData);
 
   return (
     <TotalList rowsData={totalRowsData} price={price} button={<ButtonNext />} />

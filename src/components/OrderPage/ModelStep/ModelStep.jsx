@@ -11,7 +11,7 @@ const ModelStep = () => {
   const selectCategory = (categoryId) => dispatch(actions.setCategoryFilter(categoryId));
   const selectCar = (carId) => dispatch(actions.handleModelOrder(carId));
 
-  const cars = useSelector((state) => getCars(state));
+  const cars = useSelector(getCars);
   const categories = useSelector((state) => state.order.carsCategories.categories);
   const selectedCategory = useSelector((state) => state.order.carsCategories.selectedCategory);
   const selectedCar = useSelector((state) => state.order.carOrder);

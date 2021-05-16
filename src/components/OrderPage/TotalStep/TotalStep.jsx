@@ -3,8 +3,8 @@ import { getSelectedCarForTotalStep, getAvailableFrom } from '../../../redux/sel
 import './TotalStep.scss';
 
 const TotalStep = () => {
-  const selectedCar = useSelector((state) => getSelectedCarForTotalStep(state));
-  const availableFrom = useSelector((state) => getAvailableFrom(state));
+  const selectedCar = useSelector(getSelectedCarForTotalStep);
+  const availableFrom = useSelector(getAvailableFrom);
   return (
     <div className="totalStep">
       <div className="totalStep__col">

@@ -24,13 +24,13 @@ const ParamsStep = () => {
   };
   const selectIsRightWheel = (isRigthWheel) => dispatch(actions.setIsRightWheel(isRigthWheel));
 
-  const colors = useSelector((state) => getAvailableColors(state));
-  const rates = useSelector((state) => getRates(state));
+  const colors = useSelector(getAvailableColors);
+  const rates = useSelector(getRates);
   const selectedColor = useSelector((state) => state.order.paramsOrder.color);
   const selectedRate = useSelector((state) => state.order.paramsOrder.rate);
   const dateFrom = useSelector((state) => state.order.paramsOrder.dateFrom);
   const dateTo = useSelector((state) => state.order.paramsOrder.dateTo);
-  const extraOptions = useSelector((state) => getExtraOptions(state));
+  const extraOptions = useSelector(getExtraOptions);
 
   useEffect(() => {
     const getRatesRequest = () => dispatch(actions.getRates());
