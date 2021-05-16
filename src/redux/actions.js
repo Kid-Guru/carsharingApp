@@ -1,14 +1,15 @@
 import { createAction } from 'redux-actions';
 import { orderApi } from '../api/api';
 import { calculateRentPrice } from '../helpers/utils';
+import { hideConfirmModalOrder } from './UI/actions';
 import { setViewOrderData, updateStatusViewOrderData } from './viewOrder/actions';
 
-export const toggleMenu = createAction('TOGGLE_MENU');
-export const toggleLanguage = createAction('TOGGLE_LANGUAGE');
-export const toggleCart = createAction('TOGGLE_CART');
-export const toggleViewOrderCart = createAction('TOGGLE_VIEW_ORDER_CART');
-export const showConfirmModalOrder = createAction('SHOW_COMFIRM_MODAL');
-export const hideConfirmModalOrder = createAction('HIDE_COMFIRM_MODAL');
+// export const toggleMenu = createAction('TOGGLE_MENU');
+// export const toggleLanguage = createAction('TOGGLE_LANGUAGE');
+// export const toggleCart = createAction('TOGGLE_CART');
+// export const toggleViewOrderCart = createAction('TOGGLE_VIEW_ORDER_CART');
+// export const showConfirmModalOrder = createAction('SHOW_COMFIRM_MODAL');
+// export const hideConfirmModalOrder = createAction('HIDE_COMFIRM_MODAL');
 
 export const setStepOrder = createAction('SET_STEP_ORDER');
 

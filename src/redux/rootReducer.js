@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import stateUIReducer from './stateUIReducer';
+import UIReducer from './UI/reducer';
 import mainReducer from './mainReducer';
 import orderReducer from './orderReducer';
 import citiesReducer from './cities/reducer';
@@ -12,7 +12,7 @@ import viewOrderReducer from './viewOrder/reducer';
 export default combineReducers({
   main: mainReducer,
   order: orderReducer,
-  stateUI: stateUIReducer,
+  stateUI: UIReducer,
   cities: citiesReducer,
   points: pointsReducer,
   cars: carsReducer,

@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
-import { toggleMenu } from '../../../redux/actions';
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleMenu } from '../../../redux/UI/actions';
 import s from './BurgerButton.module.scss';
 
 const themeMap = {

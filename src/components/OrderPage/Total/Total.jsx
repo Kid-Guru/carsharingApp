@@ -8,6 +8,7 @@ import {
   getPriceTotalData,
   getTotalRowsData,
 } from '../../../redux/selectors';
+import { showConfirmModalOrder } from '../../../redux/UI/actions';
 
 const BUTTON_TEXT = ['Выбрать модель', 'Дополнительно', 'Итого', 'Заказать'];
 const ButtonNext = () => {
@@ -19,7 +20,7 @@ const ButtonNext = () => {
     if (!isFinalStep) {
       dispatch(actions.handleCurrentStepOrder(currentStepOrder + 1));
     } else {
-      dispatch(actions.showConfirmModalOrder());
+      dispatch(showConfirmModalOrder());
     }
   };
 

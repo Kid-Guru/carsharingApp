@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleLanguage } from '../../../redux/actions';
+import { toggleLanguage } from '../../../redux/UI/actions';
 import s from './LanguageButton.module.scss';
 
 const LanguageButton = () => {

@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import FloatBtn from '../../common/FloatBtn/FloatBtn';
-import { showConfirmModalOrder, handleCurrentStepOrder } from '../../../redux/actions';
+import { handleCurrentStepOrder } from '../../../redux/actions';
 import { getIsNextStepAvailable, getIsFinalStep } from '../../../redux/selectors';
+import { showConfirmModalOrder } from '../../../redux/UI/actions';
 
 const BUTTON_TEXT = ['Выбрать модель', 'Дополнительно', 'Итого', 'Заказать'];
 const NextStepBtn = () => {

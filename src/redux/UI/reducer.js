@@ -22,6 +22,6 @@ const handlers = {
   [a.hideConfirmModalOrder]: (state) => ({ ...state, confirmModalOrderIsVisible: false }),
 };
 
-const stateUIReducer = handleActions(handlers, defaultState);
+const UIReducer = handleActions(handlers, defaultState);
 
-export default stateUIReducer;
+export default UIReducer;
