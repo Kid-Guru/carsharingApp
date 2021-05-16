@@ -8,14 +8,14 @@ const Total = (props) => {
       <h4 className="total__title">Ваш заказ</h4>
       <div className="total__order">
 
-        {rowsData.map((d, i) => {
+        {rowsData.map((d) => {
           if (!d.isFullfilled) return null;
           return (
-            <p className="total__item">
+            <p key={d.title} className="total__item">
               <span className="total__item-title">{d.title}</span>
               <span className="total__item-dots" />
               <span className="total__item-value_container">
-                {d.value.map((v) => <span className="total__item-value">{v}</span>)}
+                {d.value.map((v) => <span key={v} className="total__item-value">{v}</span>)}
               </span>
             </p>
           );
