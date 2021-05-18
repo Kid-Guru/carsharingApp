@@ -242,7 +242,7 @@ export const getOrderData = (state) => {
     id: orderData.id,
     carName: orderData.carId.name,
     carNumber: carNumberPretty,
-    carTank: orderData.carId.tank,
+    carTank: orderData.isFullTank ? 100 : orderData.carId.tank,
     availableFrom: prettyDate(new Date(orderData.dateFrom)),
     picPath: getImageURL(orderData.carId.thumbnail.path),
     status: orderData.orderStatusId.name,
