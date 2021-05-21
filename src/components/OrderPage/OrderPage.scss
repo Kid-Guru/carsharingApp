@@ -27,13 +27,6 @@
   }
 }
 
-.scroll {
-  overflow-y: auto;
-  position: absolute;
-  height: calc(100% - 64px);
-  width: 100%;
-}
-
 .order {
   display: flex;
   @include horizontal-padding;

@@ -2,6 +2,8 @@
 @import '../../../styles/_mixins.scss';
 
 .modelStep {
+  height: 100%;
+  position: relative;
   &__filter {
     padding-bottom: 32px;
   }
